@@ -1,8 +1,8 @@
 # RoundCraft Privacy Policy
 
-_Last updated: 2026-05-05_
+_Last updated: 2026-05-08_
 
-RoundCraft (the "App") is published under the **NaredCraft** brand by **Andre Ortiz Loyola Castañeda**, an independent developer. This policy explains what data the App handles and how it is used.
+RoundCraft (the "App") is published by **Andre Ortiz Loyola Castañeda**, an independent developer operating under the **NaredRitzo** developer brand. The App also surfaces links to the developer's separate craft brand, **NaredCraft** (Etsy shop, support page). This policy explains what data the App handles and how it is used.
 
 ---
 
@@ -11,7 +11,7 @@ RoundCraft (the "App") is published under the **NaredCraft** brand by **Andre Or
 - The App is **offline-first**. Your projects, counters, time, photos, materials, quotes and brand assets live **only on your device**.
 - We do **not** require an account, login, email or any personal identifier to use the App.
 - We do **not** transmit your project content to any server.
-- The App contains **no advertising, no analytics, and no tracking SDKs**.
+- The App contains **no third-party advertising, no analytics, and no tracking SDKs**. The only in-app promotions you'll see are links to the developer's own NaredCraft Etsy shop and tip jar — never paid ads from external networks.
 - A future paid Premium plan will be processed by Google Play; we never see your payment details.
 - Optional crash reports (via Sentry) are **disabled by default**. When enabled, they contain only technical error details — never your project content.
 
@@ -56,7 +56,7 @@ You can revoke any of these permissions at any time from your phone's Settings. 
 
 - ❌ No email, name, age, gender, address or any personal identifier
 - ❌ No advertising ID, IDFA, or device identifiers for advertising
-- ❌ No advertising networks (AdMob, Meta Audience Network, etc.) — the App is **ad-free**
+- ❌ No third-party advertising networks (AdMob, Meta Audience Network, etc.) — the App is **free of paid third-party ads**. The only in-app promotions are first-party links to the developer's own NaredCraft Etsy shop and Buy Me a Coffee tip jar.
 - ❌ No analytics on your behaviour, taps, screens or session length
 - ❌ No location data (foreground or background)
 - ❌ No contacts, microphone, calendar, SMS or call history
@@ -153,10 +153,11 @@ If this policy changes, we will update the "Last updated" date at the top of thi
 If you have any questions or requests about this policy, contact us:
 
 - **Developer**: Andre Ortiz Loyola Castañeda
-- **Brand**: NaredCraft
+- **Developer brand**: NaredRitzo
+- **Craft brand referenced in the App**: NaredCraft
 - **Email**: oica950624@gmail.com
-- **Etsy shop**: https://naredcraft.etsy.com
+- **Etsy shop (NaredCraft)**: https://naredcraft.etsy.com
 
 ---
 
-_RoundCraft is built and maintained by Andre Ortiz Loyola Castañeda, an independent developer who also crochets. Built with care, for craft._
+_RoundCraft is built and maintained by Andre Ortiz Loyola Castañeda — published under the **NaredRitzo** developer brand. An independent developer who also crochets. Built with care, for craft._
