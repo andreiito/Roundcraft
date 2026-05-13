@@ -135,6 +135,14 @@
   }
   a.link-card:active { transform: scale(0.98); }
   a.link-card .glyph { font-size: 22px; line-height: 1; }
+  a.link-card .glyph-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    object-fit: contain;
+    background: var(--wool-100);
+    flex-shrink: 0;
+  }
   a.link-card .meta {
     margin-left: auto;
     font-size: 12px;
@@ -209,7 +217,7 @@
     <h2 data-show-when="es">Proyectos</h2>
     <div class="links" data-show-when="en">
       <a class="link-card" href="https://play.google.com/store/apps/details?id=app.naredcraft.roundcraft" target="_blank" rel="noopener">
-        <span class="glyph">🪡</span>
+        <img class="glyph-img" src="../icon.png" alt="" />
         <span class="label-wrap">
           <span>RoundCraft</span>
           <span class="sub">Crochet & knit companion · Google Play</span>
@@ -219,7 +227,7 @@
     </div>
     <div class="links" data-show-when="es">
       <a class="link-card" href="https://play.google.com/store/apps/details?id=app.naredcraft.roundcraft" target="_blank" rel="noopener">
-        <span class="glyph">🪡</span>
+        <img class="glyph-img" src="../icon.png" alt="" />
         <span class="label-wrap">
           <span>RoundCraft</span>
           <span class="sub">Compañera de crochet y tejido · Google Play</span>
@@ -309,20 +317,20 @@
       leo cada mensaje.
     </p>
     <div class="links" data-show-when="en">
-      <a class="link-card" href="mailto:roundcraft.app@gmail.com">
+      <a class="link-card" href="mailto:naredcraft@gmail.com">
         <span class="glyph">✉️</span>
         <span class="label-wrap">
-          <span>roundcraft.app@gmail.com</span>
+          <span>naredcraft@gmail.com</span>
           <span class="sub">Direct email</span>
         </span>
         <span class="meta">→</span>
       </a>
     </div>
     <div class="links" data-show-when="es">
-      <a class="link-card" href="mailto:roundcraft.app@gmail.com">
+      <a class="link-card" href="mailto:naredcraft@gmail.com">
         <span class="glyph">✉️</span>
         <span class="label-wrap">
-          <span>roundcraft.app@gmail.com</span>
+          <span>naredcraft@gmail.com</span>
           <span class="sub">Correo directo</span>
         </span>
         <span class="meta">→</span>
