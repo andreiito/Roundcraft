@@ -1,0 +1,16 @@
+{
+  "v": 1,
+  "patterns": [
+    {
+      "slug": "abducted-cow",
+      "name": "Abducted Cow",
+      "width": 39,
+      "height": 66,
+      "colors": 16,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/abducted-cow-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/abducted-cow.rcpattern",
+      "sha256": "9b4b46f20b409ea5e9784fbe8158fe924ac239c72d8a523a37b2549a61cd8a95",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/abducted-cow.html"
+    }
+  ]
+}
