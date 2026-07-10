@@ -199,6 +199,11 @@
       Impórtalo en RoundCraft (v1.0.15+): Herramientas → Tapestry → Importar. Sigue el
       chart punto por punto con el contador integrado.
     </p>
+    <a class="btn btn-primary" href="#" id="open-in-app"
+       onclick="gtag('event','open_in_app',{pattern:'abducted-cow'})">
+      <span data-show-when="en">Open in the RoundCraft app</span>
+      <span data-show-when="es">Abrir en la app RoundCraft</span>
+    </a>
     <p class="license" data-show-when="en">
       Personal use · you may sell finished items · please don't redistribute the PDF.
       This pattern is always free on this page.
@@ -255,6 +260,23 @@
     buttons.forEach(function (b) {
       b.addEventListener('click', function () { setLang(b.getAttribute('data-set-lang')); });
     });
+
+    // "Open in app" smart link: fires the deep link so RoundCraft (v1.0.15+)
+    // downloads and imports the pattern. QR codes point at this page with
+    // ?open=app so a scan attempts the app first and falls back to this page.
+    var DEEP_LINK = 'roundcraft://import?u=' + encodeURIComponent(
+      'https://andreiito.github.io/Roundcraft/patterns/assets/abducted-cow.rcpattern'
+    );
+    var openBtn = document.getElementById('open-in-app');
+    if (openBtn) {
+      openBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.location.href = DEEP_LINK;
+      });
+    }
+    if (new URLSearchParams(window.location.search).get('open') === 'app') {
+      setTimeout(function () { window.location.href = DEEP_LINK; }, 500);
+    }
   })();
 </script>
 </body>
