@@ -1,24 +1,40 @@
 ---
-// "Open in RoundCraft" button. Fires the roundcraft://import deep link and, if
-// nothing takes over the page, falls back to the Play Store: a visitor without
-// the app installed sees a store page instead of a dead tap.
+// "Open in RoundCraft": hands a pattern to the app through its import deep
+// link, roundcraft://import?u=<url of the .rcpattern>.
+//
+// Two things make this less obvious than it looks:
+//
+// 1. Chrome on Android refuses to navigate to a custom scheme from JavaScript.
+//    The supported route is an intent:// URI, which also carries its own
+//    browser_fallback_url, so Chrome sends people without the app to the Play
+//    Store itself. No timers, no guessing whether the app opened.
+// 2. RoundCraft is Android only. On anything else the honest destination for
+//    this button is the store listing.
 import Icon from './Icon.astro';
-import { playUrl } from '../data/site';
+import { playUrl, PLAY_STORE_ID } from '../data/site';
 
 interface Props {
-  target: string;
+  /** Absolute URL of the .rcpattern file. Must satisfy the app's import
+   *  allow-list, which is checked against this string before it is fetched. */
+  fileUrl: string;
   label: string;
   campaign: string;
   variant?: 'primary' | 'ghost';
   class?: string;
 }
-const { target, label, campaign, variant = 'primary', class: className = '' } = Astro.props;
+const { fileUrl, label, campaign, variant = 'primary', class: className = '' } = Astro.props;
+
+const store = playUrl(campaign);
+const query = `u=${encodeURIComponent(fileUrl)}`;
+const intentUrl =
+  `intent://import?${query}#Intent;scheme=roundcraft;package=${PLAY_STORE_ID};` +
+  `S.browser_fallback_url=${encodeURIComponent(store)};end`;
 ---
 <button
   type="button"
   class={`btn btn-${variant} open-in-app ${className}`}
-  data-deeplink={target}
-  data-fallback={playUrl(campaign)}
+  data-intent={intentUrl}
+  data-store={store}
 >
   <Icon name="arrow" size={17} /> {label}
 </button>
@@ -28,43 +44,20 @@ const { target, label, campaign, variant = 'primary', class: className = '' } = 
 </style>
 
 <script>
-  // A deep link to an app that is not installed fails silently on Android: the
-  // navigation is simply ignored. There is no event for that, so the signal is
-  // the inverse: if the app DOES open, the page is hidden or loses focus. Still
-  // visible after the grace period means no app, so send them to the store.
-  const GRACE_MS = 1400;
+  const isAndroid = /android/i.test(navigator.userAgent);
+
+  const open = (btn: HTMLButtonElement) => {
+    const target = isAndroid ? btn.dataset.intent : btn.dataset.store;
+    if (target) window.location.href = target;
+  };
 
   document.querySelectorAll<HTMLButtonElement>('.open-in-app').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const deeplink = btn.dataset.deeplink;
-      const fallback = btn.dataset.fallback;
-      if (!deeplink) return;
-
-      let leftPage = false;
-      const markLeft = () => { leftPage = true; };
-      window.addEventListener('pagehide', markLeft, { once: true });
-      window.addEventListener('blur', markLeft, { once: true });
-      document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'hidden') markLeft();
-      }, { once: true });
-
-      window.location.href = deeplink;
-
-      if (fallback) {
-        window.setTimeout(() => {
-          if (!leftPage && document.visibilityState === 'visible') {
-            window.location.href = fallback;
-          }
-        }, GRACE_MS);
-      }
-    });
+    btn.addEventListener('click', () => open(btn));
   });
 
-  // QR codes and shared links can append ?open=app to jump straight into the
-  // app, skipping the tap. Only the first button on the page is auto-fired.
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('open') === 'app') {
+  // QR codes and shared links can append ?open=app to skip the tap.
+  if (new URLSearchParams(window.location.search).get('open') === 'app') {
     const first = document.querySelector<HTMLButtonElement>('.open-in-app');
-    if (first) window.setTimeout(() => first.click(), 400);
+    if (first) window.setTimeout(() => open(first), 400);
   }
 </script>

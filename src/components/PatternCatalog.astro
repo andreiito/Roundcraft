@@ -120,7 +120,7 @@ const haystack = (slug: string) => {
               {p.tags.map((id) => <li>{TAGS[id][lang]}</li>)}
             </ul>
             <div class="pc-actions">
-              <OpenInApp target={p.deepLinkTarget} label={copy.openInApp} campaign={`catalog_${p.slug}`} class="pc-open" />
+              <OpenInApp fileUrl={p.deepLinkTarget} label={copy.openInApp} campaign={`catalog_${p.slug}`} class="pc-open" />
               <a class="pc-details" href={detailHref(p.slug)}>{copy.details} <Icon name="arrow" size={16} /></a>
             </div>
           </div>

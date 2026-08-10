@@ -44,7 +44,7 @@ const ui = {
       </div>
       <a class="btn btn-ghost dl-rc" href={pattern.rcpattern} download><Icon name="tapestry" size={17} /> {ui.rc}</a>
       <p class="muted note">{L.importNote}</p>
-      <OpenInApp target={pattern.deepLinkTarget} label={ui.open} campaign={`pattern_${pattern.slug}`} class="open-app" />
+      <OpenInApp fileUrl={pattern.deepLinkTarget} label={ui.open} campaign={`pattern_${pattern.slug}`} class="open-app" />
       <p class="license muted">{L.license}</p>
     </div>
 
