@@ -1,0 +1,87 @@
+---
+import Base from '../../layouts/Base.astro';
+import LegalPage from '../../components/LegalPage.astro';
+---
+<Base
+  title="Política de Privacidad — RoundCraft"
+  description="RoundCraft es offline-first. Tus proyectos, contadores, tiempo y fotos viven solo en tu dispositivo. Sin cuentas, sin anuncios, sin rastreo."
+  lang="es"
+>
+  <LegalPage eyebrow="Legal" title="Política de Privacidad" updated="Última actualización: 8 de mayo de 2026">
+    <p>RoundCraft (la "App") es publicada por <strong>Andre Ortiz Loyola Castañeda</strong>, desarrollador independiente que opera bajo la marca de desarrollador <strong>NaredRitzo</strong>. La App también enlaza a la marca artesanal separada del desarrollador, <strong>NaredCraft</strong> (tienda Etsy y página de apoyo). Esta política explica qué datos maneja la App y cómo se usan.</p>
+
+    <h2>La versión corta</h2>
+    <ul>
+      <li>La App es <strong>offline-first</strong>. Tus proyectos, contadores, tiempo, fotos, materiales, cotizaciones y activos de marca viven <strong>solo en tu dispositivo</strong>.</li>
+      <li>No se requiere cuenta, login ni correo para usar la App.</li>
+      <li>El contenido de tus proyectos nunca se transmite a ningún servidor.</li>
+      <li>La App no tiene <strong>publicidad de terceros ni analítica de comportamiento</strong>. Las únicas promociones dentro de la App son enlaces a la tienda Etsy y al bote de propinas de NaredCraft, del propio desarrollador.</li>
+      <li>Premium se procesa por Google Play. Nunca vemos los datos de tu pago.</li>
+      <li>Los reportes de fallos opcionales (vía Sentry) están <strong>desactivados por defecto</strong>.</li>
+    </ul>
+
+    <h2>Datos guardados en tu dispositivo</h2>
+    <p>La App guarda lo siguiente <strong>localmente</strong> con SQLite:</p>
+    <ul>
+      <li><strong>Proyectos</strong>: nombre, foto de portada opcional, notas, estado, fechas.</li>
+      <li><strong>Contadores</strong>: nombre, color, valor, meta opcional, posición.</li>
+      <li><strong>Sesiones de cronómetro</strong>: marcas de inicio y fin y duración acumulada por proyecto.</li>
+      <li><strong>Materiales</strong> y una biblioteca de materiales guardados: nombre, unidad, cantidad, costo unitario.</li>
+      <li><strong>Ajustes de cotización</strong>: tarifa por hora, margen de ganancia, modo y plantilla.</li>
+      <li><strong>Etiquetas</strong> y <strong>patrones tapestry</strong> (celdas, paleta, imagen de referencia opcional).</li>
+      <li><strong>Ajustes de la App y marca</strong>: idioma, tema, color de acento, moneda, colores guardados y, en Premium, tu logo y nombre de marca opcionales, usados solo cuando exportas un resumen.</li>
+      <li><strong>Estado de suscripción</strong>: tipo de plan y expiración, y cualquier código que hayas ingresado. Se guarda localmente para el control offline.</li>
+    </ul>
+    <p>Estos datos nunca salen de tu dispositivo a menos que los exportes explícitamente, por ejemplo al tocar "Compartir" en el resumen de un proyecto, que genera una imagen que luego compartes por la app que elijas.</p>
+
+    <h2>Permisos que solicita la App</h2>
+    <table>
+      <thead><tr><th>Permiso</th><th>Para qué</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Cámara</th><td>Solo al tocar "Tomar foto" para una portada, una imagen de referencia de tapestry o tu logo de marca. Se guarda localmente, nunca se sube.</td></tr>
+        <tr><th scope="row">Fotos / Galería</th><td>Solo al tocar "Elegir de la galería" para escoger una imagen con los mismos fines.</td></tr>
+        <tr><th scope="row">Notificaciones</th><td>Solo si activas un recordatorio en Ajustes. Las notificaciones se programan localmente y suenan en tu dispositivo.</td></tr>
+      </tbody>
+    </table>
+    <p>Puedes revocar cualquier permiso cuando quieras en los ajustes de tu teléfono. La App sigue funcionando en todo lo que no lo necesite.</p>
+
+    <h2>Lo que no recolectamos</h2>
+    <ul>
+      <li>Ni correo, nombre, edad, género, dirección o identificador personal.</li>
+      <li>Ni ID de publicidad ni redes de anuncios de terceros.</li>
+      <li>Ni analítica de comportamiento sobre tus toques, pantallas o sesiones.</li>
+      <li>Ni ubicación, contactos, micrófono, calendario, datos biométricos o de salud.</li>
+    </ul>
+
+    <h2>Suscripciones Premium</h2>
+    <p>Las suscripciones Premium se manejan con <strong>Google Play Billing</strong>, con validación de recibos a través de <strong>RevenueCat</strong>. Tu método de pago, dirección de facturación e historial de transacciones los gestiona Google según la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política de privacidad de Google</a>. Nosotros recibimos solo un token de compra anonimizado y el estado de la suscripción (activa y su periodo). Revisa la <a href="https://www.revenuecat.com/privacy/" target="_blank" rel="noopener">política de RevenueCat</a> para saber cómo procesan los eventos de compra anonimizados. Los códigos de activación (para testers y beta) se validan localmente en tu dispositivo.</p>
+
+    <h2>Aviso para calificar la App</h2>
+    <p>Después de terminar tu primer proyecto, la App puede preguntarte si quieres calificarla en Google Play. Si aceptas, Google Play abre su propia hoja de reseña. RoundCraft nunca ve ni guarda la calificación que envías.</p>
+
+    <h2>Reportes de fallos</h2>
+    <p>La App incluye el SDK de Sentry instalado pero desactivado por defecto. Si se activa en una futura actualización, puede enviar datos técnicos de error (mensaje, stack trace, modelo del dispositivo, versión de sistema y de la App, y un identificador de sesión aleatorio). Los reportes nunca incluyen el contenido de tus proyectos. Ver la <a href="https://sentry.io/privacy/" target="_blank" rel="noopener">política de Sentry</a>.</p>
+
+    <h2>Función de compartir</h2>
+    <p>Al tocar "Compartir", la App genera una imagen en tu dispositivo con los datos que ingresaste. A dónde va esa imagen lo rige la app por la que la compartes, no RoundCraft.</p>
+
+    <h2>Enlaces a servicios de terceros</h2>
+    <ul>
+      <li><strong>NaredCraft en Etsy</strong> (<a href="https://naredcraft.etsy.com" target="_blank" rel="noopener">naredcraft.etsy.com</a>): regido por la política de Etsy.</li>
+      <li><strong>Buy Me a Coffee</strong> (<a href="https://buymeacoffee.com/naredcraft" target="_blank" rel="noopener">buymeacoffee.com/naredcraft</a>): regido por su política.</li>
+      <li><strong>Google Play</strong>: regido por Google.</li>
+    </ul>
+
+    <h2>Menores</h2>
+    <p>La App no está diseñada ni dirigida a menores de 13 años, y no recolectamos datos de menores a sabiendas.</p>
+
+    <h2>Tus derechos</h2>
+    <p>Como todo se guarda localmente y no tenemos nada en un servidor: para acceder, abre la App; para borrar, elimina un proyecto o desinstala la App; para exportar, usa "Compartir"; para retirar tu consentimiento, revoca un permiso en los ajustes de Android. Bajo el GDPR y la CCPA, las obligaciones que aplican a quienes recolectan datos personales no aplican aquí, porque no recolectamos ninguno.</p>
+
+    <h2>Cambios</h2>
+    <p>Si esta política cambia, actualizaremos la fecha de arriba y anotaremos los cambios importantes en las notas de la versión en Google Play.</p>
+
+    <h2>Contacto</h2>
+    <p>Desarrollador: Andre Ortiz Loyola Castañeda (NaredRitzo). Correo: <a href="mailto:oica950624@gmail.com">oica950624@gmail.com</a>. Etsy: <a href="https://naredcraft.etsy.com" target="_blank" rel="noopener">naredcraft.etsy.com</a>.</p>
+  </LegalPage>
+</Base>

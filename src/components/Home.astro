@@ -1,0 +1,583 @@
+---
+import Icon from './Icon.astro';
+import AppIcon from './AppIcon.astro';
+import DeviceFrame from './DeviceFrame.astro';
+import QuoteCard from './QuoteCard.astro';
+import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
+import { playUrl } from '../data/site';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const tt = useTranslations(lang);
+const pricing = localizedPath('/pricing', lang);
+const patternsHref = `${localizedPath('/patterns', lang)}/`;
+// Screenshots are captured twice, once per app language, so a Spanish reader
+// never sees an English UI in the frames.
+const shot = (name: string) => `/img/screens/${lang === 'es' ? 'es/' : ''}${name}.jpg`;
+
+const copy = {
+  en: {
+    heroEyebrow: 'For crocheters who sell',
+    heroTitle: 'Finish every piece knowing what to charge.',
+    heroLede:
+      'RoundCraft counts your rows, times your work and turns both into a fair price. One tool, from the first stitch to the price tag.',
+    heroSecondary: 'See how pricing works',
+    heroTrust: 'Free to start. A 7-day Premium trial, no card.',
+
+    insight1: 'A row counter is free. It is also blind to the value of your time.',
+    insight2:
+      'RoundCraft is the first tool built to turn your hours into a price you can defend.',
+
+    quoteEyebrow: 'The quote calculator',
+    quoteTitle: 'Price your work like a pro.',
+    quoteBody:
+      'Set your hourly rate, add materials and a profit margin. RoundCraft combines them with the time you actually tracked and suggests a price. Switch between a simple estimate and a detailed breakdown.',
+    quoteBullets: [
+      'Simple and detailed modes',
+      'Built on your real tracked hours',
+      'A price for you, a clean price for the client',
+    ],
+    quoteShotAlt: 'Quick quote in RoundCraft: 6.5 hours at 14 per hour plus 18.50 of materials becomes a 142.35 price',
+    quoteShot2Alt: 'Detailed quote breakdown in RoundCraft showing labor, materials, profit and total',
+
+    featuresEyebrow: 'Everything in one project',
+    featuresTitle: 'From the first row to the finished sale.',
+    features: [
+      {
+        icon: 'counters',
+        title: 'Counters that keep up with your hands.',
+        body: 'Add a counter for rows, another for stitches per row, another for colour changes. Give each one a goal and watch the bar fill as you go. Tap the big button and feel a soft tap back, so you never have to look down to know it counted.',
+        points: ['A goal and a progress bar per counter', 'Soft haptic feedback on every tap', 'Notes on each counter for hook size or recipient'],
+        shot: 'counters',
+        shotAlt: 'A RoundCraft project with two counters: rows at 18 of 40 and stitches per row at 24 of 24',
+      },
+      {
+        icon: 'timer',
+        title: 'A timer that survives real life.',
+        body: 'Start it when you sit down, pause it when the kettle boils. Close the app, come back tomorrow, your total is still there. Forgot to hit start? Add the time by hand. Those hours are what turn a guess into a price.',
+        points: ['One running total per project', 'Pause and resume as many times as the day needs', 'Add or subtract time when you forget to start it'],
+        shot: 'timer',
+        shotAlt: 'RoundCraft timer showing 45 minutes of total time on a project, with a resume button',
+      },
+      {
+        icon: 'share',
+        title: 'Two cards: one for Instagram, one for your client.',
+        body: 'When a piece is done, RoundCraft builds the card for you. The craft card shows your photo, your hours and your rows, with no prices on it. The quote card shows the full breakdown, ready to send to whoever asked how much.',
+        points: ['A craft postcard for social media, no prices', 'A quote card with cost, price and profit', 'Your logo and your accent colour with Premium'],
+        shot: 'share-craft',
+        shotAlt: 'RoundCraft craft card for Instagram showing project name, 45 minutes, 2 sessions and 42 rows',
+        shot2: 'share-quote',
+        shot2Alt: 'RoundCraft quote card showing rows, time, cost, price and profit for a client',
+      },
+    ],
+
+    toolsTitle: 'And the rest of the workshop.',
+    toolsSub: 'The small tools you keep reaching for, all in the same app. No sign-up, no internet, no waiting.',
+    toolsShotAlt: 'The RoundCraft tools screen with quick quote, materials library, hook and needle sizes, converters, stitch glossary and tapestry patterns',
+    tools: [
+      { icon: 'tapestry', title: 'Tapestry charts', desc: 'Build or import a pixel chart and follow it square by square while the counter holds your place.' },
+      { icon: 'quote', title: 'Quick quote', desc: 'Price a piece on the spot, no project needed. Rate, materials, margin, done.' },
+      { icon: 'materials', title: 'Materials library', desc: 'Save your yarns and supplies once, then reuse them in every quote.' },
+      { icon: 'hooks', title: 'Hook and needle sizes', desc: 'US, UK, metric and Japanese, side by side so nothing gets lost in translation.' },
+      { icon: 'stitches', title: 'Stitch glossary', desc: 'Names, abbreviations and symbols in English and Spanish, US and UK.' },
+      { icon: 'yarn-weights', title: 'Yarn weight guide', desc: 'From lace to jumbo, with the gauge and hook each weight wants.' },
+      { icon: 'gauge', title: 'Gauge calculator', desc: 'Turn your swatch into the real finished measurements.' },
+      { icon: 'inc-dec', title: 'Increases and decreases', desc: 'Where to add or remove stitches so they land evenly around the row.' },
+    ],
+
+    howEyebrow: 'How it works',
+    howTitle: 'Three steps, one price.',
+    how: [
+      { n: '01', title: 'Track', body: 'Count your rows and time your session while you crochet.' },
+      { n: '02', title: 'Calculate', body: 'Add materials and a margin. Get a price that respects your time.' },
+      { n: '03', title: 'Share', body: 'Post a branded card with the price, ready for a client or Instagram.' },
+    ],
+
+    patternsEyebrow: 'Free patterns',
+    patternsTitle: 'Try the app on a free pattern.',
+    patternsBody:
+      'Download a printable chart, import it into the tapestry counter and follow it stitch by stitch. New patterns stay free on the site, in English and Spanish.',
+    patternsCta: 'Browse free patterns',
+
+    pricingEyebrow: 'Pricing',
+    pricingTitle: 'Free to use. Premium when you grow.',
+    pricingBody:
+      'Count, time and quote for free. Premium removes the limits and puts your brand on every share, from $2.91 per month.',
+    pricingCta: 'See pricing',
+    pricingNote: '7-day free trial, no card.',
+
+    makerEyebrow: 'The maker',
+    makerTitle: 'Built by someone who sells, for people who sell.',
+    makerBody:
+      'RoundCraft is an independent app by NaredCraft. No ads, no accounts, no tracking. Your projects live on your phone, not on a server.',
+    makerCta: 'About the maker',
+
+    finalTitle: 'Your next piece deserves a real price.',
+    finalBody: 'Download RoundCraft and finish it knowing exactly what to charge.',
+    finalSub: 'Android. Free to start.',
+  },
+  es: {
+    heroEyebrow: 'Para quien vende su crochet',
+    heroTitle: 'Termina cada pieza sabiendo cuánto cobrar.',
+    heroLede:
+      'RoundCraft cuenta tus vueltas, cronometra tu trabajo y con eso calcula cuánto cobrar. Una sola app, del primer punto a la etiqueta de precio.',
+    heroSecondary: 'Ver cómo se cotiza',
+    heroTrust: 'Gratis para empezar. Prueba Premium de 7 días, sin tarjeta.',
+
+    insight1: 'Un contador de vueltas es gratis. Pero no sabe cuánto vale tu tiempo.',
+    insight2:
+      'RoundCraft es la primera app pensada para convertir tus horas en un precio que puedes defender.',
+
+    quoteEyebrow: 'La calculadora de cotización',
+    quoteTitle: 'Cotiza como profesional.',
+    quoteBody:
+      'Pon tu precio por hora, suma los materiales y tu margen de ganancia. RoundCraft lo junta con las horas que de verdad registraste y te sugiere un precio. Cambia entre un cálculo rápido y un desglose completo.',
+    quoteBullets: [
+      'Modo rápido y modo detallado',
+      'Usa tus horas reales, no un número al aire',
+      'Un precio para ti y un precio limpio para tu cliente',
+    ],
+    quoteShotAlt: 'Cotización rápida en RoundCraft: 6.5 horas a 14 por hora más 18.50 de materiales dan un precio de 142.35',
+    quoteShot2Alt: 'Desglose detallado en RoundCraft con mano de obra, materiales, ganancia y total',
+
+    featuresEyebrow: 'Todo en un mismo proyecto',
+    featuresTitle: 'De la primera vuelta a la venta.',
+    features: [
+      {
+        icon: 'counters',
+        title: 'Contadores que van al ritmo de tus manos.',
+        body: 'Pon un contador para las vueltas, otro para los puntos de cada vuelta, otro para los cambios de color. Ponle una meta a cada uno y mira cómo se llena la barra. Toca el botón grande y siente la vibración, así no tienes que ver la pantalla para saber que contó.',
+        points: ['Una meta y una barra de avance por contador', 'Vibración suave en cada toque', 'Notas en cada contador para el gancho o para quién es'],
+        shot: 'counters',
+        shotAlt: 'Un proyecto de RoundCraft con dos contadores: vueltas en 18 de 40 y puntos por vuelta en 24 de 24',
+      },
+      {
+        icon: 'timer',
+        title: 'Un cronómetro que aguanta la vida real.',
+        body: 'Arráncalo cuando te sientas a tejer y páusalo cuando suena el timbre. Cierra la app, vuelve mañana y tu total sigue ahí. ¿Se te olvidó darle play? Súmale el tiempo a mano. Esas horas son las que convierten un cálculo al aire en un precio.',
+        points: ['Un total acumulado por proyecto', 'Pausa y sigue tantas veces como haga falta', 'Suma o resta tiempo cuando olvidas arrancarlo'],
+        shot: 'timer',
+        shotAlt: 'Cronómetro de RoundCraft con 45 minutos de tiempo total en un proyecto y un botón para seguir',
+      },
+      {
+        icon: 'share',
+        title: 'Dos tarjetas: una para Instagram y una para tu cliente.',
+        body: 'Cuando terminas una pieza, RoundCraft te arma la tarjeta. La de tu trabajo lleva tu foto, tus horas y tus vueltas, sin precios. La de cotización lleva el desglose completo, lista para mandarla a quien te preguntó cuánto cuesta.',
+        points: ['Una postal de tu trabajo para redes, sin precios', 'Una tarjeta de cotización con costo, precio y ganancia', 'Tu logo y tu color con Premium'],
+        shot: 'share-craft',
+        shotAlt: 'Tarjeta de RoundCraft para Instagram con el nombre del proyecto, 45 minutos, 2 sesiones y 42 vueltas',
+        shot2: 'share-quote',
+        shot2Alt: 'Tarjeta de cotización de RoundCraft con vueltas, tiempo, costo, precio y ganancia para el cliente',
+      },
+    ],
+
+    toolsTitle: 'Y el resto del taller.',
+    toolsSub: 'Esas herramientas chiquitas que siempre acabas buscando, todas en la misma app. Sin registro, sin internet, sin esperar.',
+    toolsShotAlt: 'Pantalla de herramientas de RoundCraft con cotización rápida, biblioteca de materiales, medidas de ganchos y agujas, convertidores, glosario de puntos y patrones de tapestry',
+    tools: [
+      { icon: 'tapestry', title: 'Charts de tapestry', desc: 'Arma o importa un chart de píxeles y síguelo cuadro por cuadro mientras el contador te guarda el lugar.' },
+      { icon: 'quote', title: 'Cotización rápida', desc: 'Cotiza una pieza al momento, sin crear proyecto. Tarifa, materiales, margen, listo.' },
+      { icon: 'materials', title: 'Biblioteca de materiales', desc: 'Guarda tus hilos y materiales una vez y reúsalos en cada cotización.' },
+      { icon: 'hooks', title: 'Medidas de ganchos y agujas', desc: 'US, UK, métrico y japonés, lado a lado para que nada se pierda en la traducción.' },
+      { icon: 'stitches', title: 'Glosario de puntos', desc: 'Nombres, abreviaturas y símbolos en inglés y español, US y UK.' },
+      { icon: 'yarn-weights', title: 'Guía de grosores de hilo', desc: 'De encaje a jumbo, con la muestra y el gancho que pide cada uno.' },
+      { icon: 'gauge', title: 'Calculadora de muestra', desc: 'Convierte tu muestra en las medidas reales de la pieza terminada.' },
+      { icon: 'inc-dec', title: 'Aumentos y disminuciones', desc: 'Dónde subir o bajar puntos para que queden parejos en toda la vuelta.' },
+    ],
+
+    howEyebrow: 'Cómo funciona',
+    howTitle: 'Tres pasos, un precio.',
+    how: [
+      { n: '01', title: 'Registra', body: 'Cuenta tus vueltas y cronometra tu sesión mientras tejes.' },
+      { n: '02', title: 'Cotiza', body: 'Suma materiales y tu margen. Te da un precio que respeta tu tiempo.' },
+      { n: '03', title: 'Comparte', body: 'Publica una tarjeta con tu marca y el precio, lista para tu cliente o Instagram.' },
+    ],
+
+    patternsEyebrow: 'Patrones gratis',
+    patternsTitle: 'Prueba la app con un patrón gratis.',
+    patternsBody:
+      'Baja el chart imprimible, impórtalo al contador tapestry y síguelo punto por punto. Los patrones nuevos siempre son gratis aquí, en inglés y español.',
+    patternsCta: 'Ver patrones gratis',
+
+    pricingEyebrow: 'Precios',
+    pricingTitle: 'Gratis para usar. Premium cuando creces.',
+    pricingBody:
+      'Cuenta, cronometra y cotiza gratis. Premium te quita los límites y pone tu marca en todo lo que compartes, desde $2.91 al mes.',
+    pricingCta: 'Ver precios',
+    pricingNote: 'Prueba gratis de 7 días, sin tarjeta.',
+
+    makerEyebrow: 'Quién la hace',
+    makerTitle: 'Hecha por alguien que vende, para quien vende.',
+    makerBody:
+      'RoundCraft es una app independiente de NaredCraft. Sin anuncios, sin cuentas, sin rastreo. Tus proyectos viven en tu teléfono, no en un servidor.',
+    makerCta: 'Conoce al maker',
+
+    finalTitle: 'Tu próxima pieza merece un precio real.',
+    finalBody: 'Descarga RoundCraft y termínala sabiendo exactamente cuánto cobrar.',
+    finalSub: 'Android. Gratis para empezar.',
+  },
+}[lang];
+---
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy" data-reveal>
+      <span class="eyebrow">{copy.heroEyebrow}</span>
+      <h1>{copy.heroTitle}</h1>
+      <p class="lede">{copy.heroLede}</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href={playUrl('hero')} target="_blank" rel="noopener">
+          <Icon name="arrow" size={19} /> {tt('cta.googlePlay')}
+        </a>
+        <a class="btn btn-ghost btn-lg" href="#quote">{copy.heroSecondary}</a>
+      </div>
+      <p class="hero-trust"><Icon name="check" size={17} /> {copy.heroTrust}</p>
+    </div>
+    <div class="hero-visual" data-reveal>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <DeviceFrame src={shot("projects")} alt={lang === 'es'
+        ? 'Lista de proyectos en RoundCraft con avance y tiempo de cada uno'
+        : 'RoundCraft project list showing progress and time tracked per project'} loading="eager" />
+      <QuoteCard lang={lang} class="hero-quote" />
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHT -->
+<section class="insight">
+  <div class="wrap wrap-narrow center" data-reveal>
+    <p class="insight-lead">{copy.insight1}</p>
+    <p class="insight-follow">{copy.insight2}</p>
+  </div>
+</section>
+
+<!-- QUOTE (hero feature) -->
+<section class="section quote-feature" id="quote">
+  <div class="wrap quote-grid">
+    <div class="quote-visual" data-reveal>
+      <DeviceFrame src={shot("quote-detailed")} alt={copy.quoteShot2Alt} class="quote-back" />
+      <DeviceFrame src={shot("quote")} alt={copy.quoteShotAlt} class="quote-front" />
+    </div>
+    <div class="quote-copy" data-reveal>
+      <span class="eyebrow">{copy.quoteEyebrow}</span>
+      <h2>{copy.quoteTitle}</h2>
+      <p class="lede">{copy.quoteBody}</p>
+      <ul class="check-list">
+        {copy.quoteBullets.map((b) => (
+          <li><Icon name="check" size={19} /> {b}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section section-tint" id="features">
+  <div class="wrap">
+    <header class="sec-head" data-reveal>
+      <span class="eyebrow">{copy.featuresEyebrow}</span>
+      <h2>{copy.featuresTitle}</h2>
+    </header>
+    <div class="feature-rows">
+      {copy.features.map((f, i) => (
+        <article class={`feature-row${i % 2 === 1 ? ' flip' : ''}`} data-reveal>
+          <div class="fr-copy">
+            <span class="feature-icon"><AppIcon name={f.icon} size={44} alt="" /></span>
+            <h3>{f.title}</h3>
+            <p>{f.body}</p>
+            <ul class="check-list">
+              {f.points.map((p) => <li><Icon name="check" size={18} /> {p}</li>)}
+            </ul>
+          </div>
+          <div class={`fr-shot${f.shot2 ? ' pair' : ''}`}>
+            <DeviceFrame src={shot(f.shot)} alt={f.shotAlt} />
+            {f.shot2 && <DeviceFrame src={shot(f.shot2)} alt={f.shot2Alt} class="fr-shot-b" />}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="section">
+  <div class="wrap">
+    <div class="tools-layout">
+      <div class="tools-aside" data-reveal>
+        <header class="sec-head">
+          <h2>{copy.toolsTitle}</h2>
+          <p class="lede">{copy.toolsSub}</p>
+        </header>
+        <DeviceFrame src={shot("tools")} alt={copy.toolsShotAlt} class="tools-shot" />
+      </div>
+      <ul class="tools-grid" data-reveal>
+        {copy.tools.map((tool) => (
+          <li class="tool-card">
+            <span class="tool-icon"><AppIcon name={tool.icon} size={34} alt="" /></span>
+            <div class="tool-text">
+              <h3>{tool.title}</h3>
+              <p>{tool.desc}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section section-tint">
+  <div class="wrap">
+    <header class="sec-head" data-reveal>
+      <span class="eyebrow">{copy.howEyebrow}</span>
+      <h2>{copy.howTitle}</h2>
+    </header>
+    <ol class="steps">
+      {copy.how.map((s) => (
+        <li data-reveal>
+          <span class="step-n font-display">{s.n}</span>
+          <h3>{s.title}</h3>
+          <p>{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<!-- PATTERNS TEASER -->
+<section class="section">
+  <div class="wrap teaser" data-reveal>
+    <div class="teaser-copy">
+      <span class="eyebrow">{copy.patternsEyebrow}</span>
+      <h2>{copy.patternsTitle}</h2>
+      <p class="lede">{copy.patternsBody}</p>
+      <a class="btn btn-ghost" href={patternsHref}>{copy.patternsCta} <Icon name="arrow" size={18} /></a>
+    </div>
+    <a class="teaser-card" href={patternsHref} aria-label={copy.patternsCta}>
+      <img src="/patterns/assets/abducted-cow-preview.png" width="780" height="1320" loading="lazy" decoding="async"
+        alt="Free tapestry crochet chart of a UFO beaming up a cow" />
+      <span class="pill-tag">{lang === 'es' ? 'Gratis' : 'Free'}</span>
+    </a>
+  </div>
+</section>
+
+<!-- PRICING TEASER -->
+<section class="section section-tint">
+  <div class="wrap cta-band" data-reveal>
+    <div>
+      <span class="eyebrow">{copy.pricingEyebrow}</span>
+      <h2>{copy.pricingTitle}</h2>
+      <p class="lede">{copy.pricingBody}</p>
+    </div>
+    <div class="cta-band-actions">
+      <a class="btn btn-primary btn-lg" href={pricing}>{copy.pricingCta}</a>
+      <span class="muted"><Icon name="check" size={15} /> {copy.pricingNote}</span>
+    </div>
+  </div>
+</section>
+
+<!-- MAKER -->
+<section class="section">
+  <div class="wrap maker" data-reveal>
+    <img class="maker-logo" src="/img/naredcraft-logo.png" width="120" height="116" loading="lazy" decoding="async" alt="NaredCraft brand mark" />
+    <div>
+      <span class="eyebrow">{copy.makerEyebrow}</span>
+      <h2>{copy.makerTitle}</h2>
+      <p class="lede">{copy.makerBody}</p>
+      <a class="link-arrow" href={localizedPath('/developer', lang)}>{copy.makerCta} <Icon name="arrow" size={17} /></a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap wrap-narrow center" data-reveal>
+    <img class="final-logo brand-lockup" src="/img/logo-lockup.png" width="760" height="807" alt="RoundCraft" loading="lazy" decoding="async" />
+    <h2>{copy.finalTitle}</h2>
+    <p class="lede">{copy.finalBody}</p>
+    <a class="btn btn-primary btn-lg" href={playUrl('footer_cta')} target="_blank" rel="noopener">
+      <Icon name="arrow" size={19} /> {tt('cta.googlePlay')}
+    </a>
+    <p class="muted final-sub">{copy.finalSub}</p>
+  </div>
+</section>
+
+<style>
+  /* --- HERO --- */
+  .hero { padding-block: clamp(2.5rem, 1rem + 6vw, 5.5rem) clamp(2rem, 1rem + 4vw, 4rem); overflow: hidden; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+    align-items: center;
+  }
+  .hero-copy .eyebrow { margin-bottom: 1.1rem; }
+  .hero-copy h1 { margin-bottom: 1.1rem; }
+  .hero-copy .lede { max-width: 34ch; margin-bottom: 1.9rem; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+  .hero-cta .btn-primary :global(.icon) { transition: transform var(--dur) var(--ease); }
+  .hero-cta .btn-primary:hover :global(.icon) { transform: translateX(3px); }
+  .hero-trust { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.4rem; color: var(--ink-soft); font-size: 0.95rem; }
+  .hero-trust :global(.icon) { color: var(--sage-text); }
+
+  .hero-visual { position: relative; display: flex; justify-content: center; }
+  .hero-glow {
+    position: absolute; inset: -12% -6% -6% -6%;
+    background: radial-gradient(52% 46% at 62% 40%, color-mix(in srgb, var(--clay) 26%, transparent), transparent 70%);
+    filter: blur(12px); z-index: 0;
+  }
+  .hero-visual :global(.device) { position: relative; z-index: 1; }
+  .hero-visual :global(.hero-quote) {
+    position: absolute; z-index: 2;
+    left: -6%; bottom: 6%;
+    box-shadow: var(--shadow-lg);
+    max-width: 260px;
+  }
+
+  /* --- INSIGHT --- */
+  .insight { padding-block: clamp(2.5rem, 1.5rem + 3vw, 4.5rem); }
+  .insight-lead { font-family: var(--font-display); font-size: var(--fs-lg); color: var(--ink); line-height: 1.25; margin-bottom: 0.8rem; }
+  .insight-follow { font-size: var(--fs-md); color: var(--clay); font-weight: 500; }
+
+  /* --- QUOTE FEATURE --- */
+  .quote-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 1rem + 4vw, 4.5rem); align-items: center; }
+  .quote-visual { position: relative; display: flex; justify-content: center; padding: 1rem 14% 2.5rem 0; }
+  .quote-visual :global(.quote-front) { position: relative; z-index: 2; max-width: 258px; transform: rotate(-2.5deg); }
+  .quote-visual :global(.quote-back) {
+    position: absolute; z-index: 1;
+    right: 0; top: 14%;
+    max-width: 198px;
+    transform: rotate(6.5deg);
+  }
+  .quote-copy h2 { margin: 1rem 0 1rem; }
+  .quote-copy .lede { margin-bottom: 1.5rem; }
+  .check-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.85rem; }
+  .check-list li { display: flex; align-items: flex-start; gap: 0.7rem; color: var(--ink); font-weight: 500; }
+  .check-list :global(.icon) { color: var(--clay); flex: none; margin-top: 1px; }
+
+  /* --- section heads --- */
+  .sec-head { max-width: 40ch; margin-bottom: clamp(2rem, 1rem + 3vw, 3.4rem); }
+  .sec-head .eyebrow { margin-bottom: 0.9rem; }
+  .sec-head h2 { margin-bottom: 0.6rem; }
+
+  /* --- FEATURES --- */
+  .feature-rows { display: flex; flex-direction: column; gap: clamp(3rem, 2rem + 4vw, 5.5rem); }
+  .feature-row {
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+    align-items: center;
+  }
+  .feature-row.flip .fr-copy { order: 2; }
+  .feature-row.flip .fr-shot { order: 1; }
+  .feature-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 64px; height: 64px; border-radius: var(--r-md);
+    background: var(--surface); border: 1px solid var(--line);
+    margin-bottom: 1.2rem; padding: 9px;
+    box-shadow: var(--shadow-sm);
+  }
+  .fr-copy h3 { font-size: var(--fs-lg); margin-bottom: 0.8rem; max-width: 22ch; }
+  .fr-copy p { color: var(--ink-soft); margin-bottom: 1.3rem; max-width: 46ch; }
+  .fr-shot { display: flex; justify-content: center; }
+  .fr-shot.pair { position: relative; padding: 0 22% 3.5rem 0; }
+  .fr-shot.pair :global(.device) { max-width: 232px; transform: rotate(-2.5deg); }
+  .fr-shot.pair :global(.fr-shot-b) {
+    position: absolute; z-index: 2;
+    right: 0; bottom: 0;
+    max-width: 190px;
+    transform: rotate(6deg);
+  }
+
+  /* --- TOOLS --- */
+  .tools-layout { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(2rem, 1rem + 3vw, 3.6rem); align-items: start; }
+  .tools-aside .sec-head { margin-bottom: 2rem; }
+  .tools-aside :global(.tools-shot) { margin: 0 auto; max-width: 254px; }
+  .tools-grid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+  .tool-card {
+    display: flex; align-items: flex-start; gap: 0.9rem;
+    padding: 1.2rem 1.3rem; border: 1px solid var(--line); border-radius: var(--r-md);
+    background: var(--surface); box-shadow: var(--shadow-sm);
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .tool-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .tool-text h3 { font-size: 1.02rem; margin-bottom: 0.25rem; letter-spacing: -0.01em; }
+  .tool-text p { color: var(--ink-soft); font-size: 0.9rem; line-height: 1.5; }
+  .tool-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 52px; height: 52px; border-radius: var(--r-sm);
+    background: var(--surface-2); border: 1px solid var(--line);
+    padding: 7px; flex: none;
+  }
+
+  /* --- STEPS --- */
+  .steps { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; counter-reset: step; }
+  .steps li { position: relative; padding-top: 1.2rem; border-top: 2px solid var(--line); }
+  .step-n { display: block; font-size: 2.4rem; color: var(--clay); font-weight: 600; line-height: 1; margin-bottom: 0.8rem; }
+  .steps h3 { font-size: var(--fs-md); margin-bottom: 0.5rem; }
+  .steps p { color: var(--ink-soft); font-size: 0.97rem; }
+
+  /* --- PATTERNS TEASER --- */
+  .teaser { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: clamp(2rem, 1rem + 3vw, 4rem); align-items: center; }
+  .teaser-copy h2 { margin: 0.9rem 0 0.8rem; }
+  .teaser-copy .lede { margin-bottom: 1.5rem; }
+  .teaser-copy .btn :global(.icon) { transition: transform var(--dur) var(--ease); }
+  .teaser-copy .btn:hover :global(.icon) { transform: translateX(3px); }
+  .teaser-card {
+    position: relative; display: block; justify-self: center;
+    max-width: 300px; border-radius: var(--r-lg); overflow: hidden;
+    border: 1px solid var(--line); box-shadow: var(--shadow-md);
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .teaser-card:hover { transform: translateY(-4px) rotate(0.6deg); box-shadow: var(--shadow-lg); }
+  .teaser-card img { width: 100%; height: auto; display: block; }
+  .teaser-card .pill-tag { position: absolute; top: 0.9rem; left: 0.9rem; background: var(--clay-deep); color: #fff; }
+
+  /* --- CTA BAND --- */
+  .cta-band { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .cta-band > div:first-child { max-width: 46ch; }
+  .cta-band h2 { margin: 0.8rem 0 0.7rem; }
+  .cta-band-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+  .cta-band-actions .muted { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; }
+  .cta-band-actions :global(.icon) { color: var(--sage-text); }
+
+  /* --- MAKER --- */
+  .maker { display: grid; grid-template-columns: 120px 1fr; gap: clamp(1.5rem, 1rem + 2vw, 2.6rem); align-items: center; max-width: 860px; }
+  .maker-logo { width: 120px; height: auto; border-radius: var(--r-md); }
+  .maker h2 { margin: 0.8rem 0 0.8rem; font-size: var(--fs-lg); }
+  .link-arrow { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--clay-deep); font-weight: 650; margin-top: 0.4rem; }
+  .link-arrow :global(.icon) { transition: transform var(--dur) var(--ease); }
+  .link-arrow:hover :global(.icon) { transform: translateX(3px); }
+
+  /* --- FINAL --- */
+  .final { padding-block: clamp(3.5rem, 2rem + 6vw, 7rem); }
+  .final-logo { width: 132px; height: auto; margin: 0 auto 1.6rem; display: block; }
+  .final h2 { margin-bottom: 1rem; }
+  .final .lede { margin-bottom: 1.8rem; }
+  .final-sub { margin-top: 1rem; font-size: 0.9rem; }
+
+  /* --- responsive --- */
+  @media (max-width: 900px) {
+    .hero-grid, .quote-grid, .teaser, .maker, .tools-layout { grid-template-columns: 1fr; }
+    .hero-copy { order: 1; } .hero-visual { order: 2; }
+    .hero-copy .lede { max-width: none; }
+    .quote-visual { order: 2; } .quote-copy { order: 1; }
+    .feature-row { grid-template-columns: 1fr; }
+    .feature-row.flip .fr-copy, .feature-row .fr-copy { order: 1; }
+    .feature-row.flip .fr-shot, .feature-row .fr-shot { order: 2; }
+    .tools-grid, .steps { grid-template-columns: 1fr 1fr; }
+    .maker { grid-template-columns: 84px 1fr; }
+    .maker-logo { width: 84px; }
+  }
+  @media (max-width: 560px) {
+    .tools-grid, .steps { grid-template-columns: 1fr; }
+    .hero-visual :global(.hero-quote) { position: static; margin: -2.5rem auto 0; }
+    .quote-visual { padding: 0; }
+    .quote-visual :global(.quote-back) { display: none; }
+    .quote-visual :global(.quote-front) { transform: none; }
+    .fr-shot.pair { padding: 0; flex-direction: column; align-items: center; gap: 1.2rem; }
+    .fr-shot.pair :global(.device) { transform: none; }
+    .fr-shot.pair :global(.fr-shot-b) { position: static; max-width: 232px; transform: none; }
+  }
+</style>

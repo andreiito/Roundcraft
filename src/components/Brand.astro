@@ -1,0 +1,158 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import AppIcon from './AppIcon.astro';
+import { type Lang } from '../i18n/utils';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const copy = {
+  en: {
+    eyebrow: 'Brand kit',
+    title: 'The RoundCraft look.',
+    lede: 'Warm Artisan: a boutique yarn atelier meeting a modern app. Terracotta leads, on warm ivory, over a faint colorwork grid borrowed from the tapestry mode.',
+    markTitle: 'The mark',
+    markNote: "The app's own yarn-ball mark, paired with the RoundCraft wordmark. Same mark in light and dark, never recoloured or stretched.",
+    colorTitle: 'Color',
+    typeTitle: 'Type',
+    typeNote: 'Fraunces for display, Hanken Grotesk for text, monospace for numbers.',
+    typeSpecimen: 'Finish every piece knowing what to charge.',
+    typeBody: 'Set your hourly rate, add materials and a margin. RoundCraft turns your tracked hours into a price you can defend.',
+    iconTitle: 'Icons',
+    iconNote: "The app's own illustrated icons, reused on the site so both speak the same language. Never emoji.",
+    voiceTitle: 'Voice',
+    doTitle: 'Do',
+    dontTitle: 'Avoid',
+    dos: ['Warm, confident, concrete', 'Short verb-first sentences', 'Lead with the promise', 'Informal "tú" in Spanish'],
+    donts: ['Em dashes', 'Hype words and "unlock"', '"Row counter" or "freemium"', 'Emoji as icons'],
+  },
+  es: {
+    eyebrow: 'Brand kit',
+    title: 'El look de RoundCraft.',
+    lede: 'Warm Artisan: un taller de hilos con la calma de una app moderna. Manda la terracota, sobre marfil cálido, encima de una rejilla tenue que viene del modo tapestry.',
+    markTitle: 'La marca',
+    markNote: 'La bola de estambre de la app, junto al wordmark de RoundCraft. Se ve igual en claro y en oscuro, nunca la recolorees ni la estires.',
+    colorTitle: 'Color',
+    typeTitle: 'Tipografía',
+    typeNote: 'Fraunces para títulos, Hanken Grotesk para texto, monospace para números.',
+    typeSpecimen: 'Termina cada pieza sabiendo cuánto cobrar.',
+    typeBody: 'Pon tu tarifa por hora, agrega materiales y un margen. RoundCraft convierte tus horas registradas en un precio que puedes defender.',
+    iconTitle: 'Íconos',
+    iconNote: 'Los mismos íconos ilustrados de la app, reusados en el sitio para que los dos hablen igual. Nunca emoji.',
+    voiceTitle: 'Voz',
+    doTitle: 'Sí',
+    dontTitle: 'Evita',
+    dos: ['Cálido, seguro, concreto', 'Frases cortas, verbo primero', 'Lidera con la promesa', '"Tú" informal en español'],
+    donts: ['Em dashes', 'Palabras hype y "desbloquear"', '"Contador de vueltas" o "freemium"', 'Emoji como íconos'],
+  },
+}[lang];
+
+const swatches = [
+  { name: 'Ivory', hex: '#FBF7EF', dark: true },
+  { name: 'Wash', hex: '#F5ECDC', dark: true },
+  { name: 'Clay', hex: '#C0502B', dark: false },
+  { name: 'Clay deep', hex: '#973919', dark: false },
+  { name: 'Sage', hex: '#7C8A5A', dark: false },
+  { name: 'Espresso', hex: '#241C15', dark: false },
+  { name: 'Ochre', hex: '#C98A2E', dark: false },
+  { name: 'Line', hex: '#E7D8BE', dark: true },
+];
+const appIconNames = ['counters', 'timer', 'quote', 'branding', 'projects', 'tapestry', 'hooks', 'stitches', 'yarn-weights', 'materials'];
+---
+<section class="section">
+  <div class="wrap">
+    <header class="b-head" data-reveal>
+      <span class="eyebrow">{copy.eyebrow}</span>
+      <h1>{copy.title}</h1>
+      <p class="lede">{copy.lede}</p>
+    </header>
+
+    <div class="b-block" data-reveal>
+      <h2>{copy.markTitle}</h2>
+      <div class="mark-row">
+        <Logo size={60} wordmark={false} />
+        <Logo size={38} />
+        <img class="logo-full brand-lockup" src="/img/logo-lockup.png" width="760" height="807" alt="RoundCraft full logo with handwritten wordmark" loading="lazy" decoding="async" />
+      </div>
+      <p class="muted">{copy.markNote}</p>
+    </div>
+
+    <div class="b-block" data-reveal>
+      <h2>{copy.colorTitle}</h2>
+      <div class="swatches">
+        {swatches.map((s) => (
+          <div class="swatch">
+            <span class="chip" style={`background:${s.hex}; color:${s.dark ? '#241C15' : '#FBF7EF'}`}>{s.hex}</span>
+            <span class="chip-name">{s.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="b-block" data-reveal>
+      <h2>{copy.typeTitle}</h2>
+      <p class="muted">{copy.typeNote}</p>
+      <p class="specimen font-display">{copy.typeSpecimen}</p>
+      <p class="specimen-body">{copy.typeBody}</p>
+      <p class="specimen-mono font-mono">0123456789 · $34.99 · 6h 20m · 40%</p>
+    </div>
+
+    <div class="b-block" data-reveal>
+      <h2>{copy.iconTitle}</h2>
+      <p class="muted">{copy.iconNote}</p>
+      <div class="icon-row">
+        {appIconNames.map((n) => <span class="icon-chip"><AppIcon name={n} size={30} alt="" /></span>)}
+      </div>
+    </div>
+
+    <div class="b-block" data-reveal>
+      <h2>{copy.voiceTitle}</h2>
+      <div class="voice">
+        <div class="voice-col do">
+          <h3><Icon name="check" size={18} /> {copy.doTitle}</h3>
+          <ul>{copy.dos.map((d) => <li>{d}</li>)}</ul>
+        </div>
+        <div class="voice-col dont">
+          <h3>{copy.dontTitle}</h3>
+          <ul>{copy.donts.map((d) => <li>{d}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .b-head { max-width: 52ch; margin-bottom: clamp(2rem, 1rem + 3vw, 3.4rem); }
+  .b-head .eyebrow { margin-bottom: 0.9rem; }
+  .b-head h1 { margin-bottom: 0.8rem; }
+  .b-block { padding-block: clamp(1.8rem, 1rem + 2vw, 2.6rem); border-top: 1px solid var(--line); }
+  .b-block > h2 { font-size: var(--fs-md); margin-bottom: 1rem; }
+  .b-block > .muted { margin-bottom: 1.4rem; }
+
+  .mark-row { display: flex; align-items: center; gap: 2.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .logo-full { width: 132px; height: auto; }
+
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.9rem; }
+  .swatch { display: flex; flex-direction: column; gap: 0.5rem; }
+  .chip { display: flex; align-items: flex-end; height: 84px; padding: 0.7rem; border-radius: var(--r-md); border: 1px solid var(--line); font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; }
+  .chip-name { font-size: 0.85rem; color: var(--ink-soft); font-weight: 600; }
+
+  .specimen { font-size: clamp(1.8rem, 1.2rem + 3vw, 3rem); line-height: 1.05; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1rem; max-width: 20ch; }
+  .specimen-body { font-size: var(--fs-md); color: var(--ink-soft); max-width: 52ch; margin-bottom: 1rem; }
+  .specimen-mono { color: var(--clay); font-size: 1.1rem; letter-spacing: 0.02em; }
+
+  .icon-row { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+  .icon-chip { display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: var(--r-md); background: var(--surface); border: 1px solid var(--line); color: var(--clay-deep); }
+
+  .voice { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .voice-col { border: 1px solid var(--line); border-radius: var(--r-md); padding: 1.3rem 1.4rem; background: var(--surface); }
+  .voice-col h3 { display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.9rem; }
+  .voice-col.do h3 { color: var(--sage-text); }
+  .voice-col.dont h3 { color: var(--clay-deep); }
+  .voice-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+  .voice-col li { color: var(--ink-soft); font-size: 0.95rem; }
+  .voice-col.dont li { text-decoration: line-through; text-decoration-color: var(--line); }
+
+  @media (max-width: 620px) { .voice { grid-template-columns: 1fr; } }
+</style>

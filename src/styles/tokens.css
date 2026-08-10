@@ -1,0 +1,151 @@
+/* ==========================================================================
+   RoundCraft — Warm Artisan design tokens
+   Light is the default. Dark applies via the OS (prefers-color-scheme) OR a
+   manual [data-theme] set by the header toggle. [data-theme] always wins.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* --- Surfaces --------------------------------------------------------- */
+  --bg:          #FBF7EF;   /* ivory page */
+  --bg-tint:     #F5ECDC;   /* alternating section wash */
+  --surface:     #FFFFFF;   /* cards */
+  --surface-2:   #F3EADB;   /* recessed / muted card */
+  --clay-wash:   #F7E6DC;   /* pale terracotta fill */
+  --sage-wash:   #E9EEDD;   /* pale sage fill */
+
+  /* --- Text ------------------------------------------------------------- */
+  --ink:         #241C15;   /* espresso, primary text */
+  --ink-soft:    #574636;   /* secondary text (AA on --bg) */
+  --ink-faint:   #857058;   /* captions / meta (AA-large) */
+
+  /* --- Brand ------------------------------------------------------------ */
+  --clay:        #C0502B;   /* terracotta accent (icons, numbers, borders) */
+  --clay-deep:   #973919;   /* button bg with white text (AA) + hover */
+  --sage:        #7C8A5A;   /* decorative sage (fills, borders) */
+  --sage-text:   #566139;   /* sage as text (AA on --bg) */
+  --ochre:       #C98A2E;   /* rare small highlight */
+
+  /* --- Lines ------------------------------------------------------------ */
+  --line:        #E7D8BE;   /* hairline borders */
+  --line-soft:   #F0E7D5;
+  --grid-line:   rgba(120, 92, 40, 0.07);  /* stitch-grid texture */
+
+  /* --- Warm-tinted shadows (never neutral gray) ------------------------- */
+  --shadow-sm: 0 1px 2px rgba(74, 48, 22, 0.06), 0 2px 6px rgba(74, 48, 22, 0.04);
+  --shadow-md: 0 4px 14px rgba(74, 48, 22, 0.08), 0 14px 34px rgba(74, 48, 22, 0.06);
+  --shadow-lg: 0 12px 48px rgba(74, 48, 22, 0.16);
+  --ring:      0 0 0 3px rgba(192, 80, 43, 0.35);
+
+  /* --- Radii (intentionally varied per component) ----------------------- */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 34px;
+  --r-pill: 999px;
+
+  /* --- Spacing scale (rem, 4px base) ------------------------------------ */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+  --sp-9: 6rem;
+  --sp-10: 8rem;
+
+  /* --- Typography ------------------------------------------------------- */
+  --font-display: 'Fraunces Variable', 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Hanken Grotesk Variable', 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+
+  /* fluid type scale */
+  --fs-xs:   0.78rem;
+  --fs-sm:   0.875rem;
+  --fs-base: 1.0625rem;   /* 17px body */
+  --fs-md:   clamp(1.15rem, 1.05rem + 0.5vw, 1.35rem);
+  --fs-lg:   clamp(1.4rem, 1.2rem + 1vw, 1.85rem);
+  --fs-xl:   clamp(1.9rem, 1.5rem + 2vw, 2.7rem);
+  --fs-2xl:  clamp(2.6rem, 1.9rem + 3.4vw, 4.2rem);
+  --fs-3xl:  clamp(3.2rem, 2.2rem + 5vw, 6rem);
+
+  /* --- Layout ----------------------------------------------------------- */
+  --wrap: 1120px;
+  --wrap-narrow: 720px;
+  --header-h: 68px;
+
+  /* --- Motion ----------------------------------------------------------- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 140ms;
+  --dur: 260ms;
+  --dur-slow: 620ms;
+}
+
+/* Dark via OS preference (only when the user has NOT chosen manually) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --bg:          #17110C;
+    --bg-tint:     #1F1810;
+    --surface:     #221A12;
+    --surface-2:   #2A2016;
+    --clay-wash:   #33211A;
+    --sage-wash:   #212619;
+
+    --ink:         #F4ECDD;
+    --ink-soft:    #CDBB9F;
+    --ink-faint:   #9E8B70;
+
+    --clay:        #E9744B;
+    --clay-deep:   #C0502B;
+    --sage:        #9DA974;
+    --sage-text:   #AEB98A;
+    --ochre:       #E0AC51;
+
+    --line:        #3A2C1D;
+    --line-soft:   #2E2317;
+    --grid-line:   rgba(233, 216, 190, 0.05);
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.45), 0 14px 34px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.55);
+    --ring:      0 0 0 3px rgba(233, 116, 75, 0.45);
+  }
+}
+
+/* Manual theme choice (wins over OS) */
+:root[data-theme='light'] { color-scheme: light; }
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg:          #17110C;
+  --bg-tint:     #1F1810;
+  --surface:     #221A12;
+  --surface-2:   #2A2016;
+  --clay-wash:   #33211A;
+  --sage-wash:   #212619;
+
+  --ink:         #F4ECDD;
+  --ink-soft:    #CDBB9F;
+  --ink-faint:   #9E8B70;
+
+  --clay:        #E9744B;
+  --clay-deep:   #C0502B;
+  --sage:        #9DA974;
+  --sage-text:   #AEB98A;
+  --ochre:       #E0AC51;
+
+  --line:        #3A2C1D;
+  --line-soft:   #2E2317;
+  --grid-line:   rgba(233, 216, 190, 0.05);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.45), 0 14px 34px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.55);
+  --ring:      0 0 0 3px rgba(233, 116, 75, 0.45);
+}

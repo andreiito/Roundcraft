@@ -1,0 +1,91 @@
+---
+import { alternatePath, type Lang } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  pathname: string;
+  ogImage?: string;
+  noindex?: boolean;
+}
+const {
+  title,
+  description,
+  lang,
+  pathname,
+  ogImage = '/og-image.png',
+  noindex = false,
+} = Astro.props;
+
+const site = 'https://getroundcraft.com';
+// Match the physical build.format:'preserve' output: directory-index routes keep
+// a trailing slash (they are <dir>/index.html); every other route is a real .html
+// file served without a trailing slash. Astro.url can report a trailing slash on
+// named routes, which would make canonicals point at a 404, so normalize here.
+const DIR_INDEX = new Set(['/', '/es/', '/patterns/', '/es/patterns/']);
+function canonicalize(pn: string): string {
+  const withSlash = pn.endsWith('/') ? pn : pn + '/';
+  return DIR_INDEX.has(withSlash) ? withSlash : pn.replace(/\/+$/, '');
+}
+const path = canonicalize(pathname);
+const canonical = new URL(path, site).href;
+const enHref = new URL(alternatePath(path, 'en'), site).href;
+const esHref = new URL(alternatePath(path, 'es'), site).href;
+const ogUrl = new URL(ogImage, site).href;
+
+// Cloudflare Web Analytics (cookieless, no consent banner needed).
+// Paste the beacon token once the site is claimed in the Cloudflare dashboard.
+const CF_BEACON_TOKEN = '';
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<link rel="alternate" hreflang="en" href={enHref} />
+<link rel="alternate" hreflang="es" href={esHref} />
+<link rel="alternate" hreflang="x-default" href={enHref} />
+
+<meta name="theme-color" content="#FBF7EF" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#17110C" media="(prefers-color-scheme: dark)" />
+
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="icon" href="/icon-192.png" sizes="192x192" type="image/png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="RoundCraft" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogUrl} />
+<meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogUrl} />
+
+{/* Set theme before first paint to avoid a flash of the wrong palette. */}
+<script is:inline>
+  (function () {
+    try {
+      var t = localStorage.getItem('rc-theme');
+      if (t === 'light' || t === 'dark') {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+    } catch (e) {}
+  })();
+</script>
+
+{CF_BEACON_TOKEN && (
+  <script
+    is:inline
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon={`{"token": "${CF_BEACON_TOKEN}"}`}
+  />
+)}

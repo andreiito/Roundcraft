@@ -1,0 +1,198 @@
+---
+import Icon from './Icon.astro';
+import { useTranslations, type Lang } from '../i18n/utils';
+import { playUrl } from '../data/site';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const tt = useTranslations(lang);
+
+const copy = {
+  en: {
+    eyebrow: 'Pricing',
+    title: 'Simple pricing, made for makers.',
+    lede: 'Count, time and quote for free. Go Premium when your craft grows into a business.',
+    trial: 'Try Premium free for 7 days. No card, and only once.',
+    plans: [
+      { name: 'Annual', price: '$34.99', per: '$2.91 / month', was: '$47.88', badge: 'Most popular', save: 'Save 27%', featured: true, campaign: 'pricing_annual' },
+      { name: '6 months', price: '$19.99', per: '$3.33 / month', was: '$23.94', badge: '', save: 'Save 16%', featured: false, campaign: 'pricing_semiannual' },
+      { name: 'Monthly', price: '$3.99', per: '/ month', was: '', badge: '', save: 'Try it', featured: false, campaign: 'pricing_monthly' },
+    ],
+    cta: 'Get it on Google Play',
+    billed: 'Billed through Google Play, in your local currency.',
+    compareTitle: 'What is free, what is Premium',
+    compareFree: 'Free',
+    comparePrem: 'Premium',
+    rows: [
+      { label: 'Row counters, timer and quote calculator', free: 'Included', prem: 'Included' },
+      { label: 'Branded share card and tools', free: 'Included', prem: 'Included' },
+      { label: 'Projects', free: '3', prem: 'Unlimited' },
+      { label: 'Counters per project', free: '2', prem: 'Unlimited' },
+      { label: 'Tags', free: '5', prem: 'Unlimited' },
+      { label: 'Saved materials', free: '5', prem: 'Unlimited' },
+      { label: 'Tapestry patterns', free: '2', prem: 'Unlimited' },
+      { label: 'Your logo and brand name on every share', free: '', prem: 'Yes' },
+      { label: 'Photos in projects and exports', free: '', prem: 'Yes' },
+      { label: 'Full color palette, up to 16 custom colors', free: '', prem: 'Yes' },
+    ],
+    faqTitle: 'Questions',
+    faq: [
+      { q: 'Is there a free version?', a: 'Yes. Counting, the timer, the quote calculator and the branded share card all work for free. The free plan has generous limits on how many projects, counters, tags and materials you can save.' },
+      { q: 'How do I pay?', a: 'Through Google Play, in your local currency. RoundCraft never sees your card details.' },
+      { q: 'Can I cancel anytime?', a: 'Yes. Manage or cancel from Google Play. You keep Premium until the period you already paid for ends.' },
+      { q: 'What does Premium add?', a: 'It removes the free limits, puts your own logo and brand name on every share, adds photos to projects and exports, and unlocks the full color palette.' },
+      { q: 'Do I need an account?', a: 'No. No login, no email. Your projects live on your phone, not on a server.' },
+    ],
+  },
+  es: {
+    eyebrow: 'Precios',
+    title: 'Precios simples, pensados para makers.',
+    lede: 'Cuenta, cronometra y cotiza gratis. Pasa a Premium cuando tu arte se vuelve negocio.',
+    trial: 'Prueba Premium gratis 7 días. Sin tarjeta y una sola vez.',
+    plans: [
+      { name: 'Anual', price: '$34.99', per: '$2.91 / mes', was: '$47.88', badge: 'Más popular', save: 'Ahorra 27%', featured: true, campaign: 'pricing_annual' },
+      { name: '6 meses', price: '$19.99', per: '$3.33 / mes', was: '$23.94', badge: '', save: 'Ahorra 16%', featured: false, campaign: 'pricing_semiannual' },
+      { name: 'Mensual', price: '$3.99', per: '/ mes', was: '', badge: '', save: 'Pruébalo', featured: false, campaign: 'pricing_monthly' },
+    ],
+    cta: 'Descárgala en Google Play',
+    billed: 'Se cobra vía Google Play, en tu moneda local.',
+    compareTitle: 'Qué es gratis y qué es Premium',
+    compareFree: 'Gratis',
+    comparePrem: 'Premium',
+    rows: [
+      { label: 'Contadores, cronómetro y calculadora de cotización', free: 'Incluido', prem: 'Incluido' },
+      { label: 'Tarjeta para compartir con tu marca, y todas las herramientas', free: 'Incluido', prem: 'Incluido' },
+      { label: 'Proyectos', free: '3', prem: 'Ilimitados' },
+      { label: 'Contadores por proyecto', free: '2', prem: 'Ilimitados' },
+      { label: 'Etiquetas', free: '5', prem: 'Ilimitadas' },
+      { label: 'Materiales guardados', free: '5', prem: 'Ilimitados' },
+      { label: 'Patrones tapestry', free: '2', prem: 'Ilimitados' },
+      { label: 'Tu logo y nombre de marca en cada compartida', free: '', prem: 'Sí' },
+      { label: 'Fotos en proyectos y exportaciones', free: '', prem: 'Sí' },
+      { label: 'Paleta completa, hasta 16 colores personalizados', free: '', prem: 'Sí' },
+    ],
+    faqTitle: 'Preguntas',
+    faq: [
+      { q: '¿Hay una versión gratis?', a: 'Sí. Contar, el cronómetro, la calculadora de cotización y la tarjeta para compartir con tu marca funcionan gratis. El plan gratis tiene límites generosos en cuántos proyectos, contadores, etiquetas y materiales puedes guardar.' },
+      { q: '¿Cómo pago?', a: 'A través de Google Play, en tu moneda local. RoundCraft nunca ve los datos de tu tarjeta.' },
+      { q: '¿Puedo cancelar cuando quiera?', a: 'Sí. Administra o cancela desde Google Play. Conservas Premium hasta que termina el periodo que ya pagaste.' },
+      { q: '¿Qué agrega Premium?', a: 'Quita los límites del plan gratis, pone tu logo y nombre de marca en cada compartida, agrega fotos a proyectos y exportaciones, y desbloquea la paleta completa.' },
+      { q: '¿Necesito una cuenta?', a: 'No. Sin login, sin correo. Tus proyectos viven en tu teléfono, no en un servidor.' },
+    ],
+  },
+}[lang];
+---
+<section class="section">
+  <div class="wrap">
+    <header class="p-head" data-reveal>
+      <span class="eyebrow">{copy.eyebrow}</span>
+      <h1>{copy.title}</h1>
+      <p class="lede">{copy.lede}</p>
+      <p class="trial-banner"><Icon name="spark" size={18} /> {copy.trial}</p>
+    </header>
+
+    <div class="plans" data-reveal>
+      {copy.plans.map((p) => (
+        <article class={`plan ${p.featured ? 'is-featured' : ''}`}>
+          <div class="plan-top">
+            {p.badge && <span class="plan-badge">{p.badge}</span>}
+            <span class="plan-save">{p.save}</span>
+          </div>
+          <h2 class="plan-name">{p.name}</h2>
+          <p class="plan-price"><span class="font-mono">{p.price}</span> <span class="plan-per">{p.per}</span></p>
+          {p.was && <p class="plan-was font-mono">{p.was}</p>}
+          <a class={`btn ${p.featured ? 'btn-primary' : 'btn-ghost'}`} href={playUrl(p.campaign)} target="_blank" rel="noopener">{copy.cta}</a>
+        </article>
+      ))}
+    </div>
+    <p class="billed muted center"><Icon name="check" size={15} /> {copy.billed}</p>
+
+    <div class="compare card" data-reveal>
+      <h2 class="compare-title">{copy.compareTitle}</h2>
+      <table>
+        <thead>
+          <tr><th></th><th>{copy.compareFree}</th><th class="col-prem">{copy.comparePrem}</th></tr>
+        </thead>
+        <tbody>
+          {copy.rows.map((r) => (
+            <tr>
+              <th scope="row">{r.label}</th>
+              <td>{r.free ? (r.free === 'Included' || r.free === 'Incluido' ? <Icon name="check" size={17} class="ok" /> : r.free) : <span class="dash">—</span>}</td>
+              <td class="col-prem">{r.prem === 'Yes' || r.prem === 'Sí' || r.prem === 'Included' || r.prem === 'Incluido' ? <Icon name="check" size={17} class="ok" /> : r.prem}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="faq" data-reveal>
+      <h2>{copy.faqTitle}</h2>
+      <div class="faq-list">
+        {copy.faq.map((f) => (
+          <details>
+            <summary>{f.q}<span class="chev" aria-hidden="true"></span></summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .p-head { max-width: 46ch; margin-bottom: clamp(2rem, 1rem + 3vw, 3.2rem); }
+  .p-head .eyebrow { margin-bottom: 0.9rem; }
+  .p-head h1 { margin-bottom: 0.8rem; }
+  .trial-banner {
+    display: inline-flex; align-items: center; gap: 0.55rem; margin-top: 1.4rem;
+    background: var(--sage-wash); color: var(--sage-text); font-weight: 600;
+    padding: 0.7rem 1.1rem; border-radius: var(--r-pill); font-size: 0.95rem;
+  }
+
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; align-items: stretch; }
+  .plan {
+    display: flex; flex-direction: column;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--r-lg); padding: 1.7rem 1.6rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .plan.is-featured {
+    border-color: var(--clay); box-shadow: var(--shadow-md);
+    background: linear-gradient(180deg, var(--clay-wash), var(--surface) 46%);
+  }
+  .plan-top { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; min-height: 26px; flex-wrap: wrap; }
+  .plan-badge { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; background: var(--clay-deep); color: #fff; padding: 0.3em 0.7em; border-radius: var(--r-pill); }
+  .plan-save { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--clay-deep); background: var(--surface); border: 1px solid var(--line); padding: 0.3em 0.7em; border-radius: var(--r-pill); }
+  .plan-name { font-size: var(--fs-md); margin-bottom: 0.4rem; }
+  .plan-price { display: flex; align-items: baseline; gap: 0.4rem; }
+  .plan-price .font-mono { font-size: 2.3rem; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
+  .plan-per { color: var(--ink-soft); font-size: 0.95rem; }
+  .plan-was { text-decoration: line-through; color: var(--ink-faint); font-size: 0.95rem; margin-top: 0.2rem; }
+  .plan .btn { margin-top: auto; margin-top: 1.4rem; justify-content: center; }
+  .billed { display: flex; align-items: center; justify-content: center; gap: 0.45rem; margin-top: 1.2rem; font-size: 0.9rem; }
+  .billed :global(.icon) { color: var(--sage-text); }
+
+  .compare { margin-top: clamp(3rem, 2rem + 3vw, 4.5rem); padding: clamp(1.4rem, 1rem + 2vw, 2.2rem); overflow-x: auto; }
+  .compare-title { font-size: var(--fs-md); margin-bottom: 1.2rem; }
+  .compare table { width: 100%; border-collapse: collapse; min-width: 480px; }
+  .compare th, .compare td { padding: 0.85rem 0.9rem; text-align: left; border-bottom: 1px solid var(--line-soft); }
+  .compare thead th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); font-weight: 700; }
+  .compare tbody th { font-weight: 500; color: var(--ink); font-size: 0.96rem; }
+  .compare td { text-align: center; width: 22%; color: var(--ink); font-weight: 600; }
+  .compare thead th:not(:first-child) { text-align: center; }
+  .compare .col-prem { background: color-mix(in srgb, var(--clay-wash) 60%, transparent); }
+  .compare :global(.ok) { color: var(--sage-text); display: inline-block; }
+  .compare .dash { color: var(--ink-faint); }
+
+  .faq { margin-top: clamp(3rem, 2rem + 3vw, 4.5rem); max-width: 780px; }
+  .faq > h2 { font-size: var(--fs-lg); margin-bottom: 1.4rem; }
+  .faq-list { display: flex; flex-direction: column; gap: 0.6rem; }
+  details { border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface); overflow: hidden; }
+  summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.1rem 1.3rem; font-weight: 600; cursor: pointer; list-style: none; color: var(--ink); }
+  summary::-webkit-details-marker { display: none; }
+  .chev { width: 10px; height: 10px; border-right: 2px solid var(--clay); border-bottom: 2px solid var(--clay); transform: rotate(45deg); transition: transform var(--dur) var(--ease); flex: none; }
+  details[open] .chev { transform: rotate(-135deg); }
+  details p { padding: 0 1.3rem 1.2rem; color: var(--ink-soft); }
+
+  @media (max-width: 860px) { .plans { grid-template-columns: 1fr; } }
+</style>

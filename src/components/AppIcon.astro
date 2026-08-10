@@ -1,0 +1,25 @@
+---
+// Renders one of the app's real illustrated icons (warm terracotta/cream style),
+// copied to /img/app-icons/. Use for feature and tool tiles so the site shares
+// the app's exact visual identity. For plain UI glyphs (arrow, check) use Icon.astro.
+interface Props {
+  name: string;
+  size?: number;
+  alt?: string;
+  class?: string;
+}
+const { name, size = 56, alt = '', class: className = '' } = Astro.props;
+---
+<img
+  class={`app-icon ${className}`}
+  src={`/img/app-icons/${name}.png`}
+  width={size}
+  height={size}
+  alt={alt}
+  loading="lazy"
+  decoding="async"
+/>
+
+<style>
+  .app-icon { display: block; object-fit: contain; }
+</style>

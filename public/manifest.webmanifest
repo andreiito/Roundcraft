@@ -1,0 +1,13 @@
+{
+  "name": "RoundCraft",
+  "short_name": "RoundCraft",
+  "description": "The crochet app for makers who sell. Count, time and price every piece.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBF7EF",
+  "theme_color": "#C0502B",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

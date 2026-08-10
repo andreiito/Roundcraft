@@ -1,0 +1,104 @@
+---
+import Icon from './Icon.astro';
+import AppIcon from './AppIcon.astro';
+import { type Lang } from '../i18n/utils';
+import { playUrl, ETSY_URL, COFFEE_URL, EMAIL } from '../data/site';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const copy = {
+  en: {
+    eyebrow: 'The maker',
+    role: 'Crocheter and maker · NaredCraft',
+    aboutTitle: "Hi, I'm Andre",
+    about: [
+      'I crochet, I sell what I make, and somewhere along the way I got tired of guessing what to charge for it. RoundCraft is the tool I wished I had, so I made it.',
+      'First I am a maker. NaredCraft is my craft brand, where I design and sell patterns. I build an app now and then, but only when the craft needs a tool that does not exist yet. RoundCraft is that one: offline-first, independent, ad-free, made one row at a time.',
+    ],
+    linksTitle: 'Find RoundCraft and NaredCraft',
+    links: [
+      { href: playUrl('developer'), title: 'RoundCraft', sub: 'The crochet app, on Google Play', external: true, icon: 'app' },
+      { href: ETSY_URL, title: 'NaredCraft on Etsy', sub: 'Hand-designed crochet patterns', external: true, icon: 'shop' },
+      { href: COFFEE_URL, title: 'Buy Me a Coffee', sub: 'A voluntary tip, processed by buymeacoffee.com', external: true, icon: 'gift' },
+      { href: `mailto:${EMAIL}`, title: EMAIL, sub: 'Direct email, I read every message', external: false, icon: 'feedback' },
+    ],
+    disclaimer: 'This page is hosted by the developer and is not part of the RoundCraft Android app. Any tips offered here are voluntary, processed by independent third-party services, and never required to use the app.',
+  },
+  es: {
+    eyebrow: 'Quién la hace',
+    role: 'Crochetero y maker · NaredCraft',
+    aboutTitle: 'Hola, soy Andre',
+    about: [
+      'Tejo crochet, vendo lo que hago, y en algún punto me cansé de adivinar cuánto cobrar por ello. RoundCraft es la herramienta que me hubiera gustado tener, así que la hice.',
+      'Antes que nada soy maker. NaredCraft es mi marca artesanal, donde diseño y vendo patrones. De vez en cuando construyo una app, pero solo cuando al oficio le falta una herramienta que no existe. RoundCraft es esa: offline-first, independiente, sin anuncios, hecha vuelta por vuelta.',
+    ],
+    linksTitle: 'Encuentra RoundCraft y NaredCraft',
+    links: [
+      { href: playUrl('developer'), title: 'RoundCraft', sub: 'La app de crochet, en Google Play', external: true, icon: 'app' },
+      { href: ETSY_URL, title: 'NaredCraft en Etsy', sub: 'Patrones de crochet diseñados a mano', external: true, icon: 'shop' },
+      { href: COFFEE_URL, title: 'Buy Me a Coffee', sub: 'Una propina voluntaria, procesada por buymeacoffee.com', external: true, icon: 'gift' },
+      { href: `mailto:${EMAIL}`, title: EMAIL, sub: 'Correo directo, leo cada mensaje', external: false, icon: 'feedback' },
+    ],
+    disclaimer: 'Esta página está alojada por el desarrollador y no forma parte de la app RoundCraft para Android. Cualquier propina ofrecida aquí es voluntaria, procesada por servicios externos independientes, y nunca es requisito para usar la app.',
+  },
+}[lang];
+---
+<section class="section">
+  <div class="wrap wrap-narrow">
+    <header class="dev-hero" data-reveal>
+      <img class="dev-avatar" src="/img/naredcraft-logo.png" width="120" height="116" alt="NaredCraft brand mark" />
+      <span class="eyebrow">{copy.eyebrow}</span>
+      <h1>Andre Ortiz</h1>
+      <p class="muted">{copy.role}</p>
+    </header>
+
+    <div class="dev-about card" data-reveal>
+      <h2>{copy.aboutTitle}</h2>
+      {copy.about.map((p) => <p>{p}</p>)}
+    </div>
+
+    <h2 class="dev-links-title" data-reveal>{copy.linksTitle}</h2>
+    <div class="dev-links" data-reveal>
+      {copy.links.map((l) => (
+        <a class="link-card" href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>
+          <span class="lc-icon"><AppIcon name={l.icon} size={30} alt="" /></span>
+          <span class="lc-text"><span class="lc-title">{l.title}</span><span class="lc-sub">{l.sub}</span></span>
+          <Icon name="arrow" size={18} class="lc-arrow" />
+        </a>
+      ))}
+    </div>
+
+    <p class="dev-disclaimer" data-reveal>{copy.disclaimer}</p>
+  </div>
+</section>
+
+<style>
+  .dev-hero { text-align: center; margin-bottom: 2.4rem; }
+  .dev-avatar { width: 96px; height: auto; border-radius: var(--r-md); margin: 0 auto 1.2rem; box-shadow: var(--shadow-sm); }
+  .dev-hero .eyebrow { justify-content: center; margin-bottom: 0.7rem; }
+  .dev-hero h1 { font-size: var(--fs-xl); margin-bottom: 0.3rem; }
+
+  .dev-about { padding: 1.6rem 1.8rem; margin-bottom: 2.4rem; }
+  .dev-about h2 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); margin-bottom: 1rem; }
+  .dev-about p { color: var(--ink-soft); margin-bottom: 0.9rem; }
+  .dev-about p:last-child { margin-bottom: 0; }
+
+  .dev-links-title { font-size: var(--fs-md); margin-bottom: 1.1rem; }
+  .dev-links { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2.4rem; }
+  .link-card {
+    display: flex; align-items: center; gap: 1rem;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md);
+    padding: 1rem 1.2rem; box-shadow: var(--shadow-sm);
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+  .link-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--clay); }
+  .lc-icon { display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: var(--r-sm); background: var(--surface-2); border: 1px solid var(--line); padding: 6px; flex: none; }
+  .lc-text { display: flex; flex-direction: column; }
+  .lc-title { font-weight: 650; color: var(--ink); }
+  .lc-sub { font-size: 0.85rem; color: var(--ink-faint); margin-top: 1px; }
+  .link-card :global(.lc-arrow) { margin-left: auto; color: var(--ink-faint); flex: none; }
+  .link-card:hover :global(.lc-arrow) { color: var(--clay); }
+
+  .dev-disclaimer { font-size: 0.82rem; color: var(--ink-faint); line-height: 1.6; border: 1px dashed var(--line); border-radius: var(--r-md); padding: 1.1rem 1.3rem; }
+</style>
