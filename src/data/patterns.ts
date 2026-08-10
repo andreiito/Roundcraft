@@ -1,5 +1,22 @@
 import type { Lang } from '../i18n/utils';
 
+/** Tag vocabulary for the catalog filter. Add a tag here before using it on a
+ *  pattern; the filter chips are derived from the tags actually in use, so an
+ *  unused tag never shows up as a dead-end chip. */
+export const TAGS = {
+  tapestry: { en: 'Tapestry', es: 'Tapestry' },
+  amigurumi: { en: 'Amigurumi', es: 'Amigurumi' },
+  animals: { en: 'Animals', es: 'Animales' },
+  space: { en: 'Space', es: 'Espacio' },
+  holiday: { en: 'Holiday', es: 'Fiestas' },
+  geometric: { en: 'Geometric', es: 'Geométrico' },
+  beginner: { en: 'Beginner', es: 'Principiante' },
+  intermediate: { en: 'Intermediate', es: 'Intermedio' },
+  advanced: { en: 'Advanced', es: 'Avanzado' },
+} as const;
+
+export type TagId = keyof typeof TAGS;
+
 interface PatternLocale {
   seoTitle: string;
   seoDesc: string;
@@ -22,13 +39,27 @@ export interface Pattern {
   ogImage: string;
   pdf: { en: string; es: string };
   rcpattern: string;
-  /** Absolute URL on the andreiito.github.io host so the app's import allow-list
-   *  (ALLOWED_IMPORT_URL_PREFIX = https://andreiito.github.io/Roundcraft/) accepts
-   *  the deep link. GitHub redirects it to getroundcraft.com. Do not change host
-   *  until a future app release adds getroundcraft.com to that allow-list. */
+  /** Absolute URL on the andreiito.github.io host, which GitHub redirects to
+   *  getroundcraft.com. The app validates this string against its import
+   *  allow-list before fetching, and the version on the Play Store today only
+   *  allows the github.io prefix, so pointing this at getroundcraft.com would
+   *  break importing for everyone who has not updated.
+   *
+   *  The app source already accepts both hosts (ALLOWED_IMPORT_URL_PREFIXES in
+   *  src/features/tapestry/importPattern.ts). Switch this to
+   *  https://getroundcraft.com/patterns/assets/… once that release has been
+   *  out long enough, and drop the redirect hop. */
   deepLinkTarget: string;
+  tags: TagId[];
   meta: { en: string; es: string };
   locales: Record<Lang, PatternLocale>;
+}
+
+/** Tags in use across the published patterns, in TAGS declaration order, so the
+ *  filter chips stay stable rather than reordering as patterns are added. */
+export function activeTags(list: Pattern[]): TagId[] {
+  const used = new Set(list.flatMap((p) => p.tags));
+  return (Object.keys(TAGS) as TagId[]).filter((id) => used.has(id));
 }
 
 export const patterns: Pattern[] = [
@@ -43,6 +74,7 @@ export const patterns: Pattern[] = [
     pdf: { en: '/patterns/assets/abducted-cow-en.pdf', es: '/patterns/assets/abducted-cow-es.pdf' },
     rcpattern: '/patterns/assets/abducted-cow.rcpattern',
     deepLinkTarget: 'https://andreiito.github.io/Roundcraft/patterns/assets/abducted-cow.rcpattern',
+    tags: ['tapestry', 'animals', 'space', 'intermediate'],
     meta: { en: '39 × 66 · 16 colors · tapestry crochet', es: '39 × 66 · 16 colores · tapestry crochet' },
     locales: {
       en: {

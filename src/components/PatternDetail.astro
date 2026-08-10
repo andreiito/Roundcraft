@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import OpenInApp from './OpenInApp.astro';
 import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
 import { playUrl } from '../data/site';
 import type { Pattern } from '../data/patterns';
@@ -43,7 +44,7 @@ const ui = {
       </div>
       <a class="btn btn-ghost dl-rc" href={pattern.rcpattern} download><Icon name="tapestry" size={17} /> {ui.rc}</a>
       <p class="muted note">{L.importNote}</p>
-      <a class="btn btn-primary open-app" href="#" data-deeplink={pattern.deepLinkTarget}><Icon name="arrow" size={18} /> {ui.open}</a>
+      <OpenInApp target={pattern.deepLinkTarget} label={ui.open} campaign={`pattern_${pattern.slug}`} class="open-app" />
       <p class="license muted">{L.license}</p>
     </div>
 
@@ -76,24 +77,10 @@ const ui = {
   .dl-row .btn, .dl-rc { justify-content: center; }
   .dl-rc { display: flex; margin-top: 0.7rem; }
   .note { margin-top: 1rem; font-size: 0.9rem; }
-  .open-app { display: flex; justify-content: center; margin-top: 1rem; }
+  .pd-block :global(.open-app) { display: flex; width: 100%; margin-top: 1rem; }
   .license { margin-top: 1rem; font-size: 0.85rem; }
 
   .app-cta { text-align: center; padding: 2rem; background: var(--bg-tint); border: 1px solid var(--line); border-radius: var(--r-lg); }
   .app-cta h2 { margin-bottom: 0.6rem; }
   .app-cta .lede { max-width: 46ch; margin: 0 auto 1.4rem; }
 </style>
-
-<script>
-  // Fire the app deep link (import a pattern). QR codes append ?open=app so a
-  // scan tries the app first and falls back to this page.
-  const btn = document.querySelector<HTMLAnchorElement>('.open-app');
-  const target = btn?.dataset.deeplink;
-  if (btn && target) {
-    btn.addEventListener('click', (e) => { e.preventDefault(); window.location.href = target; });
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('open') === 'app') {
-      setTimeout(() => { window.location.href = target; }, 500);
-    }
-  }
-</script>
