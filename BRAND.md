@@ -70,6 +70,8 @@ Feature and tool tiles use the app's real illustrated icons (warm terracotta/cre
 
 All product imagery is a real capture from the app on a Pixel 9 Pro, not a mockup: `public/img/screens/` (projects, counters, timer, quote, quote-detailed, share-craft, share-quote, tools, colors). They are cropped to drop the Android status bar and gesture pill, exported at 720 × 1494, and always shown inside `src/components/DeviceFrame.astro`. When the app UI changes, recapture rather than retouch.
 
+**Every screen exists twice, once per language.** English lives in `screens/`, Spanish in `screens/es/`, and the `shot()` helper in `Home.astro` picks the set from the page language. A Spanish reader never sees an English app in the frames, and that includes the project name, the counter names and the material names inside the capture, not only the app chrome. If you add a screenshot, add both languages or do not add it.
+
 **Note on the screenshot data:** the captures use the app's demo project ("Sample scarf") and real numbers produced by the calculator. Never edit prices or totals into a screenshot by hand.
 
 ---

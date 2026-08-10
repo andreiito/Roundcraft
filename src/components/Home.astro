@@ -11,6 +11,9 @@ const { lang } = Astro.props;
 const tt = useTranslations(lang);
 const pricing = localizedPath('/pricing', lang);
 const patternsHref = `${localizedPath('/patterns', lang)}/`;
+// Screenshots are captured twice, once per app language, so a Spanish reader
+// never sees an English UI in the frames.
+const shot = (name: string) => `/img/screens/${lang === 'es' ? 'es/' : ''}${name}.jpg`;
 
 const copy = {
   en: {
@@ -45,7 +48,7 @@ const copy = {
         title: 'Counters that keep up with your hands.',
         body: 'Add a counter for rows, another for stitches per row, another for colour changes. Give each one a goal and watch the bar fill as you go. Tap the big button and feel a soft tap back, so you never have to look down to know it counted.',
         points: ['A goal and a progress bar per counter', 'Soft haptic feedback on every tap', 'Notes on each counter for hook size or recipient'],
-        shot: '/img/screens/counters.jpg',
+        shot: 'counters',
         shotAlt: 'A RoundCraft project with two counters: rows at 18 of 40 and stitches per row at 24 of 24',
       },
       {
@@ -53,7 +56,7 @@ const copy = {
         title: 'A timer that survives real life.',
         body: 'Start it when you sit down, pause it when the kettle boils. Close the app, come back tomorrow, your total is still there. Forgot to hit start? Add the time by hand. Those hours are what turn a guess into a price.',
         points: ['One running total per project', 'Pause and resume as many times as the day needs', 'Add or subtract time when you forget to start it'],
-        shot: '/img/screens/timer.jpg',
+        shot: 'timer',
         shotAlt: 'RoundCraft timer showing 45 minutes of total time on a project, with a resume button',
       },
       {
@@ -61,9 +64,9 @@ const copy = {
         title: 'Two cards: one for Instagram, one for your client.',
         body: 'When a piece is done, RoundCraft builds the card for you. The craft card shows your photo, your hours and your rows, with no prices on it. The quote card shows the full breakdown, ready to send to whoever asked how much.',
         points: ['A craft postcard for social media, no prices', 'A quote card with cost, price and profit', 'Your logo and your accent colour with Premium'],
-        shot: '/img/screens/share-craft.jpg',
+        shot: 'share-craft',
         shotAlt: 'RoundCraft craft card for Instagram showing project name, 45 minutes, 2 sessions and 42 rows',
-        shot2: '/img/screens/share-quote.jpg',
+        shot2: 'share-quote',
         shot2Alt: 'RoundCraft quote card showing rows, time, cost, price and profit for a client',
       },
     ],
@@ -145,7 +148,7 @@ const copy = {
         title: 'Contadores que van al ritmo de tus manos.',
         body: 'Pon un contador para las vueltas, otro para los puntos de cada vuelta, otro para los cambios de color. Ponle una meta a cada uno y mira cómo se llena la barra. Toca el botón grande y siente la vibración, así no tienes que ver la pantalla para saber que contó.',
         points: ['Una meta y una barra de avance por contador', 'Vibración suave en cada toque', 'Notas en cada contador para el gancho o para quién es'],
-        shot: '/img/screens/counters.jpg',
+        shot: 'counters',
         shotAlt: 'Un proyecto de RoundCraft con dos contadores: vueltas en 18 de 40 y puntos por vuelta en 24 de 24',
       },
       {
@@ -153,7 +156,7 @@ const copy = {
         title: 'Un cronómetro que aguanta la vida real.',
         body: 'Arráncalo cuando te sientas a tejer y páusalo cuando suena el timbre. Cierra la app, vuelve mañana y tu total sigue ahí. ¿Se te olvidó darle play? Súmale el tiempo a mano. Esas horas son las que convierten un cálculo al aire en un precio.',
         points: ['Un total acumulado por proyecto', 'Pausa y sigue tantas veces como haga falta', 'Suma o resta tiempo cuando olvidas arrancarlo'],
-        shot: '/img/screens/timer.jpg',
+        shot: 'timer',
         shotAlt: 'Cronómetro de RoundCraft con 45 minutos de tiempo total en un proyecto y un botón para seguir',
       },
       {
@@ -161,9 +164,9 @@ const copy = {
         title: 'Dos tarjetas: una para Instagram y una para tu cliente.',
         body: 'Cuando terminas una pieza, RoundCraft te arma la tarjeta. La de tu trabajo lleva tu foto, tus horas y tus vueltas, sin precios. La de cotización lleva el desglose completo, lista para mandarla a quien te preguntó cuánto cuesta.',
         points: ['Una postal de tu trabajo para redes, sin precios', 'Una tarjeta de cotización con costo, precio y ganancia', 'Tu logo y tu color con Premium'],
-        shot: '/img/screens/share-craft.jpg',
+        shot: 'share-craft',
         shotAlt: 'Tarjeta de RoundCraft para Instagram con el nombre del proyecto, 45 minutos, 2 sesiones y 42 vueltas',
-        shot2: '/img/screens/share-quote.jpg',
+        shot2: 'share-quote',
         shot2Alt: 'Tarjeta de cotización de RoundCraft con vueltas, tiempo, costo, precio y ganancia para el cliente',
       },
     ],
@@ -233,7 +236,7 @@ const copy = {
     </div>
     <div class="hero-visual" data-reveal>
       <div class="hero-glow" aria-hidden="true"></div>
-      <DeviceFrame src="/img/screens/projects.jpg" alt={lang === 'es'
+      <DeviceFrame src={shot("projects")} alt={lang === 'es'
         ? 'Lista de proyectos en RoundCraft con avance y tiempo de cada uno'
         : 'RoundCraft project list showing progress and time tracked per project'} loading="eager" />
       <QuoteCard lang={lang} class="hero-quote" />
@@ -253,8 +256,8 @@ const copy = {
 <section class="section quote-feature" id="quote">
   <div class="wrap quote-grid">
     <div class="quote-visual" data-reveal>
-      <DeviceFrame src="/img/screens/quote-detailed.jpg" alt={copy.quoteShot2Alt} class="quote-back" />
-      <DeviceFrame src="/img/screens/quote.jpg" alt={copy.quoteShotAlt} class="quote-front" />
+      <DeviceFrame src={shot("quote-detailed")} alt={copy.quoteShot2Alt} class="quote-back" />
+      <DeviceFrame src={shot("quote")} alt={copy.quoteShotAlt} class="quote-front" />
     </div>
     <div class="quote-copy" data-reveal>
       <span class="eyebrow">{copy.quoteEyebrow}</span>
@@ -288,8 +291,8 @@ const copy = {
             </ul>
           </div>
           <div class={`fr-shot${f.shot2 ? ' pair' : ''}`}>
-            <DeviceFrame src={f.shot} alt={f.shotAlt} />
-            {f.shot2 && <DeviceFrame src={f.shot2} alt={f.shot2Alt} class="fr-shot-b" />}
+            <DeviceFrame src={shot(f.shot)} alt={f.shotAlt} />
+            {f.shot2 && <DeviceFrame src={shot(f.shot2)} alt={f.shot2Alt} class="fr-shot-b" />}
           </div>
         </article>
       ))}
@@ -306,7 +309,7 @@ const copy = {
           <h2>{copy.toolsTitle}</h2>
           <p class="lede">{copy.toolsSub}</p>
         </header>
-        <DeviceFrame src="/img/screens/tools.jpg" alt={copy.toolsShotAlt} class="tools-shot" />
+        <DeviceFrame src={shot("tools")} alt={copy.toolsShotAlt} class="tools-shot" />
       </div>
       <ul class="tools-grid" data-reveal>
         {copy.tools.map((tool) => (
