@@ -1,27 +1,32 @@
 #!/usr/bin/env node
 // Installs a pattern exported by Tapestry Studio into the site.
 //
-// The generator writes into a single scratch folder and names some files
-// generically (pin-chart.png, not abducted-cow-pin-chart.png), so publishing
-// used to mean copying and renaming by hand. That is fine once and a source of
-// silent mistakes forever after: a preview that still points at the previous
-// pattern, a sha256 in the catalog that no longer matches the file, a pin
-// image overwritten by the next export.
+//   npm run publish-pattern -- --slug abducted-cow
+//   npm run publish-pattern -- --slug abducted-cow --dry-run
 //
-//   node scripts/add-pattern.mjs --from "../NaredCraft - WebTapestry/patterns" --slug abducted-cow
-//   node scripts/add-pattern.mjs --from <dir> --slug <slug> --dry-run
+// Options:
+//   --from <dir>     where the generator's export sits.
+//                    Default: ../NaredCraft - WebTapestry/patterns
+//   --preview <path> use this image as the catalog preview instead of
+//                    rendering the chart
+//   --force          overwrite published files that differ from the incoming
+//                    ones. Read the warning before you reach for it.
+//   --dry-run        say what would happen, write nothing
 //
-// Verify the file itself first, in the Tapestry Studio repo:
+// The signature check is deliberately not here. It needs the signing key and
+// this repo is public, so it lives in the generator's private repo:
 //   node scripts/verify-pattern.mjs patterns/<slug>.rcpattern
-// That checks the signature, which needs the signing key and so cannot live
-// in this repo: it is public.
+// Run that first. This script refuses to install a file it cannot even read,
+// but it cannot tell you whether the app will trust the signature.
 
 import { createHash } from 'node:crypto';
 import { copyFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { readRcPattern, renderChartPng } from './lib/pattern.mjs';
 
 const ASSETS = 'public/patterns/assets';
 const INDEX = 'public/patterns/index.json';
+const DEFAULT_FROM = '../NaredCraft - WebTapestry/patterns';
 
 // The app's import allow-list is checked against these strings, and the
 // version on the Play Store today only accepts the github.io host. Keep the
@@ -34,121 +39,128 @@ const arg = (name) => {
   const i = args.indexOf(`--${name}`);
   return i >= 0 ? args[i + 1] : undefined;
 };
-const from = arg('from');
+const from = arg('from') ?? DEFAULT_FROM;
 const slug = arg('slug');
 const previewOverride = arg('preview');
 const dryRun = args.includes('--dry-run');
 const force = args.includes('--force');
 
-if (!from || !slug) {
-  console.error('usage: add-pattern.mjs --from <tapestry-studio/patterns> --slug <slug> [--preview <path>] [--dry-run] [--force]');
-  process.exit(1);
-}
-if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) {
-  console.error(`slug "${slug}" must be lowercase words joined by hyphens: it becomes the URL`);
-  process.exit(1);
+const die = (...lines) => { for (const l of lines) console.error(l); process.exit(1); };
+
+if (!slug) die('usage: add-pattern.mjs --slug <slug> [--from <dir>] [--preview <path>] [--dry-run] [--force]');
+if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) die(`slug "${slug}" must be lowercase words joined by hyphens: it becomes the URL`);
+
+const rcSource = join(from, `${slug}.rcpattern`);
+if (!existsSync(rcSource)) {
+  die(`No ${slug}.rcpattern in ${from}`, '', 'Export it from Tapestry Studio first, or pass --from <dir>.');
 }
 
-// Source name in the generator's folder -> name this site serves it under.
-// The pin images are the ones that need renaming; the generator does not know
-// which pattern it is writing.
-const FILES = [
-  { src: `${slug}.rcpattern`, dst: `${slug}.rcpattern`, required: true },
-  { src: `${slug}-en.pdf`, dst: `${slug}-en.pdf`, required: true },
-  { src: `${slug}-es.pdf`, dst: `${slug}-es.pdf`, required: true },
-  { src: previewOverride ?? `${slug}-preview.png`, dst: `${slug}-preview.png`, required: true, absolute: Boolean(previewOverride) },
-  { src: 'pin-chart.png', dst: `${slug}-pin-chart.png`, required: false },
-  { src: 'pin-overlay.png', dst: `${slug}-pin-overlay.png`, required: false },
-  { src: 'pin-photo.png', dst: `${slug}-pin-photo.png`, required: false },
+let pattern;
+try {
+  pattern = readRcPattern(rcSource);
+} catch (e) {
+  die(`Could not read ${rcSource}: ${e.message}`, '', 'Run verify-pattern.mjs in Tapestry Studio to find out why.');
+}
+const { payload, colors, sha256 } = pattern;
+
+// Copy jobs: source name in the generator's folder -> name this site serves
+// it under. The pin images need renaming; the generator writes the same three
+// filenames for every pattern, so its folder only ever holds the most recent
+// one and a second export would overwrite the first.
+const jobs = [
+  { src: rcSource, dst: `${slug}.rcpattern`, required: true },
+  { src: join(from, `${slug}-en.pdf`), dst: `${slug}-en.pdf`, required: true },
+  { src: join(from, `${slug}-es.pdf`), dst: `${slug}-es.pdf`, required: true },
+  { src: join(from, 'pin-chart.png'), dst: `${slug}-pin-chart.png`, required: false },
+  { src: join(from, 'pin-overlay.png'), dst: `${slug}-pin-overlay.png`, required: false },
+  { src: join(from, 'pin-photo.png'), dst: `${slug}-pin-photo.png`, required: false },
 ];
 
-const srcPath = (f) => (f.absolute ? resolve(f.src) : join(from, f.src));
-const missing = FILES.filter((f) => f.required && !existsSync(srcPath(f)));
-if (missing.length) {
-  console.error(`Missing in ${from}:`);
-  for (const f of missing) console.error(`  ${f.src}`);
-  if (missing.some((f) => f.src.endsWith('-preview.png'))) {
-    console.error(`\nTapestry Studio does not export the catalog preview. Either save it as`);
-    console.error(`${slug}-preview.png next to the other files, or pass --preview <path>.`);
-  }
-  process.exit(1);
-}
-
-// Read the metadata out of the signed payload. Reading needs no key; only
-// verifying the signature does, which is the generator's job.
-const rcText = readFileSync(join(from, `${slug}.rcpattern`), 'utf8');
-let payload;
-try {
-  payload = JSON.parse(JSON.parse(Buffer.from(rcText, 'base64').toString('utf8')).p);
-} catch {
-  console.error('Could not read the .rcpattern. Run verify-pattern.mjs in Tapestry Studio to find out why.');
-  process.exit(1);
-}
-const cells = payload.cells.split(',').flatMap((part) => {
-  const star = part.indexOf('*');
-  return star > 0 ? Array(Number(part.slice(0, star))).fill(part.slice(star + 1)) : [part];
-});
-const meta = {
-  slug,
-  name: payload.name,
-  width: payload.width,
-  height: payload.height,
-  colors: new Set(cells.filter(Boolean)).size,
-  preview: `${HOST}/patterns/assets/${slug}-preview.png`,
-  rcpattern: `${HOST}/patterns/assets/${slug}.rcpattern`,
-  sha256: createHash('sha256').update(rcText.trim(), 'utf8').digest('hex'),
-  page: `${HOST}/patterns/${slug}.html`,
-};
-
-console.log(`${meta.name}  ${meta.width} x ${meta.height}, ${meta.colors} colours\n`);
+const missing = jobs.filter((j) => j.required && !existsSync(j.src));
+if (missing.length) die(`Missing in ${from}:`, ...missing.map((j) => `  ${j.src}`));
 
 const digest = (p) => createHash('sha256').update(readFileSync(p)).digest('hex');
 
 // Refuse to quietly replace a published file with a different one. The PDFs
-// are the reason: the generator's scratch copies are the plain export, while
-// the published ones carry the QR and the licence, so a copy in the wrong
-// direction silently strips both from the live download.
-const clashes = [];
-for (const f of FILES) {
-  const src = srcPath(f);
-  const dst = join(ASSETS, f.dst);
-  if (existsSync(src) && existsSync(dst) && digest(src) !== digest(dst)) clashes.push(f.dst);
-}
+// are the reason: the copies in the generator's folder are the plain export,
+// while the published ones carry the QR and the licence, so a copy in the
+// wrong direction strips both from the live download and says nothing.
+const clashes = jobs.filter((j) => {
+  const dst = join(ASSETS, j.dst);
+  return existsSync(j.src) && existsSync(dst) && digest(j.src) !== digest(dst);
+});
 if (clashes.length && !force) {
-  console.error('These files already exist here and differ from the ones you are copying in:\n');
-  for (const name of clashes) console.error(`  ${name}`);
-  console.error('\nIf the published version is the newer one, this would undo it. Check first,');
-  console.error('then pass --force to go ahead.');
-  process.exit(1);
+  die(
+    'These files already exist here and differ from the ones you are copying in:',
+    '',
+    ...clashes.map((j) => `  ${j.dst}`),
+    '',
+    'If the published version is the newer one, this would undo it. Check first,',
+    'then pass --force to go ahead.',
+  );
 }
 
-for (const f of FILES) {
-  const src = srcPath(f);
-  if (!existsSync(src)) { console.log(`  skip     ${f.src} (not exported)`); continue; }
-  const dst = join(ASSETS, f.dst);
-  const verb = !existsSync(dst) ? 'add' : digest(src) === digest(dst) ? 'same' : 'replace';
-  if (!dryRun && verb !== 'same') copyFileSync(src, dst);
-  console.log(`  ${verb.padEnd(7)}  ${f.dst}`);
+console.log(`${payload.name}\n${payload.width} x ${payload.height}, ${colors} colours, ${payload.width * payload.height} stitches\n`);
+
+for (const j of jobs) {
+  if (!existsSync(j.src)) { console.log(`  skip     ${j.dst} (not exported)`); continue; }
+  const dst = join(ASSETS, j.dst);
+  const verb = !existsSync(dst) ? 'add' : digest(j.src) === digest(dst) ? 'same' : 'replace';
+  if (!dryRun && verb !== 'same') copyFileSync(j.src, dst);
+  console.log(`  ${verb.padEnd(7)}  ${j.dst}`);
+}
+
+// The catalog preview is a plain chart render, so there is no reason to make
+// one by hand: the chart is in the file we just installed.
+const previewDst = join(ASSETS, `${slug}-preview.png`);
+if (previewOverride) {
+  if (!dryRun) copyFileSync(resolve(previewOverride), previewDst);
+  console.log(`  ${existsSync(previewDst) ? 'replace' : 'add'}  ${slug}-preview.png (from --preview)`);
+} else {
+  const png = renderChartPng(pattern);
+  const same = existsSync(previewDst) && digest(previewDst) === createHash('sha256').update(png).digest('hex');
+  if (!dryRun && !same) writeFileSync(previewDst, png);
+  console.log(`  ${same ? 'same   ' : existsSync(previewDst) ? 'replace' : 'add    '}  ${slug}-preview.png (rendered)`);
 }
 
 const index = JSON.parse(readFileSync(INDEX, 'utf8'));
+const existing = index.patterns.find((p) => p.slug === slug);
+
+// The name inside the file is the one the app gives the imported project, and
+// it carries the brand: "Abducted Cow by NaredCraft". The catalog shows a
+// shorter display name. Once someone has chosen that name, a re-export must
+// not quietly overwrite it.
+const meta = {
+  slug,
+  name: existing?.name ?? payload.name,
+  width: payload.width,
+  height: payload.height,
+  colors,
+  preview: `${HOST}/patterns/assets/${slug}-preview.png`,
+  rcpattern: `${HOST}/patterns/assets/${slug}.rcpattern`,
+  sha256,
+  page: `${HOST}/patterns/${slug}.html`,
+};
 const at = index.patterns.findIndex((p) => p.slug === slug);
-if (at >= 0) index.patterns[at] = meta;
+const known = at >= 0;
+if (known) index.patterns[at] = meta;
 else index.patterns.push(meta);
 if (!dryRun) writeFileSync(INDEX, JSON.stringify(index, null, 2) + '\n');
-console.log(`  ${at >= 0 ? 'update' : 'add'}   ${INDEX} (${index.patterns.length} total)`);
+console.log(`  ${known ? 'update ' : 'add    '}  index.json (${index.patterns.length} pattern${index.patterns.length === 1 ? '' : 's'})`);
 
 if (dryRun) console.log('\nDry run: nothing was written.');
 
-if (at < 0) {
-  console.log(`\nStill to do by hand, because it is writing, not plumbing:`);
-  console.log(`  Add the entry to src/data/patterns.ts. Skeleton:\n`);
-  console.log(`  {
+if (!known) {
+  console.log(`
+The assets are in place. What is left is the writing, which no script should
+guess: add this to src/data/patterns.ts and fill in the copy.
+
+  {
     slug: '${slug}',
-    name: ${JSON.stringify(meta.name)},
-    width: ${meta.width},
-    height: ${meta.height},
-    colors: ${meta.colors},
+    name: ${JSON.stringify(payload.name)},
+    width: ${payload.width},
+    height: ${payload.height},
+    colors: ${colors},
     preview: '/patterns/assets/${slug}-preview.png',
     ogImage: '/patterns/assets/${slug}-pin-photo.png',
     pdf: { en: '/patterns/assets/${slug}-en.pdf', es: '/patterns/assets/${slug}-es.pdf' },
@@ -156,10 +168,14 @@ if (at < 0) {
     deepLinkTarget: '${meta.rcpattern}',
     tags: [],
     meta: {
-      en: '${meta.width} × ${meta.height} · ${meta.colors} colors · tapestry crochet',
-      es: '${meta.width} × ${meta.height} · ${meta.colors} colores · tapestry crochet',
+      en: '${payload.width} × ${payload.height} · ${colors} colors · tapestry crochet',
+      es: '${payload.width} × ${payload.height} · ${colors} colores · tapestry crochet',
     },
     locales: { en: { /* … */ }, es: { /* … */ } },
-  },`);
-  console.log(`\n  Tags come from TAGS in that file. Add a new one there before using it.`);
+  },
+
+Tags come from TAGS in that same file. Add a new one there before using it.
+Then: npm run deploy`);
+} else {
+  console.log('\nAlready in the catalog, so nothing to write by hand. Next: npm run deploy');
 }
