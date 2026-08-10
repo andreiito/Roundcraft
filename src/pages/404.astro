@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { PATTERNS_URL } from '../data/site';
+---
+<Base
+  title="Page not found — RoundCraft"
+  description="That page could not be found."
+  lang="en"
+  noindex={true}
+>
+  <section class="section wrap wrap-narrow center nf">
+    <img class="nf-logo brand-lockup" src="/img/logo-lockup.png" width="760" height="807" alt="RoundCraft" />
+    <p class="nf-code font-mono">404</p>
+    <h1>We dropped a stitch.</h1>
+    <p class="lede">That page is not here. Let's get you back on the row.</p>
+    <p class="es-line muted">Esa página no existe. Volvamos al camino.</p>
+    <div class="nf-cta">
+      <a class="btn btn-primary" href="/">Home</a>
+      <a class="btn btn-ghost" href={PATTERNS_URL}>Free patterns</a>
+    </div>
+  </section>
+
+  <style>
+    .nf { padding-block: clamp(4rem, 3rem + 6vw, 8rem); }
+    .nf-logo { width: 104px; height: auto; margin: 0 auto 1.6rem; display: block; }
+    .nf-code { font-size: 1.1rem; letter-spacing: 0.3em; color: var(--clay); font-weight: 700; margin-bottom: 0.6rem; }
+    .nf h1 { margin-bottom: 0.8rem; }
+    .es-line { margin-top: 0.4rem; font-size: 0.95rem; }
+    .nf-cta { display: flex; gap: 0.8rem; justify-content: center; margin-top: 1.8rem; flex-wrap: wrap; }
+  </style>
+</Base>

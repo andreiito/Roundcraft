@@ -1,0 +1,14 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PatternDetail from '../../../components/PatternDetail.astro';
+import { patterns } from '../../../data/patterns';
+
+export function getStaticPaths() {
+  return patterns.map((p) => ({ params: { slug: p.slug }, props: { pattern: p } }));
+}
+const { pattern } = Astro.props;
+const L = pattern.locales.es;
+---
+<Base title={L.seoTitle} description={L.seoDesc} lang="es" ogImage={pattern.ogImage}>
+  <PatternDetail lang="es" pattern={pattern} />
+</Base>

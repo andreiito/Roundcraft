@@ -1,0 +1,104 @@
+---
+import Icon from './Icon.astro';
+import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
+import { playUrl } from '../data/site';
+import { patterns } from '../data/patterns';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const tt = useTranslations(lang);
+
+const copy = {
+  en: {
+    eyebrow: 'Free patterns',
+    title: 'Free patterns to crochet and keep.',
+    lede: 'Crochet charts, printables and free patterns by NaredCraft, in English and Spanish. Download the PDF or import it straight into the app.',
+    sectionTitle: 'Tapestry crochet',
+    sectionSub: 'Full-color symbol charts plus written row-by-row patterns, printable PDF.',
+    free: 'Free',
+    appTitle: 'The app behind the patterns',
+    appPitch: 'Follow any chart stitch by stitch with the built-in tapestry counter, then time and price your finished piece.',
+    appCta: 'See what RoundCraft does',
+  },
+  es: {
+    eyebrow: 'Patrones gratis',
+    title: 'Patrones gratis para tejer y quedarte.',
+    lede: 'Charts de crochet, imprimibles y patrones gratuitos de NaredCraft, en inglés y español. Descarga el PDF o impórtalo directo a la app.',
+    sectionTitle: 'Tapestry crochet',
+    sectionSub: 'Charts de símbolos a todo color y patrón escrito fila a fila, PDF imprimible.',
+    free: 'Gratis',
+    appTitle: 'La app detrás de los patrones',
+    appPitch: 'Sigue cualquier chart punto por punto con el contador tapestry integrado, luego cronometra y cotiza tu pieza terminada.',
+    appCta: 'Mira qué hace RoundCraft',
+  },
+}[lang];
+
+const detailHref = (slug: string) => `${localizedPath('/patterns', lang)}/${slug}`;
+---
+<section class="section">
+  <div class="wrap">
+    <header class="cat-head" data-reveal>
+      <span class="eyebrow">{copy.eyebrow}</span>
+      <h1>{copy.title}</h1>
+      <p class="lede">{copy.lede}</p>
+    </header>
+
+    <div class="cat-sec" data-reveal>
+      <h2>{copy.sectionTitle}</h2>
+      <p class="muted">{copy.sectionSub}</p>
+    </div>
+
+    <div class="pattern-grid" data-reveal>
+      {patterns.map((p) => (
+        <a class="pattern-card" href={detailHref(p.slug)}>
+          <span class="pill-tag free">{copy.free}</span>
+          <img src={p.preview} width="780" height="1320" loading="lazy" decoding="async" alt={`Tapestry crochet chart: ${p.name}`} />
+          <h3>{p.name}</h3>
+          <span class="meta">{p.meta[lang]}</span>
+        </a>
+      ))}
+    </div>
+
+    <div class="app-card" data-reveal>
+      <div>
+        <h2>{copy.appTitle}</h2>
+        <p class="lede">{copy.appPitch}</p>
+      </div>
+      <div class="app-actions">
+        <a class="btn btn-primary" href={playUrl('patterns_index')} target="_blank" rel="noopener">{tt('cta.googlePlay')}</a>
+        <a class="btn btn-ghost" href={localizedPath('/', lang)}>{copy.appCta}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cat-head { max-width: 48ch; margin-bottom: clamp(2rem, 1rem + 3vw, 3rem); }
+  .cat-head .eyebrow { margin-bottom: 0.9rem; }
+  .cat-head h1 { margin-bottom: 0.8rem; }
+  .cat-sec { margin-bottom: 1.4rem; }
+  .cat-sec h2 { font-size: var(--fs-md); margin-bottom: 0.3rem; }
+
+  .pattern-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.4rem; }
+  .pattern-card {
+    position: relative; display: block;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--r-lg); padding: 1rem; box-shadow: var(--shadow-sm);
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .pattern-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .pattern-card img { width: 100%; height: auto; border-radius: var(--r-sm); border: 1px solid var(--line); margin-bottom: 0.9rem; }
+  .pattern-card h3 { font-size: var(--fs-md); margin-bottom: 0.2rem; }
+  .pattern-card .meta { font-size: 0.85rem; color: var(--ink-faint); }
+  .pattern-card .free { position: absolute; top: 1.4rem; left: 1.4rem; background: var(--clay-deep); color: #fff; }
+
+  .app-card {
+    margin-top: clamp(2.5rem, 1.5rem + 3vw, 4rem);
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+    background: var(--bg-tint); border: 1px solid var(--line);
+    border-radius: var(--r-lg); padding: clamp(1.6rem, 1rem + 2vw, 2.4rem);
+  }
+  .app-card > div:first-child { max-width: 46ch; }
+  .app-card h2 { font-size: var(--fs-lg); margin-bottom: 0.6rem; }
+  .app-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+</style>

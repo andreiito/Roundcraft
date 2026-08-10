@@ -1,0 +1,124 @@
+---
+import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
+import { playUrl, ETSY_URL, COFFEE_URL, EMAIL } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = 2026;
+
+const product = [
+  { href: `${localizedPath('/', lang)}#features`, label: t('nav.features') },
+  { href: localizedPath('/pricing', lang), label: t('nav.pricing') },
+  { href: `${localizedPath('/patterns', lang)}/`, label: t('nav.patterns') },
+];
+const more = [
+  { href: localizedPath('/developer', lang), label: t('footer.developer') },
+  { href: localizedPath('/brand', lang), label: t('nav.brand') },
+  { href: ETSY_URL, label: t('footer.etsy'), external: true },
+  { href: COFFEE_URL, label: t('footer.coffee'), external: true },
+];
+const legal = [
+  { href: localizedPath('/privacy-policy', lang), label: t('footer.privacy') },
+  { href: localizedPath('/terms', lang), label: t('footer.terms') },
+  { href: `mailto:${EMAIL}`, label: t('footer.contact') },
+];
+---
+<footer class="site-footer">
+  <div class="wrap grid">
+    <div class="brandcol">
+      <a class="brandlink" href={localizedPath('/', lang)} aria-label="RoundCraft">
+        <img class="brandlogo brand-lockup" src="/img/logo-lockup.png" width="760" height="807" alt="RoundCraft" loading="lazy" decoding="async" />
+      </a>
+      <p class="tagline">{t('footer.tagline')}</p>
+      <a class="btn btn-primary" href={playUrl('footer')} target="_blank" rel="noopener">{t('cta.googlePlay')}</a>
+    </div>
+
+    <nav class="col" aria-label={t('footer.product')}>
+      <h2>{t('footer.product')}</h2>
+      <ul>{product.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+    </nav>
+
+    <nav class="col" aria-label={t('footer.company')}>
+      <h2>{t('footer.company')}</h2>
+      <ul>
+        {more.map((l) => (
+          <li>
+            <a href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <nav class="col" aria-label={t('footer.legal')}>
+      <h2>{t('footer.legal')}</h2>
+      <ul>{legal.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+    </nav>
+  </div>
+
+  <div class="wrap bottom">
+    <span class="mark">
+      <img class="mark-img" src="/img/logo-mark.png" width="24" height="24" alt="" decoding="async" />
+      RoundCraft <span class="by">{t('footer.by')}</span>
+    </span>
+    <span class="rights">&copy; {year} NaredCraft. {t('footer.rights')}</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: auto;
+    border-top: 1px solid var(--line);
+    background: var(--bg-tint);
+    padding-block: clamp(2.6rem, 1.6rem + 3vw, 4rem) 1.6rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1.6fr repeat(3, 1fr);
+    gap: 2.4rem;
+  }
+  .brandcol { max-width: 340px; }
+  .brandlink { display: inline-block; }
+  .brandlogo { width: 92px; height: auto; display: block; }
+  .tagline { color: var(--ink-soft); font-size: 0.95rem; margin: 1rem 0 1.3rem; line-height: 1.55; }
+  .brandcol .btn { padding: 0.7em 1.2em; font-size: 0.9rem; }
+
+  .col h2 {
+    font-family: var(--font-sans);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 1rem;
+  }
+  .col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.7rem; }
+  .col a { font-size: 0.95rem; color: var(--ink-soft); transition: color var(--dur) var(--ease); }
+  .col a:hover { color: var(--clay); }
+
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: clamp(2rem, 1.4rem + 2vw, 3rem);
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+  .mark { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-display); font-size: 1rem; color: var(--ink); }
+  .mark .by { color: var(--ink-faint); font-family: var(--font-sans); font-size: 0.82rem; }
+  .mark-img { width: 22px; height: 22px; display: block; }
+
+  @media (max-width: 860px) {
+    .grid { grid-template-columns: 1fr 1fr; gap: 2rem 1.4rem; }
+    .brandcol { grid-column: 1 / -1; max-width: none; }
+  }
+  @media (max-width: 480px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>

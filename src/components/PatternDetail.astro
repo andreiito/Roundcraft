@@ -1,0 +1,99 @@
+---
+import Icon from './Icon.astro';
+import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
+import { playUrl } from '../data/site';
+import type { Pattern } from '../data/patterns';
+
+interface Props { lang: Lang; pattern: Pattern; }
+const { lang, pattern } = Astro.props;
+const tt = useTranslations(lang);
+const L = pattern.locales[lang];
+const catalog = `${localizedPath('/patterns', lang)}/`;
+
+const ui = {
+  en: { back: 'All free patterns', downloadTitle: 'Download the free PDF', pdfEn: 'Download PDF, English', pdfEs: 'Download PDF, Spanish', rc: 'Pattern file for the app (.rcpattern)', open: 'Open in the RoundCraft app', appTitle: 'Crochet it with RoundCraft' },
+  es: { back: 'Todos los patrones gratis', downloadTitle: 'Descarga el PDF gratis', pdfEn: 'Descargar PDF, Inglés', pdfEs: 'Descargar PDF, Español', rc: 'Archivo de patrón para la app (.rcpattern)', open: 'Abrir en la app RoundCraft', appTitle: 'Téjelo con RoundCraft' },
+}[lang];
+---
+<section class="section">
+  <div class="wrap wrap-narrow">
+    <nav class="crumb" data-reveal><a href={catalog}><Icon name="arrow" size={15} class="flip" /> {ui.back}</a></nav>
+
+    <header class="pd-head" data-reveal>
+      <h1>{pattern.name}</h1>
+      <p class="muted">{L.subtitle}</p>
+    </header>
+
+    <img class="pd-hero" src={pattern.preview} width="780" height="1320" loading="eager" decoding="async"
+      alt={`Tapestry crochet chart: ${pattern.name}`} data-reveal />
+
+    <div class="pd-block card" data-reveal>
+      <h2>{L.aboutTitle}</h2>
+      <p>{L.about}</p>
+      <ul class="check-list">
+        {L.bullets.map((b) => <li><Icon name="check" size={18} /> {b}</li>)}
+      </ul>
+    </div>
+
+    <div class="pd-block card" data-reveal>
+      <h2>{ui.downloadTitle}</h2>
+      <div class="dl-row">
+        <a class="btn btn-ghost" href={pattern.pdf.en} download><Icon name="arrow" size={17} /> {ui.pdfEn}</a>
+        <a class="btn btn-ghost" href={pattern.pdf.es} download><Icon name="arrow" size={17} /> {ui.pdfEs}</a>
+      </div>
+      <a class="btn btn-ghost dl-rc" href={pattern.rcpattern} download><Icon name="tapestry" size={17} /> {ui.rc}</a>
+      <p class="muted note">{L.importNote}</p>
+      <a class="btn btn-primary open-app" href="#" data-deeplink={pattern.deepLinkTarget}><Icon name="arrow" size={18} /> {ui.open}</a>
+      <p class="license muted">{L.license}</p>
+    </div>
+
+    <div class="pd-block app-cta" data-reveal>
+      <h2>{ui.appTitle}</h2>
+      <p class="lede">{L.appPitch}</p>
+      <a class="btn btn-primary" href={playUrl(`pattern_${pattern.slug}`)} target="_blank" rel="noopener">{tt('cta.googlePlay')}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .crumb { margin-bottom: 1.4rem; }
+  .crumb a { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--ink-soft); font-weight: 500; font-size: 0.95rem; }
+  .crumb a:hover { color: var(--clay); }
+  .crumb :global(.flip) { transform: rotate(180deg); }
+
+  .pd-head { margin-bottom: 1.6rem; }
+  .pd-head h1 { font-size: var(--fs-xl); margin-bottom: 0.4rem; }
+  .pd-hero { width: 100%; max-width: 420px; margin: 0 auto 2rem; border-radius: var(--r-lg); border: 1px solid var(--line); box-shadow: var(--shadow-md); display: block; }
+
+  .pd-block { padding: 1.5rem 1.7rem; margin-bottom: 1.4rem; }
+  .pd-block h2 { font-size: var(--fs-md); margin-bottom: 0.9rem; }
+  .pd-block p { color: var(--ink-soft); }
+  .check-list { list-style: none; padding: 0; margin-top: 1rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .check-list li { display: flex; align-items: flex-start; gap: 0.6rem; color: var(--ink); font-size: 0.96rem; }
+  .check-list :global(.icon) { color: var(--clay); flex: none; margin-top: 2px; }
+
+  .dl-row { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+  .dl-row .btn, .dl-rc { justify-content: center; }
+  .dl-rc { display: flex; margin-top: 0.7rem; }
+  .note { margin-top: 1rem; font-size: 0.9rem; }
+  .open-app { display: flex; justify-content: center; margin-top: 1rem; }
+  .license { margin-top: 1rem; font-size: 0.85rem; }
+
+  .app-cta { text-align: center; padding: 2rem; background: var(--bg-tint); border: 1px solid var(--line); border-radius: var(--r-lg); }
+  .app-cta h2 { margin-bottom: 0.6rem; }
+  .app-cta .lede { max-width: 46ch; margin: 0 auto 1.4rem; }
+</style>
+
+<script>
+  // Fire the app deep link (import a pattern). QR codes append ?open=app so a
+  // scan tries the app first and falls back to this page.
+  const btn = document.querySelector<HTMLAnchorElement>('.open-app');
+  const target = btn?.dataset.deeplink;
+  if (btn && target) {
+    btn.addEventListener('click', (e) => { e.preventDefault(); window.location.href = target; });
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('open') === 'app') {
+      setTimeout(() => { window.location.href = target; }, 500);
+    }
+  }
+</script>

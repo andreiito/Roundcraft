@@ -1,0 +1,27 @@
+---
+// The real RoundCraft mark (the app's yarn-ball brand mark), paired with the
+// wordmark in the site's display font for a clean horizontal lockup.
+interface Props {
+  size?: number;
+  wordmark?: boolean;
+  class?: string;
+}
+const { size = 34, wordmark = true, class: className = '' } = Astro.props;
+---
+<span class={`logo ${className}`}>
+  <img class="logo-mark" src="/img/logo-mark.png" width={size} height={size} alt={wordmark ? 'RoundCraft' : 'RoundCraft logo'} decoding="async" />
+  {wordmark && <span class="logo-word">RoundCraft</span>}
+</span>
+
+<style>
+  .logo { display: inline-flex; align-items: center; gap: 0.5rem; }
+  .logo-mark { flex: none; display: block; }
+  .logo-word {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1;
+  }
+</style>

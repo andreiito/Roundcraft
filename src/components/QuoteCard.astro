@@ -1,0 +1,86 @@
+---
+// A UI illustration of the quote calculator's output. Not a screenshot: it is a
+// faithful diagram of the numbers the app combines (tracked hours + materials +
+// margin => a suggested price), used where no real screenshot exists.
+import Icon from './Icon.astro';
+import { type Lang } from '../i18n/utils';
+interface Props { lang: Lang; class?: string; }
+const { lang, class: className = '' } = Astro.props;
+const c = {
+  en: { project: 'Heart in tapestry', hours: 'Tracked time', mats: 'Materials', margin: 'Profit margin', total: 'Suggested price', share: 'Ready to share' },
+  es: { project: 'Corazón en tapestry', hours: 'Tiempo registrado', mats: 'Materiales', margin: 'Margen de ganancia', total: 'Precio sugerido', share: 'Listo para compartir' },
+}[lang];
+---
+<figure class={`quote-card ${className}`} aria-label={c.total}>
+  <header>
+    <img class="qc-mark" src="/img/logo-mark.png" width="22" height="22" alt="" loading="lazy" decoding="async" />
+    <span class="qc-project">{c.project}</span>
+  </header>
+  <dl>
+    <div><dt>{c.hours}</dt><dd class="font-mono">6h 20m</dd></div>
+    <div><dt>{c.mats}</dt><dd class="font-mono">$14.00</dd></div>
+    <div><dt>{c.margin}</dt><dd class="font-mono">40%</dd></div>
+  </dl>
+  <div class="qc-total">
+    <span class="qc-total-label">{c.total}</span>
+    <span class="qc-price font-mono"><span aria-hidden="true">$</span><span data-countup="58">58</span></span>
+  </div>
+  <footer><Icon name="share" size={15} /> {c.share}</footer>
+</figure>
+
+<style>
+  .quote-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-md);
+    padding: 1.15rem 1.25rem 1rem;
+    width: 100%;
+    max-width: 310px;
+  }
+  .quote-card header { display: flex; align-items: center; gap: 0.55rem; padding-bottom: 0.85rem; border-bottom: 1px solid var(--line-soft); }
+  .qc-project { font-family: var(--font-display); font-size: 1.02rem; color: var(--ink); }
+  .qc-mark { width: 22px; height: 22px; flex: none; display: block; }
+  dl { margin: 0.85rem 0 0.4rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  dl div { display: flex; align-items: baseline; justify-content: space-between; }
+  dt { color: var(--ink-soft); font-size: 0.9rem; }
+  dd { color: var(--ink); font-size: 0.92rem; font-weight: 600; }
+  .qc-total {
+    margin-top: 0.85rem; padding-top: 0.85rem; border-top: 1.5px dashed var(--line);
+    display: flex; align-items: baseline; justify-content: space-between;
+  }
+  .qc-total-label { color: var(--ink-soft); font-size: 0.9rem; }
+  .qc-price { font-size: 2rem; font-weight: 700; color: var(--clay); line-height: 1; letter-spacing: -0.02em; }
+  footer {
+    margin-top: 0.9rem; display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--sage-text);
+    background: var(--sage-wash); padding: 0.4rem 0.7rem; border-radius: var(--r-pill);
+  }
+</style>
+
+<script>
+  // Count the suggested price up once it scrolls into view.
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const els = document.querySelectorAll<HTMLElement>('[data-countup]');
+  if (!reduce && 'IntersectionObserver' in window) {
+    const run = (el: HTMLElement) => {
+      const end = parseInt(el.dataset.countup || '0', 10);
+      const dur = 900;
+      const start = performance.now();
+      const tick = (now: number) => {
+        const p = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = String(Math.round(end * eased));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { run(e.target as HTMLElement); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.6 });
+    els.forEach((el) => io.observe(el));
+  }
+</script>

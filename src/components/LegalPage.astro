@@ -1,0 +1,30 @@
+---
+// Shared shell for prose pages (privacy, terms). Renders a header + a centered
+// prose column. Content is passed as the default slot.
+interface Props {
+  eyebrow: string;
+  title: string;
+  updated: string;
+}
+const { eyebrow, title, updated } = Astro.props;
+---
+<section class="section">
+  <div class="wrap wrap-narrow">
+    <header class="legal-head" data-reveal>
+      <span class="eyebrow">{eyebrow}</span>
+      <h1>{title}</h1>
+      <p class="muted updated">{updated}</p>
+    </header>
+    <div class="prose" data-reveal>
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .legal-head { margin-bottom: 2.4rem; padding-bottom: 1.8rem; border-bottom: 1px solid var(--line); }
+  .legal-head .eyebrow { margin-bottom: 0.9rem; }
+  .legal-head h1 { font-size: var(--fs-xl); margin-bottom: 0.6rem; }
+  .updated { font-size: 0.9rem; }
+  .prose :global(h2:first-child) { margin-top: 0; }
+</style>

@@ -1,0 +1,59 @@
+---
+import '@fontsource-variable/fraunces';
+import '@fontsource-variable/hanken-grotesk';
+import '../styles/tokens.css';
+import '../styles/global.css';
+
+import Head from '../components/Head.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  ogImage?: string;
+  noindex?: boolean;
+}
+const { title, description, lang, ogImage, noindex } = Astro.props;
+const pathname = Astro.url.pathname;
+const t = useTranslations(lang);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <Head title={title} description={description} lang={lang} pathname={pathname} ogImage={ogImage} noindex={noindex} />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">{t('nav.skip')}</a>
+    <Header lang={lang} pathname={pathname} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+
+    <script>
+      // Scroll-reveal: fade/slide sections in once, respecting reduced motion.
+      const els = document.querySelectorAll('[data-reveal]');
+      if (els.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              (e.target as HTMLElement).classList.add('is-in');
+              io.unobserve(e.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+        els.forEach((el) => io.observe(el));
+      } else {
+        els.forEach((el) => el.classList.add('is-in'));
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  body { display: flex; flex-direction: column; }
+  main { flex: 1 0 auto; }
+</style>
