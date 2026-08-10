@@ -124,3 +124,16 @@ export const patterns: Pattern[] = [
 ];
 
 export const getPattern = (slug: string) => patterns.find((p) => p.slug === slug);
+
+/** Filename a download lands under. The assets on disk are named by slug, which
+ *  tells a person nothing once the file is sitting in their Downloads folder
+ *  next to forty other PDFs. The brand goes first so every RoundCraft pattern
+ *  files together alphabetically.
+ *
+ *  Both PDFs of a pattern would otherwise collide and become "… (1).pdf", so
+ *  the language is part of the name rather than a guess the browser makes. */
+export function downloadName(pattern: Pattern, kind: 'pdf-en' | 'pdf-es' | 'rcpattern'): string {
+  const base = `RoundCraft free pattern - ${pattern.name}`;
+  if (kind === 'rcpattern') return `${base}.rcpattern`;
+  return `${base} (${kind === 'pdf-en' ? 'EN' : 'ES'}).pdf`;
+}

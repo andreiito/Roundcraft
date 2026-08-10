@@ -3,7 +3,7 @@ import Icon from './Icon.astro';
 import OpenInApp from './OpenInApp.astro';
 import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
 import { playUrl } from '../data/site';
-import type { Pattern } from '../data/patterns';
+import { downloadName, type Pattern } from '../data/patterns';
 
 interface Props { lang: Lang; pattern: Pattern; }
 const { lang, pattern } = Astro.props;
@@ -39,10 +39,10 @@ const ui = {
     <div class="pd-block card" data-reveal>
       <h2>{ui.downloadTitle}</h2>
       <div class="dl-row">
-        <a class="btn btn-ghost" href={pattern.pdf.en} download><Icon name="arrow" size={17} /> {ui.pdfEn}</a>
-        <a class="btn btn-ghost" href={pattern.pdf.es} download><Icon name="arrow" size={17} /> {ui.pdfEs}</a>
+        <a class="btn btn-ghost" href={pattern.pdf.en} download={downloadName(pattern, 'pdf-en')}><Icon name="arrow" size={17} /> {ui.pdfEn}</a>
+        <a class="btn btn-ghost" href={pattern.pdf.es} download={downloadName(pattern, 'pdf-es')}><Icon name="arrow" size={17} /> {ui.pdfEs}</a>
       </div>
-      <a class="btn btn-ghost dl-rc" href={pattern.rcpattern} download><Icon name="tapestry" size={17} /> {ui.rc}</a>
+      <a class="btn btn-ghost dl-rc" href={pattern.rcpattern} download={downloadName(pattern, 'rcpattern')}><Icon name="tapestry" size={17} /> {ui.rc}</a>
       <p class="muted note">{L.importNote}</p>
       <OpenInApp fileUrl={pattern.deepLinkTarget} label={ui.open} campaign={`pattern_${pattern.slug}`} class="open-app" />
       <p class="license muted">{L.license}</p>
