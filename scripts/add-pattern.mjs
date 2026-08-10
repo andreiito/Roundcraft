@@ -6,7 +6,7 @@
 //
 // Options:
 //   --from <dir>     where the generator's export sits.
-//                    Default: ../NaredCraft - WebTapestry/patterns
+//                    Default: found next to this repo, see FROM_CANDIDATES
 //   --preview <path> use this image as the catalog preview instead of
 //                    rendering the chart
 //   --force          overwrite published files that differ from the incoming
@@ -26,7 +26,14 @@ import { readRcPattern, renderChartPng } from './lib/pattern.mjs';
 
 const ASSETS = 'public/patterns/assets';
 const INDEX = 'public/patterns/index.json';
-const DEFAULT_FROM = '../NaredCraft - WebTapestry/patterns';
+
+// Where Tapestry Studio's export tends to be, most recent layout first. It has
+// moved once already, so this looks rather than assumes; --from overrides.
+const FROM_CANDIDATES = [
+  '../Count Row App/tapestry-studio/patterns',
+  '../tapestry-studio/patterns',
+  '../NaredCraft - WebTapestry/patterns',
+];
 
 // The app's import allow-list is checked against these strings, and the
 // version on the Play Store today only accepts the github.io host. Keep the
@@ -39,7 +46,7 @@ const arg = (name) => {
   const i = args.indexOf(`--${name}`);
   return i >= 0 ? args[i + 1] : undefined;
 };
-const from = arg('from') ?? DEFAULT_FROM;
+const from = arg('from') ?? FROM_CANDIDATES.find((c) => existsSync(c));
 const slug = arg('slug');
 const previewOverride = arg('preview');
 const dryRun = args.includes('--dry-run');
@@ -50,6 +57,14 @@ const die = (...lines) => { for (const l of lines) console.error(l); process.exi
 if (!slug) die('usage: add-pattern.mjs --slug <slug> [--from <dir>] [--preview <path>] [--dry-run] [--force]');
 if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) die(`slug "${slug}" must be lowercase words joined by hyphens: it becomes the URL`);
 
+if (!from) {
+  die(
+    'Cannot find the Tapestry Studio export folder. Looked in:',
+    ...FROM_CANDIDATES.map((c) => `  ${c}`),
+    '',
+    'Pass --from <dir> if it lives somewhere else.',
+  );
+}
 const rcSource = join(from, `${slug}.rcpattern`);
 if (!existsSync(rcSource)) {
   die(`No ${slug}.rcpattern in ${from}`, '', 'Export it from Tapestry Studio first, or pass --from <dir>.');
