@@ -29,7 +29,7 @@
  * The domain does not have to use Cloudflare DNS for this to work, and the
  * token is meant to be public: it ends up in the page source either way.
  */
-export const CF_BEACON_TOKEN = '';
+export const CF_BEACON_TOKEN = '5fe6805a730448c3a5c549d9571db89b';
 
 /**
  * GA4 measurement id, the `G-XXXXXXXXXX` string.
