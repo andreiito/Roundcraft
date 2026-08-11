@@ -7,6 +7,10 @@
 // Options:
 //   --from <dir>     the pattern's folder, or the folder containing it.
 //                    Default: found next to this repo, see ROOT_CANDIDATES
+//   --name <text>    display name for the catalog. Defaults to the name inside
+//                    the .rcpattern with the "by NaredCraft" suffix removed
+//   --tags a,b,c     catalog tags. Must exist in src/data/tags.json
+//   --deploy         build, commit and push when everything is in place
 //   --preview <path> use this image as the catalog preview instead of
 //                    rendering the chart
 //   --force          overwrite published files that differ from the incoming
@@ -22,10 +26,13 @@
 import { createHash } from 'node:crypto';
 import { copyFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { spawnSync } from 'node:child_process';
 import { readRcPattern, renderChartPng } from './lib/pattern.mjs';
 
 const ASSETS = 'public/patterns/assets';
 const INDEX = 'public/patterns/index.json';
+const SOURCES = 'src/data/patterns';
+const TAGS_FILE = 'src/data/tags.json';
 
 // Where Tapestry Studio keeps its patterns, most recent layout first. The
 // folder has moved once already, so this looks rather than assumes; --from
@@ -50,6 +57,9 @@ const arg = (name) => {
 const fromArg = arg('from');
 const slug = arg('slug');
 const previewOverride = arg('preview');
+const displayName = arg('name');
+const tagsArg = arg('tags');
+const deploy = args.includes('--deploy');
 const dryRun = args.includes('--dry-run');
 const force = args.includes('--force');
 
@@ -78,6 +88,18 @@ if (!from) {
   );
 }
 const rcSource = join(from, firstExisting(from, [`${slug}.rcpattern`, 'pattern.rcpattern']));
+
+const knownTags = JSON.parse(readFileSync(TAGS_FILE, 'utf8'));
+const tags = tagsArg ? tagsArg.split(',').map((t) => t.trim()).filter(Boolean) : null;
+const unknownTags = (tags ?? []).filter((t) => !(t in knownTags));
+if (unknownTags.length) {
+  die(
+    `Unknown tag(s): ${unknownTags.join(', ')}`,
+    '',
+    `Available: ${Object.keys(knownTags).join(', ')}`,
+    `Add a new one to ${TAGS_FILE} first, in both languages.`,
+  );
+}
 
 let pattern;
 try {
@@ -178,34 +200,81 @@ else index.patterns.push(meta);
 if (!dryRun) writeFileSync(INDEX, JSON.stringify(index, null, 2) + '\n');
 console.log(`  ${known ? 'update ' : 'add    '}  index.json (${index.patterns.length} pattern${index.patterns.length === 1 ? '' : 's'})`);
 
+// The pattern's own data file. Written here so registration is not a paste job,
+// but the prose is left to a person: a description nobody wrote is worse than no
+// pattern at all, and the build refuses to publish a stub with empty copy.
+const sourcePath = join(SOURCES, `${slug}.json`);
+const hadSource = existsSync(sourcePath);
+const source = hadSource
+  ? JSON.parse(readFileSync(sourcePath, 'utf8'))
+  : {
+      slug,
+      name: displayName ?? payload.name.replace(/\s+by\s+NaredCraft\s*$/i, ''),
+      width: 0,
+      height: 0,
+      colors: 0,
+      publishedAt: new Date().toISOString().slice(0, 10),
+      tags: [],
+      locales: {
+        en: { seoDesc: '', about: '', bullets: [] },
+        es: { seoDesc: '', about: '', bullets: [] },
+      },
+    };
+
+// Dimensions always come from the file just installed, so a re-export cannot
+// leave a stale stitch count on the page. Name and tags change only when asked.
+source.width = payload.width;
+source.height = payload.height;
+source.colors = colors;
+if (displayName) source.name = displayName;
+if (tags) source.tags = tags;
+
+if (!dryRun) writeFileSync(sourcePath, JSON.stringify(source, null, 2) + '\n');
+console.log(`  ${hadSource ? 'update ' : 'add    '}  ${sourcePath}`);
+
+const needsCopy = ['en', 'es'].filter((l) => {
+  const c = source.locales?.[l];
+  return !c?.about?.trim() || !c?.seoDesc?.trim() || !c?.bullets?.length;
+});
+const needsTags = !source.tags?.length;
+
 if (dryRun) console.log('\nDry run: nothing was written.');
 
-if (!known) {
+if (needsCopy.length || needsTags) {
   console.log(`
-The assets are in place. What is left is the writing, which no script should
-guess: add this to src/data/patterns.ts and fill in the copy.
-
-  {
-    slug: '${slug}',
-    name: ${JSON.stringify(payload.name)},
-    width: ${payload.width},
-    height: ${payload.height},
-    colors: ${colors},
-    preview: '/patterns/assets/${slug}-preview.png',
-    ogImage: '/patterns/assets/${slug}-pin-photo.png',
-    pdf: { en: '/patterns/assets/${slug}-en.pdf', es: '/patterns/assets/${slug}-es.pdf' },
-    rcpattern: '/patterns/assets/${slug}.rcpattern',
-    deepLinkTarget: '${meta.rcpattern}',
-    tags: [],
-    meta: {
-      en: '${payload.width} × ${payload.height} · ${colors} colors · tapestry crochet',
-      es: '${payload.width} × ${payload.height} · ${colors} colores · tapestry crochet',
-    },
-    locales: { en: { /* … */ }, es: { /* … */ } },
-  },
-
-Tags come from TAGS in that same file. Add a new one there before using it.
-Then: npm run deploy`);
-} else {
-  console.log('\nAlready in the catalog, so nothing to write by hand. Next: npm run deploy');
+Assets and registration are done. What is left needs a person:
+`);
+  if (needsTags) {
+    console.log(`  Tags. Re-run with --tags a,b,c`);
+    console.log(`  Available: ${Object.keys(knownTags).join(', ')}\n`);
+  }
+  if (needsCopy.length) {
+    console.log(`  Copy for ${needsCopy.join(' and ')} in ${sourcePath}:`);
+    console.log(`    seoDesc  one or two sentences, this is the search result`);
+    console.log(`    about    what the piece is and how it is worked`);
+    console.log(`    bullets  what is inside the PDF\n`);
+  }
+  console.log(`Everything else (title, subtitle, stitch count, licence, the app
+pitch, every asset path) is derived, so there is nothing else to fill.`);
+  console.log(`\nThen: npm run publish-pattern -- --slug ${slug} --deploy`);
+} else if (deploy && !dryRun) {
+  console.log('\nDeploying.\n');
+  const run = (cmd, cmdArgs) => {
+    const r = spawnSync(cmd, cmdArgs, { stdio: 'inherit' });
+    if (r.status !== 0) { console.error(`\n${cmd} failed, stopping.`); process.exit(r.status ?? 1); }
+  };
+  run('npx', ['astro', 'build']);
+  run('git', ['add', '-A']);
+  // Nothing to commit is a success: the assets were already published.
+  const staged = spawnSync('git', ['diff', '--cached', '--quiet']).status;
+  if (staged === 0) {
+    console.log('\nNothing changed, so nothing to deploy.');
+  } else {
+    run('git', ['commit', '-m', `Publish pattern: ${source.name}`]);
+    run('git', ['push', 'origin', 'main']);
+    console.log(`\nPushed. GitHub Actions is building; the page will be at`);
+    console.log(`https://getroundcraft.com/patterns/${slug}.html in a minute or two.`);
+  }
+} else if (!dryRun) {
+  console.log(`\nReady. To publish: npm run publish-pattern -- --slug ${slug} --deploy`);
 }

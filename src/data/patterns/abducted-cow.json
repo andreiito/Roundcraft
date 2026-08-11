@@ -1,0 +1,31 @@
+{
+  "slug": "abducted-cow",
+  "name": "Abducted Cow",
+  "width": 39,
+  "height": 66,
+  "colors": 16,
+  "publishedAt": "2026-07-10",
+  "tags": ["tapestry", "animals", "space", "intermediate"],
+  "locales": {
+    "en": {
+      "seoDesc": "Free tapestry crochet pattern: a UFO beaming up a very surprised cow. 39 by 66 stitches, 16 colors. Full-color chart plus a written row-by-row pattern, printable PDF in English and Spanish.",
+      "about": "A night scene in tapestry crochet: a flying saucer beams up a very surprised cow while the farmhouse sleeps. Worked flat in single crochet colorwork, great for wall hangings, tote bags and blanket panels.",
+      "bullets": [
+        "Full-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn color legend with stitch counts per color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de tapestry crochet gratis: un OVNI abduce a una vaca muy sorprendida. 39 por 66 puntos, 16 colores. Chart a todo color y patrón escrito fila a fila, PDF imprimible en inglés y español.",
+      "about": "Una escena nocturna en tapestry crochet: un platillo volador abduce a una vaca muy sorprendida mientras la granja duerme. Se teje plano en punto bajo con cambio de color, ideal para tapices, bolsas y paneles de manta.",
+      "bullets": [
+        "Chart de símbolos a todo color, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de colores con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}

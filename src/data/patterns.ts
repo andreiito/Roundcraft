@@ -1,21 +1,36 @@
 import type { Lang } from '../i18n/utils';
 
-/** Tag vocabulary for the catalog filter. Add a tag here before using it on a
- *  pattern; the filter chips are derived from the tags actually in use, so an
- *  unused tag never shows up as a dead-end chip. */
-export const TAGS = {
-  tapestry: { en: 'Tapestry', es: 'Tapestry' },
-  amigurumi: { en: 'Amigurumi', es: 'Amigurumi' },
-  animals: { en: 'Animals', es: 'Animales' },
-  space: { en: 'Space', es: 'Espacio' },
-  holiday: { en: 'Holiday', es: 'Fiestas' },
-  geometric: { en: 'Geometric', es: 'Geométrico' },
-  beginner: { en: 'Beginner', es: 'Principiante' },
-  intermediate: { en: 'Intermediate', es: 'Intermedio' },
-  advanced: { en: 'Advanced', es: 'Avanzado' },
-} as const;
+import tagsJson from './tags.json';
 
-export type TagId = keyof typeof TAGS;
+/** Tag vocabulary for the catalog filter, shared with scripts/add-pattern.mjs
+ *  so a tag cannot be spelled one way in the data and another in the UI. Add a
+ *  tag to tags.json before using it: the filter chips are derived from the tags
+ *  actually in use, so an unused tag never shows up as a dead-end chip. */
+export const TAGS: Record<string, { en: string; es: string }> = tagsJson;
+
+export type TagId = keyof typeof tagsJson;
+
+/**
+ * What a pattern actually has to say for itself. One JSON file per pattern in
+ * ./patterns/, written by scripts/add-pattern.mjs and then filled in by hand.
+ *
+ * Only the fields that need a person are here. Everything else about a pattern
+ * follows from its slug and its dimensions, and repeating derivable values per
+ * pattern is how they drift: a stitch count that no longer matches the chart, a
+ * licence line that says something different on one page.
+ */
+interface PatternSource {
+  slug: string;
+  /** Display name. Shorter than the name inside the .rcpattern, which carries
+   *  the publisher because the app uses it as the imported project's name. */
+  name: string;
+  width: number;
+  height: number;
+  colors: number;
+  publishedAt: string;
+  tags: TagId[];
+  locales: Record<Lang, { seoDesc: string; about: string; bullets: string[] }>;
+}
 
 interface PatternLocale {
   seoTitle: string;
@@ -35,6 +50,7 @@ export interface Pattern {
   width: number;
   height: number;
   colors: number;
+  publishedAt: string;
   preview: string;
   ogImage: string;
   pdf: { en: string; es: string };
@@ -46,82 +62,105 @@ export interface Pattern {
    *  break importing for everyone who has not updated.
    *
    *  The app source already accepts both hosts (ALLOWED_IMPORT_URL_PREFIXES in
-   *  src/features/tapestry/importPattern.ts). Switch this to
-   *  https://getroundcraft.com/patterns/assets/… once that release has been
-   *  out long enough, and drop the redirect hop. */
+   *  src/features/tapestry/importPattern.ts). Switch IMPORT_HOST below to
+   *  https://getroundcraft.com once that release has been out long enough, and
+   *  drop the redirect hop. */
   deepLinkTarget: string;
   tags: TagId[];
   meta: { en: string; es: string };
   locales: Record<Lang, PatternLocale>;
 }
 
+const IMPORT_HOST = 'https://andreiito.github.io/Roundcraft';
+
+/** Boilerplate that is the same on every pattern page, so it is written once. */
+const SHARED = {
+  en: {
+    aboutTitle: 'About this pattern',
+    importNote:
+      'Import it in RoundCraft (v1.0.15+): Tools, then Tapestry, then Import. Follow the chart stitch by stitch with the built-in counter.',
+    license:
+      'Personal use. You may sell the finished items. Please do not redistribute the PDF. This pattern is always free on this page.',
+    appPitch:
+      'RoundCraft is the professional crochet app. Smart row counters, a project timer and a quote calculator to price your finished pieces, plus a tapestry mode to follow this pattern stitch by stitch.',
+    seoTitle: (name: string) => `${name} — Free Tapestry Crochet Pattern | RoundCraft`,
+    subtitle: (p: PatternSource) =>
+      `${p.width} × ${p.height} · ${(p.width * p.height).toLocaleString('en-US')} stitches · ${p.colors} colors · by NaredCraft`,
+    meta: (p: PatternSource) => `${p.width} × ${p.height} · ${p.colors} colors · tapestry crochet`,
+  },
+  es: {
+    aboutTitle: 'Sobre este patrón',
+    importNote:
+      'Impórtalo en RoundCraft (v1.0.15+): Herramientas, luego Tapestry, luego Importar. Sigue el chart punto por punto con el contador integrado.',
+    license:
+      'Uso personal. Puedes vender las piezas terminadas. No redistribuyas el PDF. Este patrón es siempre gratuito en esta página.',
+    appPitch:
+      'RoundCraft es la app profesional para tejer. Contadores de vueltas inteligentes, cronómetro de proyecto y calculadora para cotizar tus piezas, con modo tapestry para seguir este patrón punto por punto.',
+    seoTitle: (name: string) => `${name} — Patrón de Tapestry Crochet Gratis | RoundCraft`,
+    subtitle: (p: PatternSource) =>
+      `${p.width} × ${p.height} · ${(p.width * p.height).toLocaleString('es-MX')} puntos · ${p.colors} colores · por NaredCraft`,
+    meta: (p: PatternSource) => `${p.width} × ${p.height} · ${p.colors} colores · tapestry crochet`,
+  },
+} as const;
+
+function expand(src: PatternSource): Pattern {
+  const { slug } = src;
+  // A stub written by add-pattern.mjs and never filled in would publish a page
+  // with a blank description, so the build stops instead.
+  for (const lang of ['en', 'es'] as const) {
+    const l = src.locales?.[lang];
+    const missing = !l?.about?.trim() || !l?.seoDesc?.trim() || !l?.bullets?.length;
+    if (missing) {
+      throw new Error(
+        `src/data/patterns/${slug}.json is missing ${lang} copy (seoDesc, about, bullets). ` +
+        `Fill it in, or delete the file to unpublish the pattern.`,
+      );
+    }
+  }
+  const locales = {} as Record<Lang, PatternLocale>;
+  for (const lang of ['en', 'es'] as const) {
+    const shared = SHARED[lang];
+    locales[lang] = {
+      seoTitle: shared.seoTitle(src.name),
+      seoDesc: src.locales[lang].seoDesc,
+      subtitle: shared.subtitle(src),
+      aboutTitle: shared.aboutTitle,
+      about: src.locales[lang].about,
+      bullets: src.locales[lang].bullets,
+      importNote: shared.importNote,
+      license: shared.license,
+      appPitch: shared.appPitch,
+    };
+  }
+  return {
+    ...src,
+    preview: `/patterns/assets/${slug}-preview.png`,
+    ogImage: `/patterns/assets/${slug}-pin-photo.png`,
+    pdf: { en: `/patterns/assets/${slug}-en.pdf`, es: `/patterns/assets/${slug}-es.pdf` },
+    rcpattern: `/patterns/assets/${slug}.rcpattern`,
+    deepLinkTarget: `${IMPORT_HOST}/patterns/assets/${slug}.rcpattern`,
+    meta: { en: SHARED.en.meta(src), es: SHARED.es.meta(src) },
+    locales,
+  };
+}
+
+// Every JSON file in ./patterns is a published pattern. Adding one is the whole
+// registration step; nothing has to be imported or listed by hand.
+const sources = Object.values(
+  import.meta.glob<{ default: PatternSource }>('./patterns/*.json', { eager: true }),
+).map((m) => m.default);
+
+/** Newest first, so a new pattern leads the catalog without reordering a list. */
+export const patterns: Pattern[] = sources
+  .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : a.publishedAt > b.publishedAt ? -1 : a.slug.localeCompare(b.slug)))
+  .map(expand);
+
 /** Tags in use across the published patterns, in TAGS declaration order, so the
  *  filter chips stay stable rather than reordering as patterns are added. */
 export function activeTags(list: Pattern[]): TagId[] {
   const used = new Set(list.flatMap((p) => p.tags));
-  return (Object.keys(TAGS) as TagId[]).filter((id) => used.has(id));
+  return (Object.keys(tagsJson) as TagId[]).filter((id) => used.has(id));
 }
-
-export const patterns: Pattern[] = [
-  {
-    slug: 'abducted-cow',
-    name: 'Abducted Cow',
-    width: 39,
-    height: 66,
-    colors: 16,
-    preview: '/patterns/assets/abducted-cow-preview.png',
-    ogImage: '/patterns/assets/abducted-cow-pin-photo.png',
-    pdf: { en: '/patterns/assets/abducted-cow-en.pdf', es: '/patterns/assets/abducted-cow-es.pdf' },
-    rcpattern: '/patterns/assets/abducted-cow.rcpattern',
-    deepLinkTarget: 'https://andreiito.github.io/Roundcraft/patterns/assets/abducted-cow.rcpattern',
-    tags: ['tapestry', 'animals', 'space', 'intermediate'],
-    meta: { en: '39 × 66 · 16 colors · tapestry crochet', es: '39 × 66 · 16 colores · tapestry crochet' },
-    locales: {
-      en: {
-        seoTitle: 'Abducted Cow — Free Tapestry Crochet Pattern | RoundCraft',
-        seoDesc:
-          'Free tapestry crochet pattern: a UFO beaming up a very surprised cow. 39 by 66 stitches, 16 colors. Full-color chart plus a written row-by-row pattern, printable PDF in English and Spanish.',
-        subtitle: '39 × 66 · 2,574 stitches · 16 colors · by NaredCraft',
-        aboutTitle: 'About this pattern',
-        about:
-          'A night scene in tapestry crochet: a flying saucer beams up a very surprised cow while the farmhouse sleeps. Worked flat in single crochet colorwork, great for wall hangings, tote bags and blanket panels.',
-        bullets: [
-          'Full-color symbol chart, readable even printed in black and white',
-          'Written row-by-row pattern with color runs and RS/WS sides',
-          'Yarn color legend with stitch counts per color',
-          'Printable PDF, US Letter',
-        ],
-        importNote:
-          'Import it in RoundCraft (v1.0.15+): Tools, then Tapestry, then Import. Follow the chart stitch by stitch with the built-in counter.',
-        license:
-          'Personal use. You may sell the finished items. Please do not redistribute the PDF. This pattern is always free on this page.',
-        appPitch:
-          'RoundCraft is the professional crochet app. Smart row counters, a project timer and a quote calculator to price your finished pieces, plus a tapestry mode to follow this pattern stitch by stitch.',
-      },
-      es: {
-        seoTitle: 'Abducted Cow — Patrón de Tapestry Crochet Gratis | RoundCraft',
-        seoDesc:
-          'Patrón de tapestry crochet gratis: un OVNI abduce a una vaca muy sorprendida. 39 por 66 puntos, 16 colores. Chart a todo color y patrón escrito fila a fila, PDF imprimible en inglés y español.',
-        subtitle: '39 × 66 · 2,574 puntos · 16 colores · por NaredCraft',
-        aboutTitle: 'Sobre este patrón',
-        about:
-          'Una escena nocturna en tapestry crochet: un platillo volador abduce a una vaca muy sorprendida mientras la granja duerme. Se teje plano en punto bajo con cambio de color, ideal para tapices, bolsas y paneles de manta.',
-        bullets: [
-          'Chart de símbolos a todo color, legible incluso impreso en blanco y negro',
-          'Patrón escrito fila a fila con tramos de color y lados RS/WS',
-          'Leyenda de colores con conteo de puntos por color',
-          'PDF listo para imprimir, tamaño carta',
-        ],
-        importNote:
-          'Impórtalo en RoundCraft (v1.0.15+): Herramientas, luego Tapestry, luego Importar. Sigue el chart punto por punto con el contador integrado.',
-        license:
-          'Uso personal. Puedes vender las piezas terminadas. No redistribuyas el PDF. Este patrón es siempre gratuito en esta página.',
-        appPitch:
-          'RoundCraft es la app profesional para tejer. Contadores de vueltas inteligentes, cronómetro de proyecto y calculadora para cotizar tus piezas, con modo tapestry para seguir este patrón punto por punto.',
-      },
-    },
-  },
-];
 
 export const getPattern = (slug: string) => patterns.find((p) => p.slug === slug);
 

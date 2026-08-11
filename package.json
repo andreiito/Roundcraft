@@ -7,8 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "publish-pattern": "node scripts/add-pattern.mjs",
-    "deploy": "astro build && git add -A && git commit -m \"Publish pattern updates\" && git push origin main"
+    "publish-pattern": "node scripts/add-pattern.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

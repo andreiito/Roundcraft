@@ -1,0 +1,38 @@
+{
+  "tapestry": {
+    "en": "Tapestry",
+    "es": "Tapestry"
+  },
+  "amigurumi": {
+    "en": "Amigurumi",
+    "es": "Amigurumi"
+  },
+  "animals": {
+    "en": "Animals",
+    "es": "Animales"
+  },
+  "space": {
+    "en": "Space",
+    "es": "Espacio"
+  },
+  "holiday": {
+    "en": "Holiday",
+    "es": "Fiestas"
+  },
+  "geometric": {
+    "en": "Geometric",
+    "es": "Geométrico"
+  },
+  "beginner": {
+    "en": "Beginner",
+    "es": "Principiante"
+  },
+  "intermediate": {
+    "en": "Intermediate",
+    "es": "Intermedio"
+  },
+  "advanced": {
+    "en": "Advanced",
+    "es": "Avanzado"
+  }
+}
