@@ -34,9 +34,9 @@ const enHref = new URL(alternatePath(path, 'en'), site).href;
 const esHref = new URL(alternatePath(path, 'es'), site).href;
 const ogUrl = new URL(ogImage, site).href;
 
-// Cloudflare Web Analytics (cookieless, no consent banner needed).
-// Paste the beacon token once the site is claimed in the Cloudflare dashboard.
-const CF_BEACON_TOKEN = '';
+// Both are empty until an id is pasted into src/data/analytics.ts, and nothing
+// third-party loads while they are.
+import { CF_BEACON_TOKEN, GA4_ID } from '../data/analytics';
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -88,4 +88,34 @@ const CF_BEACON_TOKEN = '';
     src="https://static.cloudflareinsights.com/beacon.min.js"
     data-cf-beacon={`{"token": "${CF_BEACON_TOKEN}"}`}
   />
+)}
+
+{GA4_ID && (
+  <Fragment>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} />
+    <script is:inline define:vars={{ GA4_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', GA4_ID);
+    </script>
+  </Fragment>
+)}
+
+{GA4_ID && (
+  <script is:inline>
+    // One delegated listener for every tracked action, so counting a new one is
+    // a data-track attribute rather than a change here. Clicks are reported with
+    // the pattern slug when the element carries one, which is what makes
+    // "which pattern converts" answerable.
+    document.addEventListener('click', (e) => {
+      const el = e.target instanceof Element ? e.target.closest('[data-track]') : null;
+      if (!el || typeof window.gtag !== 'function') return;
+      window.gtag('event', el.getAttribute('data-track'), {
+        pattern: el.getAttribute('data-track-pattern') || undefined,
+        lang: document.documentElement.lang || undefined,
+      });
+    });
+  </script>
 )}

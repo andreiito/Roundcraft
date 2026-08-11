@@ -39,19 +39,19 @@ const ui = {
     <div class="pd-block card" data-reveal>
       <h2>{ui.downloadTitle}</h2>
       <div class="dl-row">
-        <a class="btn btn-ghost" href={pattern.pdf.en} download={downloadName(pattern, 'pdf-en')}><Icon name="arrow" size={17} /> {ui.pdfEn}</a>
-        <a class="btn btn-ghost" href={pattern.pdf.es} download={downloadName(pattern, 'pdf-es')}><Icon name="arrow" size={17} /> {ui.pdfEs}</a>
+        <a class="btn btn-ghost" href={pattern.pdf.en} download={downloadName(pattern, 'pdf-en')} data-track="pdf_download" data-track-pattern={pattern.slug}><Icon name="arrow" size={17} /> {ui.pdfEn}</a>
+        <a class="btn btn-ghost" href={pattern.pdf.es} download={downloadName(pattern, 'pdf-es')} data-track="pdf_download" data-track-pattern={pattern.slug}><Icon name="arrow" size={17} /> {ui.pdfEs}</a>
       </div>
-      <a class="btn btn-ghost dl-rc" href={pattern.rcpattern} download={downloadName(pattern, 'rcpattern')}><Icon name="tapestry" size={17} /> {ui.rc}</a>
+      <a class="btn btn-ghost dl-rc" href={pattern.rcpattern} download={downloadName(pattern, 'rcpattern')} data-track="rcpattern_download" data-track-pattern={pattern.slug}><Icon name="tapestry" size={17} /> {ui.rc}</a>
       <p class="muted note">{L.importNote}</p>
-      <OpenInApp fileUrl={pattern.deepLinkTarget} label={ui.open} campaign={`pattern_${pattern.slug}`} class="open-app" />
+      <OpenInApp fileUrl={pattern.deepLinkTarget} label={ui.open} campaign={`pattern_${pattern.slug}`} pattern={pattern.slug} class="open-app" />
       <p class="license muted">{L.license}</p>
     </div>
 
     <div class="pd-block app-cta" data-reveal>
       <h2>{ui.appTitle}</h2>
       <p class="lede">{L.appPitch}</p>
-      <a class="btn btn-primary" href={playUrl(`pattern_${pattern.slug}`)} target="_blank" rel="noopener">{tt('cta.googlePlay')}</a>
+      <a class="btn btn-primary" href={playUrl(`pattern_${pattern.slug}`)} target="_blank" rel="noopener" data-track="play_store" data-track-pattern={pattern.slug}>{tt('cta.googlePlay')}</a>
     </div>
   </div>
 </section>

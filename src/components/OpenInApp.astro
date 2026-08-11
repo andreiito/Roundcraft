@@ -19,10 +19,12 @@ interface Props {
   fileUrl: string;
   label: string;
   campaign: string;
+  /** Slug reported with the click, so "which pattern converts" is answerable. */
+  pattern?: string;
   variant?: 'primary' | 'ghost';
   class?: string;
 }
-const { fileUrl, label, campaign, variant = 'primary', class: className = '' } = Astro.props;
+const { fileUrl, label, campaign, pattern, variant = 'primary', class: className = '' } = Astro.props;
 
 const store = playUrl(campaign);
 const query = `u=${encodeURIComponent(fileUrl)}`;
@@ -35,6 +37,8 @@ const intentUrl =
   class={`btn btn-${variant} open-in-app ${className}`}
   data-intent={intentUrl}
   data-store={store}
+  data-track="open_in_app"
+  data-track-pattern={pattern}
 >
   <Icon name="arrow" size={17} /> {label}
 </button>
