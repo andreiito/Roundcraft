@@ -5,8 +5,8 @@
 //   npm run publish-pattern -- --slug abducted-cow --dry-run
 //
 // Options:
-//   --from <dir>     where the generator's export sits.
-//                    Default: found next to this repo, see FROM_CANDIDATES
+//   --from <dir>     the pattern's folder, or the folder containing it.
+//                    Default: found next to this repo, see ROOT_CANDIDATES
 //   --preview <path> use this image as the catalog preview instead of
 //                    rendering the chart
 //   --force          overwrite published files that differ from the incoming
@@ -27,9 +27,10 @@ import { readRcPattern, renderChartPng } from './lib/pattern.mjs';
 const ASSETS = 'public/patterns/assets';
 const INDEX = 'public/patterns/index.json';
 
-// Where Tapestry Studio's export tends to be, most recent layout first. It has
-// moved once already, so this looks rather than assumes; --from overrides.
-const FROM_CANDIDATES = [
+// Where Tapestry Studio keeps its patterns, most recent layout first. The
+// folder has moved once already, so this looks rather than assumes; --from
+// overrides. Each pattern lives in its own subfolder named after its slug.
+const ROOT_CANDIDATES = [
   '../Count Row App/tapestry-studio/patterns',
   '../tapestry-studio/patterns',
   '../NaredCraft - WebTapestry/patterns',
@@ -46,7 +47,7 @@ const arg = (name) => {
   const i = args.indexOf(`--${name}`);
   return i >= 0 ? args[i + 1] : undefined;
 };
-const from = arg('from') ?? FROM_CANDIDATES.find((c) => existsSync(c));
+const fromArg = arg('from');
 const slug = arg('slug');
 const previewOverride = arg('preview');
 const dryRun = args.includes('--dry-run');
@@ -54,21 +55,29 @@ const force = args.includes('--force');
 
 const die = (...lines) => { for (const l of lines) console.error(l); process.exit(1); };
 
+/** The generator writes some files prefixed with the slug and some bare, so
+ *  every lookup accepts both spellings rather than demanding a rename. */
+const firstExisting = (dir, names) => names.find((n) => existsSync(join(dir, n)));
+
 if (!slug) die('usage: add-pattern.mjs --slug <slug> [--from <dir>] [--preview <path>] [--dry-run] [--force]');
 if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) die(`slug "${slug}" must be lowercase words joined by hyphens: it becomes the URL`);
 
+// A pattern lives in <root>/<slug>/. --from can point either at that folder
+// directly or at the root that contains it.
+const roots = fromArg ? [fromArg] : ROOT_CANDIDATES;
+const from = roots
+  .flatMap((r) => [join(r, slug), r])
+  .find((dir) => existsSync(dir) && firstExisting(dir, [`${slug}.rcpattern`, 'pattern.rcpattern']));
+
 if (!from) {
   die(
-    'Cannot find the Tapestry Studio export folder. Looked in:',
-    ...FROM_CANDIDATES.map((c) => `  ${c}`),
+    `Cannot find a folder with ${slug}.rcpattern in it. Looked in:`,
+    ...roots.flatMap((r) => [`  ${join(r, slug)}`, `  ${r}`]),
     '',
-    'Pass --from <dir> if it lives somewhere else.',
+    'Export it from Tapestry Studio into patterns/' + slug + '/, or pass --from <dir>.',
   );
 }
-const rcSource = join(from, `${slug}.rcpattern`);
-if (!existsSync(rcSource)) {
-  die(`No ${slug}.rcpattern in ${from}`, '', 'Export it from Tapestry Studio first, or pass --from <dir>.');
-}
+const rcSource = join(from, firstExisting(from, [`${slug}.rcpattern`, 'pattern.rcpattern']));
 
 let pattern;
 try {
@@ -82,13 +91,17 @@ const { payload, colors, sha256 } = pattern;
 // it under. The pin images need renaming; the generator writes the same three
 // filenames for every pattern, so its folder only ever holds the most recent
 // one and a second export would overwrite the first.
+const pick = (names) => {
+  const found = firstExisting(from, names);
+  return found ? join(from, found) : join(from, names[0]);
+};
 const jobs = [
   { src: rcSource, dst: `${slug}.rcpattern`, required: true },
-  { src: join(from, `${slug}-en.pdf`), dst: `${slug}-en.pdf`, required: true },
-  { src: join(from, `${slug}-es.pdf`), dst: `${slug}-es.pdf`, required: true },
-  { src: join(from, 'pin-chart.png'), dst: `${slug}-pin-chart.png`, required: false },
-  { src: join(from, 'pin-overlay.png'), dst: `${slug}-pin-overlay.png`, required: false },
-  { src: join(from, 'pin-photo.png'), dst: `${slug}-pin-photo.png`, required: false },
+  { src: pick([`${slug}-en.pdf`, 'en.pdf']), dst: `${slug}-en.pdf`, required: true },
+  { src: pick([`${slug}-es.pdf`, 'es.pdf']), dst: `${slug}-es.pdf`, required: true },
+  { src: pick(['pin-chart.png', `${slug}-pin-chart.png`]), dst: `${slug}-pin-chart.png`, required: false },
+  { src: pick(['pin-overlay.png', `${slug}-pin-overlay.png`]), dst: `${slug}-pin-overlay.png`, required: false },
+  { src: pick(['pin-photo.png', `${slug}-pin-photo.png`]), dst: `${slug}-pin-photo.png`, required: false },
 ];
 
 const missing = jobs.filter((j) => j.required && !existsSync(j.src));
