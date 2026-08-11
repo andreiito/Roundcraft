@@ -87,10 +87,12 @@ try {
 }
 const { payload, colors, sha256 } = pattern;
 
-// Copy jobs: source name in the generator's folder -> name this site serves
-// it under. The pin images need renaming; the generator writes the same three
-// filenames for every pattern, so its folder only ever holds the most recent
-// one and a second export would overwrite the first.
+// Copy jobs: source name in the generator's folder -> name this site serves it
+// under. The generator already names exports after the pattern, so these mostly
+// match; the bare spellings are a fallback for files renamed by hand before
+// that was true. Only the pin-* images are published, never the social-* ones:
+// those carry the landing URL printed on them, which is for posts, not for a
+// page that already links everywhere.
 const pick = (names) => {
   const found = firstExisting(from, names);
   return found ? join(from, found) : join(from, names[0]);
@@ -99,9 +101,9 @@ const jobs = [
   { src: rcSource, dst: `${slug}.rcpattern`, required: true },
   { src: pick([`${slug}-en.pdf`, 'en.pdf']), dst: `${slug}-en.pdf`, required: true },
   { src: pick([`${slug}-es.pdf`, 'es.pdf']), dst: `${slug}-es.pdf`, required: true },
-  { src: pick(['pin-chart.png', `${slug}-pin-chart.png`]), dst: `${slug}-pin-chart.png`, required: false },
-  { src: pick(['pin-overlay.png', `${slug}-pin-overlay.png`]), dst: `${slug}-pin-overlay.png`, required: false },
-  { src: pick(['pin-photo.png', `${slug}-pin-photo.png`]), dst: `${slug}-pin-photo.png`, required: false },
+  { src: pick([`${slug}-pin-chart.png`, 'pin-chart.png']), dst: `${slug}-pin-chart.png`, required: false },
+  { src: pick([`${slug}-pin-overlay.png`, 'pin-overlay.png']), dst: `${slug}-pin-overlay.png`, required: false },
+  { src: pick([`${slug}-pin-photo.png`, 'pin-photo.png']), dst: `${slug}-pin-photo.png`, required: false },
 ];
 
 const missing = jobs.filter((j) => j.required && !existsSync(j.src));
