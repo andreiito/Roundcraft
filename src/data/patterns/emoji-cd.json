@@ -1,0 +1,35 @@
+{
+  "slug": "emoji-cd",
+  "name": "CD",
+  "width": 45,
+  "height": 45,
+  "colors": 5,
+  "publishedAt": "2026-08-12",
+  "tags": [
+    "tapestry",
+    "geometric",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free tapestry crochet pattern: a CD in pixel art, 45 by 45 stitches in 5 colors. Symbol chart plus a written row-by-row pattern, printable PDF in English and Spanish.",
+      "about": "A compact disc the way a 16-bit game would have drawn one. What makes a blue circle read as a CD is not the color, it is the hub: a grey ring with a lighter ring inside it and a dark hole in the middle. Two highlights sweep in from the rim on opposite sides, which is what light does on a disc and what a single band across the face does not. Work it flat in single crochet with no shaping, in 5 colors. At 45 by 45 it finishes around 28 by 28 cm, a cushion front or a framed square. Four color changes per row on average and not one stitch left alone in a field of another color.",
+      "bullets": [
+        "Five-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de tapestry crochet gratis: un CD en pixel art, 45 por 45 puntos en 5 colores. Chart de símbolos y patrón escrito fila a fila, PDF imprimible en inglés y español.",
+      "about": "Un disco compacto como lo habría dibujado un juego de 16 bits. Lo que hace que un círculo azul se lea como CD no es el color, es el cubo central: un anillo gris con otro más claro adentro y el agujero oscuro en medio. Dos brillos entran desde el canto en lados opuestos, que es lo que hace la luz sobre un disco y lo que una sola banda cruzada no logra. Se teje plano en punto bajo, sin aumentos ni disminuciones, en 5 colores. Con 45 por 45 te termina en unos 28 por 28 cm, un frente de cojín o un cuadro. Cuatro cambios de color por vuelta en promedio y ni una puntada sola en medio de otro color.",
+      "bullets": [
+        "Chart de símbolos a cinco colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}

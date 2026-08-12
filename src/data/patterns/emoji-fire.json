@@ -1,0 +1,35 @@
+{
+  "slug": "emoji-fire",
+  "name": "Fire",
+  "width": 45,
+  "height": 45,
+  "colors": 6,
+  "publishedAt": "2026-08-12",
+  "tags": [
+    "tapestry",
+    "geometric",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free tapestry crochet pattern: a pixel art flame, 45 by 45 stitches in 6 colors. Symbol chart plus a written row-by-row pattern, printable PDF in English and Spanish.",
+      "about": "A flame with three tongues and a pale heart, drawn symmetrically so it sits square in a frame or a cushion. The trick to a flame is that it is two flames, not one shape filled with rings of color: an outer flame, and a separate inner one with its own point sitting lower. Rings of color read as a target or a piece of fruit, which is exactly what the early drafts of this one looked like. Work it flat in single crochet with no shaping, in 6 colors, warm on a pale blue that pushes the orange forward. Six color changes per row and not one stitch left alone in a field of another color. Finishes around 28 by 28 cm.",
+      "bullets": [
+        "Six-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de tapestry crochet gratis: una llama en pixel art, 45 por 45 puntos en 6 colores. Chart de símbolos y patrón escrito fila a fila, PDF imprimible en inglés y español.",
+      "about": "Una llama de tres lenguas con el corazón claro, dibujada simétrica para que quede cuadrada en un marco o un cojín. El truco de una llama es que son dos llamas, no una forma rellena de anillos de color: una exterior y otra interior con su propia punta, más abajo. Los anillos concéntricos se leen como diana o como fruta, que es justo a lo que se parecían los primeros borradores de esta. Se teje plano en punto bajo, sin aumentos ni disminuciones, en 6 colores cálidos sobre un azul pálido que empuja el naranja hacia adelante. Seis cambios de color por vuelta y ni una puntada sola en medio de otro color. Te termina en unos 28 por 28 cm.",
+      "bullets": [
+        "Chart de símbolos a seis colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}

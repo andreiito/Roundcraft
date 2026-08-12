@@ -1,0 +1,35 @@
+{
+  "slug": "emoji-floppy",
+  "name": "Floppy Disk",
+  "width": 45,
+  "height": 45,
+  "colors": 7,
+  "publishedAt": "2026-08-12",
+  "tags": [
+    "tapestry",
+    "geometric",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free tapestry crochet pattern: a 3.5-inch floppy disk in pixel art, 45 by 45 stitches in 7 colors. Symbol chart plus a written row-by-row pattern, printable PDF in English and Spanish.",
+      "about": "The save icon, back when saving meant a plastic square you could hold. Three details are doing the work: the metal shutter across the top, set to the right rather than centered, the cream label filling the bottom with its ruled lines, and the two stepped shoulders at the top corners. Center the shutter and it stops being a floppy and starts being a front door. Work it flat in single crochet with no shaping. It takes 7 colors, more than the rest of this set, but the runs are long and nothing is fiddly: five and a half color changes per row, and not one stitch left alone in a field of another color. Finishes around 28 by 28 cm.",
+      "bullets": [
+        "Seven-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de tapestry crochet gratis: un disquete de 3½ en pixel art, 45 por 45 puntos en 7 colores. Chart de símbolos y patrón escrito fila a fila, PDF imprimible en inglés y español.",
+      "about": "El icono de guardar, de cuando guardar era un cuadrado de plástico que cabía en la mano. Tres detalles hacen el trabajo: el obturador metálico de arriba, corrido a la derecha y no centrado, la etiqueta color crema que ocupa el bajo con sus renglones, y los dos hombros escalonados de las esquinas superiores. Si centras el obturador deja de ser disquete y se vuelve puerta de casa. Se teje plano en punto bajo, sin aumentos ni disminuciones. Lleva 7 colores, más que el resto de esta serie, pero los tramos son largos y nada es quisquilloso: cinco cambios y medio de color por vuelta, y ni una puntada sola en medio de otro color. Te termina en unos 28 por 28 cm.",
+      "bullets": [
+        "Chart de símbolos a siete colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}

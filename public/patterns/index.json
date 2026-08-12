@@ -55,6 +55,39 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/paper-boat.rcpattern",
       "sha256": "cb350a9edbbd0b69653387b54be792000f4d87f695979471c619094b5f1e587d",
       "page": "https://andreiito.github.io/Roundcraft/patterns/paper-boat.html"
+    },
+    {
+      "slug": "emoji-cd",
+      "name": "CD",
+      "width": 45,
+      "height": 45,
+      "colors": 5,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-cd-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-cd.rcpattern",
+      "sha256": "a138520f042419870419fa591dfe4eb63d125f7b71a3fd0f133e2bc07f56294d",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-cd.html"
+    },
+    {
+      "slug": "emoji-floppy",
+      "name": "Floppy Disk",
+      "width": 45,
+      "height": 45,
+      "colors": 7,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-floppy-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-floppy.rcpattern",
+      "sha256": "6812fd47bc9a3df341cafe76edf0d15ce8c8b5af97db8bf7fa5e6fd58493a678",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-floppy.html"
+    },
+    {
+      "slug": "emoji-fire",
+      "name": "Fire",
+      "width": 45,
+      "height": 45,
+      "colors": 6,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-fire-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-fire.rcpattern",
+      "sha256": "702cdbf618b7b787358052e63788e427fd0d78afae393c7be309c3b598317787",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-fire.html"
     }
   ]
 }
