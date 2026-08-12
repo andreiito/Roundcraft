@@ -1,0 +1,35 @@
+{
+  "slug": "no-internet-dino",
+  "name": "No Internet Dino",
+  "width": 29,
+  "height": 28,
+  "colors": 2,
+  "publishedAt": "2026-08-12",
+  "tags": [
+    "tapestry",
+    "animals",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free tapestry crochet pattern: the little dinosaur from the offline screen. 29 by 28 stitches, 2 colors. Symbol chart plus a written row-by-row pattern, printable PDF in English and Spanish.",
+      "about": "The dinosaur you meet when the connection drops, running across its patch of desert. Two colors and big solid blocks make it a good first tapestry project: worked flat in single crochet, no shaping, and it finishes in a weekend as a cushion front, a tote panel or a framed square. Adapted from the Chrome offline dinosaur by Google LLC, credited on the pattern PDF.",
+      "bullets": [
+        "Two-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de tapestry crochet gratis: el dinosaurio de la pantalla sin conexión. 29 por 28 puntos, 2 colores. Chart de símbolos y patrón escrito fila a fila, PDF imprimible en inglés y español.",
+      "about": "El dinosaurio que aparece cuando se cae la conexión, corriendo por su trozo de desierto. Con dos colores y bloques grandes es un buen primer proyecto de tapestry: se teje plano en punto bajo, sin aumentos ni disminuciones, y sale en un fin de semana como funda de cojín, panel de bolsa o cuadro. Adaptado del dinosaurio sin conexión de Chrome, de Google LLC, acreditado en el PDF del patrón.",
+      "bullets": [
+        "Chart de símbolos a dos colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}
