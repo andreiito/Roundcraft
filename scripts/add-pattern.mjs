@@ -184,7 +184,11 @@ const existing = index.patterns.find((p) => p.slug === slug);
 // not quietly overwrite it.
 const meta = {
   slug,
-  name: existing?.name ?? payload.name,
+  // Strip the brand suffix the same way the pattern's data file does. Without
+  // this the catalog read "Foo by NaredCraft" for every new pattern, while the
+  // page read "Foo"; older entries hid it because `existing` already held a
+  // corrected name.
+  name: existing?.name ?? displayName ?? payload.name.replace(/\s+by\s+NaredCraft\s*$/i, ''),
   width: payload.width,
   height: payload.height,
   colors,
