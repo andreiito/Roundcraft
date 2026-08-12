@@ -33,6 +33,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/yin-yang-cat-paws.rcpattern",
       "sha256": "311bc71351b63ab89be2c8bcbfeb84da8d59c29d8e60efe835c687e1a51fb65e",
       "page": "https://andreiito.github.io/Roundcraft/patterns/yin-yang-cat-paws.html"
+    },
+    {
+      "slug": "ancient-eye",
+      "name": "Ancient Eye",
+      "width": 49,
+      "height": 33,
+      "colors": 5,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/ancient-eye-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/ancient-eye.rcpattern",
+      "sha256": "95e6b5fd79c01899a81ec53a6ec4d92f79ad185da45d40f4752af448dca74404",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/ancient-eye.html"
     }
   ]
 }
