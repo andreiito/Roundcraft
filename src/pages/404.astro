@@ -8,6 +8,27 @@ import { PATTERNS_URL } from '../data/site';
   lang="en"
   noindex={true}
 >
+  {/*
+    Trailing-slash rescue. build.format:'preserve' writes named routes as real
+    .html files, so /pricing/ asks for a directory that does not exist and lands
+    here. GitHub Pages redirects /dir to /dir/ but never the other way, and has no
+    server-side redirect config at all, so this is the only place to catch it.
+
+    Runs before the 404 paints. It cannot loop: the path it navigates to has no
+    trailing slash, so a second visit here does nothing. location.replace keeps
+    the broken URL out of history, or Back would bounce straight into it again.
+    Without JS the visitor just reads the 404, which is what they get today.
+  */}
+  <script is:inline>
+    (function () {
+      var p = location.pathname;
+      if (p.length > 1 && p.charAt(p.length - 1) === '/') {
+        var fixed = p.replace(/\/+$/, '');
+        if (fixed) location.replace(fixed + location.search + location.hash);
+      }
+    })();
+  </script>
+
   <section class="section wrap wrap-narrow center nf">
     <img class="nf-logo brand-lockup" src="/img/logo-lockup.png" width="760" height="807" alt="RoundCraft" />
     <p class="nf-code font-mono">404</p>
