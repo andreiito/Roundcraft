@@ -22,12 +22,26 @@ export function localizedPath(path: string, lang: Lang): string {
   return clean === '/' ? '/es/' : `/es${clean}`;
 }
 
-/** Given the current pathname, return the equivalent path in the other language. */
+/** Routes that are physically <dir>/index.html and so keep a trailing slash.
+ *  Everything else under build.format:'preserve' is a real .html file, served
+ *  without one. */
+const DIR_INDEX = new Set(['/', '/es/', '/patterns/', '/es/patterns/']);
+
+/** Match the physical build output. Astro.url reports a trailing slash on named
+ *  routes, and `/patterns/paper-boat/` is a directory that does not exist, so any
+ *  link built straight from Astro.url.pathname lands on a 404. */
+export function canonicalizePath(pn: string): string {
+  const withSlash = pn.endsWith('/') ? pn : pn + '/';
+  return DIR_INDEX.has(withSlash) ? withSlash : pn.replace(/\/+$/, '');
+}
+
+/** Given the current pathname, return the equivalent path in the other language.
+ *  Normalises on the way out, so callers can hand it Astro.url.pathname raw. */
 export function alternatePath(pathname: string, target: Lang): string {
   // strip any existing locale prefix -> canonical english-style path
   let base = pathname.replace(/^\/es(?=\/|$)/, '');
   if (base === '') base = '/';
-  return localizedPath(base, target);
+  return canonicalizePath(localizedPath(base, target));
 }
 
 export { languages, defaultLang };

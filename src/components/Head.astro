@@ -1,5 +1,5 @@
 ---
-import { alternatePath, type Lang } from '../i18n/utils';
+import { alternatePath, canonicalizePath, type Lang } from '../i18n/utils';
 
 interface Props {
   title: string;
@@ -19,16 +19,9 @@ const {
 } = Astro.props;
 
 const site = 'https://getroundcraft.com';
-// Match the physical build.format:'preserve' output: directory-index routes keep
-// a trailing slash (they are <dir>/index.html); every other route is a real .html
-// file served without a trailing slash. Astro.url can report a trailing slash on
-// named routes, which would make canonicals point at a 404, so normalize here.
-const DIR_INDEX = new Set(['/', '/es/', '/patterns/', '/es/patterns/']);
-function canonicalize(pn: string): string {
-  const withSlash = pn.endsWith('/') ? pn : pn + '/';
-  return DIR_INDEX.has(withSlash) ? withSlash : pn.replace(/\/+$/, '');
-}
-const path = canonicalize(pathname);
+// Shared with alternatePath: this normalisation used to live only here, so the
+// canonical was right while the header's language link pointed at a 404.
+const path = canonicalizePath(pathname);
 const canonical = new URL(path, site).href;
 const enHref = new URL(alternatePath(path, 'en'), site).href;
 const esHref = new URL(alternatePath(path, 'es'), site).href;
