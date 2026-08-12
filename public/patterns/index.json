@@ -22,6 +22,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/no-internet-dino.rcpattern",
       "sha256": "8c0c30f7464bb9bf71b8b6970194a776ad4f473836f939fa1101476a6f4b86aa",
       "page": "https://andreiito.github.io/Roundcraft/patterns/no-internet-dino.html"
+    },
+    {
+      "slug": "yin-yang-cat-paws",
+      "name": "Yin Yang Cat Paws",
+      "width": 16,
+      "height": 30,
+      "colors": 2,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/yin-yang-cat-paws-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/yin-yang-cat-paws.rcpattern",
+      "sha256": "311bc71351b63ab89be2c8bcbfeb84da8d59c29d8e60efe835c687e1a51fb65e",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/yin-yang-cat-paws.html"
     }
   ]
 }

@@ -1,0 +1,36 @@
+{
+  "slug": "yin-yang-cat-paws",
+  "name": "Yin Yang Cat Paws",
+  "width": 16,
+  "height": 30,
+  "colors": 2,
+  "publishedAt": "2026-08-12",
+  "tags": [
+    "tapestry",
+    "animals",
+    "geometric",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free tapestry crochet pattern: a yin yang made of two cat paws. 16 by 30 stitches, 2 colors. Symbol chart plus a written row-by-row pattern, printable PDF in English and Spanish.",
+      "about": "Two cat paws curled into a yin yang, each one in the color of the opposite half. The background flips with them, dark above the white half and light below the black one, and that is what keeps the circle readable at this size. Worked flat in single crochet with no shaping, and at 16 by 30 stitches it covers the front of a zip pouch in an evening. Two colors and about three color changes per row make it a real first tapestry project. Adapted from a pixel art design whose author we could not identify, credited on the pattern PDF.",
+      "bullets": [
+        "Two-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de tapestry crochet gratis: un yin yang formado por dos patitas de gato. 16 por 30 puntos, 2 colores. Chart de símbolos y patrón escrito fila a fila, PDF imprimible en inglés y español.",
+      "about": "Dos patitas de gato acomodadas en un yin yang, cada una en el color de la mitad contraria. El fondo se invierte con ellas, oscuro arriba de la mitad blanca y claro debajo de la negra, y eso es lo que mantiene el círculo legible en un tamaño tan chico. Se teje plano en punto bajo, sin aumentos ni disminuciones, y con 16 por 30 puntos cubre el frente de un monedero con cierre en una tarde. Dos colores y unos tres cambios de color por vuelta lo vuelven un primer proyecto de tapestry de verdad. Adaptado de un diseño de pixel art cuyo autor no pudimos identificar, acreditado en el PDF del patrón.",
+      "bullets": [
+        "Chart de símbolos a dos colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}
