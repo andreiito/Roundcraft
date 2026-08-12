@@ -44,6 +44,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/ancient-eye.rcpattern",
       "sha256": "95e6b5fd79c01899a81ec53a6ec4d92f79ad185da45d40f4752af448dca74404",
       "page": "https://andreiito.github.io/Roundcraft/patterns/ancient-eye.html"
+    },
+    {
+      "slug": "paper-boat",
+      "name": "Paper Boat",
+      "width": 35,
+      "height": 46,
+      "colors": 4,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/paper-boat-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/paper-boat.rcpattern",
+      "sha256": "cb350a9edbbd0b69653387b54be792000f4d87f695979471c619094b5f1e587d",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/paper-boat.html"
     }
   ]
 }
