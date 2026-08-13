@@ -88,6 +88,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-fire.rcpattern",
       "sha256": "702cdbf618b7b787358052e63788e427fd0d78afae393c7be309c3b598317787",
       "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-fire.html"
+    },
+    {
+      "slug": "emoji-ily",
+      "name": "I Love You Hand",
+      "width": 45,
+      "height": 45,
+      "colors": 4,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-ily-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-ily.rcpattern",
+      "sha256": "e6de9570f2caeb46288c65bbd147c300b21b1023f3aa82b4494a5303e32d8a54",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-ily.html"
     }
   ]
 }

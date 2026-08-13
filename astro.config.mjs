@@ -8,6 +8,11 @@ import sitemap from '@astrojs/sitemap';
 // lead-magnet URL /patterns/ keeps its trailing slash). The pattern detail page
 // /patterns/abducted-cow.html stays a real .html file (matches index.json `page`
 // and printed QR codes) and preserves the .rcpattern deep-link machinery.
+// Do NOT add Astro `redirects` for trailing-slash pattern URLs: with
+// build.format 'preserve', /patterns/foo/ and /patterns/foo both serialize to
+// patterns/foo.html, so the redirect stub overwrites the real page and points at
+// itself. That also destroys the .html URLs printed into QR codes. The
+// trailing-slash recovery lives in src/pages/404.astro instead.
 export default defineConfig({
   site: 'https://getroundcraft.com',
   build: { format: 'preserve' },

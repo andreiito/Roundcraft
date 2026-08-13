@@ -1,0 +1,34 @@
+{
+  "slug": "emoji-ily",
+  "name": "I Love You Hand",
+  "width": 45,
+  "height": 45,
+  "colors": 4,
+  "publishedAt": "2026-08-13",
+  "tags": [
+    "tapestry",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free tapestry crochet pattern: the ASL sign for I love you in pixel art, 45 by 45 stitches in 4 colors. Symbol chart plus a written row-by-row pattern, printable PDF in English and Spanish.",
+      "about": "The ASL sign for I love you, index and pinky raised, middle and ring folded down, thumb out. The folded pair is what makes it the sign rather than a greeting or a rock horns, so the two knuckles are drawn chunky and the gap between them is kept clear. The hand leans, which is the thing that took longest to get right: drawn square to the viewer with the digits straight up it reads as a mitten, and the real sign runs on a diagonal from the thumb at the left down to the heel of the palm at the right. Work it flat in single crochet with no shaping, in 4 colors: two skin tones, an outline and the background. Six color changes per row and not one stitch left alone in a field of another color. Finishes around 28 by 28 cm.",
+      "bullets": [
+        "Four-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de tapestry crochet gratis: la seña de te amo en lengua de señas, en pixel art. 45 por 45 puntos en 4 colores. Chart de símbolos y patrón escrito fila a fila, PDF imprimible en inglés y español.",
+      "about": "La seña de te amo en lengua de señas: índice y meñique levantados, medio y anular doblados, pulgar afuera. Los dedos doblados son lo que la vuelve la seña y no un saludo ni los cuernos de rock, así que los dos nudillos van gruesos y el hueco entre ellos se mantiene limpio. La mano va inclinada, que fue lo que más costó acertar: dibujada de frente con los dedos rectos se lee como mitón, y la seña real corre en diagonal desde el pulgar a la izquierda hasta el talón de la palma a la derecha. Se teje plana en punto bajo, sin aumentos ni disminuciones, en 4 colores: dos tonos de piel, el contorno y el fondo. Seis cambios de color por vuelta y ni una puntada sola en medio de otro color. Te termina en unos 28 por 28 cm.",
+      "bullets": [
+        "Chart de símbolos a cuatro colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}
