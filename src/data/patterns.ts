@@ -150,9 +150,12 @@ const sources = Object.values(
   import.meta.glob<{ default: PatternSource }>('./patterns/*.json', { eager: true }),
 ).map((m) => m.default);
 
-/** Newest first, so a new pattern leads the catalog without reordering a list. */
+/** Oldest first: the catalog reads in publication order, so page 1 stays the
+ *  same page it was yesterday and a new pattern lands at the end instead of
+ *  shifting everything down. Ties break on slug so the order is deterministic
+ *  when several patterns share a publish date. */
 export const patterns: Pattern[] = sources
-  .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : a.publishedAt > b.publishedAt ? -1 : a.slug.localeCompare(b.slug)))
+  .sort((a, b) => (a.publishedAt < b.publishedAt ? -1 : a.publishedAt > b.publishedAt ? 1 : a.slug.localeCompare(b.slug)))
   .map(expand);
 
 /** Tags in use across the published patterns, in TAGS declaration order, so the
