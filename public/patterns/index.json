@@ -110,6 +110,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-middle-finger.rcpattern",
       "sha256": "25a71aa261b22a8a0cbf385f8cc899033605e237121b259d208c423bf3d8fc03",
       "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-middle-finger.html"
+    },
+    {
+      "slug": "emoji-kiss",
+      "name": "Kiss",
+      "width": 45,
+      "height": 45,
+      "colors": 5,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-kiss-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-kiss.rcpattern",
+      "sha256": "1b0f03d0aab678bbd0ee2b53400cdf9e45b7c024f83f2a700439f4cd1a8c6fbd",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-kiss.html"
     }
   ]
 }
