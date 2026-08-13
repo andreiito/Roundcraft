@@ -1,0 +1,34 @@
+{
+  "slug": "emoji-middle-finger",
+  "name": "Middle Finger",
+  "width": 45,
+  "height": 45,
+  "colors": 6,
+  "publishedAt": "2026-08-13",
+  "tags": [
+    "tapestry",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free tapestry crochet pattern: the middle finger in pixel art, 45 by 45 stitches in 6 colors. Symbol chart plus a written row-by-row pattern, printable PDF in English and Spanish.",
+      "about": "One finger up, said plainly. The hand is drawn with the folded fingers separated by dark creases, which is what keeps it a hand rather than a mitten with something sticking out of it, and the raised finger has straight sides and a rounded tip. A shadow runs down the right side so the hand has some weight to it, and the wrist ends in a denim cuff with a darker hem, the only saturated color in the piece. Work it flat in single crochet with no shaping, in 6 colors. Under five color changes per row and not one stitch left alone in a field of another color, so it is easier to make than it looks. Finishes around 28 by 28 cm.",
+      "bullets": [
+        "Six-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de tapestry crochet gratis: el dedo medio en pixel art, 45 por 45 puntos en 6 colores. Chart de símbolos y patrón escrito fila a fila, PDF imprimible en inglés y español.",
+      "about": "Un dedo arriba, dicho sin rodeos. La mano lleva los dedos doblados separados por pliegues oscuros, que es lo que la mantiene mano y no un mitón con algo saliendo, y el dedo levantado tiene los lados rectos y la punta redondeada. Una sombra baja por el costado derecho para darle cuerpo, y la muñeca termina en un puño de mezclilla con dobladillo más oscuro, el único color saturado de la pieza. Se teje plano en punto bajo, sin aumentos ni disminuciones, en 6 colores. Menos de cinco cambios de color por vuelta y ni una puntada sola en medio de otro color, así que es más fácil de lo que parece. Te termina en unos 28 por 28 cm.",
+      "bullets": [
+        "Chart de símbolos a seis colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}

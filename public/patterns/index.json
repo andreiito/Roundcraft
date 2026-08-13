@@ -99,6 +99,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-ily.rcpattern",
       "sha256": "e6de9570f2caeb46288c65bbd147c300b21b1023f3aa82b4494a5303e32d8a54",
       "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-ily.html"
+    },
+    {
+      "slug": "emoji-middle-finger",
+      "name": "Middle Finger",
+      "width": 45,
+      "height": 45,
+      "colors": 6,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-middle-finger-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-middle-finger.rcpattern",
+      "sha256": "25a71aa261b22a8a0cbf385f8cc899033605e237121b259d208c423bf3d8fc03",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-middle-finger.html"
     }
   ]
 }
