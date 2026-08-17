@@ -1,0 +1,34 @@
+{
+  "slug": "cafe-cup",
+  "name": "Coffee Cup",
+  "width": 45,
+  "height": 45,
+  "colors": 6,
+  "publishedAt": "2026-08-17",
+  "tags": [
+    "tapestry",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free tapestry crochet pattern: a cup of coffee with saucer and steam, 45 by 45 stitches in 6 colors. Symbol chart plus a written row-by-row pattern, printable PDF in English and Spanish.",
+      "about": "A cup of coffee on its saucer, seen slightly from above so the coffee shows as a dark band inside the rim. Look at it straight on and there is no coffee in the picture at all, just an empty mug, which is why the angle matters. Three pale strands of steam rise at different heights above it. Work it flat in single crochet with no shaping, in 6 colors, warm ceramic on a cool sage that pushes it forward. Three and a half color changes per row and not one stitch left alone in a field of another color, so it is a genuine first tapestry project. Finishes around 28 by 28 cm. First of a cafe set that shares this canvas, so several of them hang together as a group.",
+      "bullets": [
+        "Six-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de tapestry crochet gratis: una taza de café con plato y vapor, 45 por 45 puntos en 6 colores. Chart de símbolos y patrón escrito fila a fila, PDF imprimible en inglés y español.",
+      "about": "Una taza de café en su plato, vista un poco desde arriba para que el café se vea como una banda oscura dentro del borde. De frente no hay café en el dibujo, sólo una taza vacía, y por eso el ángulo importa. Arriba suben tres hebras pálidas de vapor a distinta altura. Se teje plana en punto bajo, sin aumentos ni disminuciones, en 6 colores: cerámica cálida sobre un verde salvia frío que la empuja hacia adelante. Tres cambios y medio de color por vuelta y ni una puntada sola en medio de otro color, así que es un primer proyecto de tapestry de verdad. Te termina en unos 28 por 28 cm. Es la primera de un set de cafetería que comparte lienzo, así que varias juntas hacen conjunto.",
+      "bullets": [
+        "Chart de símbolos a seis colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}

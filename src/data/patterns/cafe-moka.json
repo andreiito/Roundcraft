@@ -1,0 +1,34 @@
+{
+  "slug": "cafe-moka",
+  "name": "Moka Pot",
+  "width": 45,
+  "height": 45,
+  "colors": 5,
+  "publishedAt": "2026-08-17",
+  "tags": [
+    "tapestry",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free tapestry crochet pattern: an Italian moka pot, 45 by 45 stitches in 5 colors. Symbol chart plus a written row-by-row pattern, printable PDF in English and Spanish.",
+      "about": "The stovetop moka everyone has had in a kitchen. Its shape is an hourglass, not a jug: two tapers meeting at a narrow collar, the upper one widest at the lid and the lower one widest at the foot. Draw it as a single cone and it turns into a bell, which is worth knowing if you plan to redraw it. Vertical stripes across both chambers do the work of the eight facets on the real thing, and they are what stop it reading as smooth enamel. Work it flat in single crochet with no shaping, in 5 colors on a pale terracotta that warms the cool aluminium. Seven color changes per row, the busiest in this set, with no isolated stitches anywhere. Finishes around 28 by 28 cm.",
+      "bullets": [
+        "Five-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de tapestry crochet gratis: una cafetera moka italiana, 45 por 45 puntos en 5 colores. Chart de símbolos y patrón escrito fila a fila, PDF imprimible en inglés y español.",
+      "about": "La moka de estufa que todos hemos tenido en la cocina. Su forma es un reloj de arena, no una jarra: dos conos encontrándose en un collar angosto, el de arriba más ancho en la tapa y el de abajo más ancho en la base. Dibujada como un solo cono se convierte en campana, cosa que conviene saber si piensas rehacerla. Las rayas verticales de las dos cámaras hacen el trabajo de las ocho facetas de la real, y son lo que evita que se lea como esmalte liso. Se teje plana en punto bajo, sin aumentos ni disminuciones, en 5 colores sobre un terracota pálido que templa el aluminio frío. Siete cambios de color por vuelta, la más movida del set, y ni una puntada aislada. Te termina en unos 28 por 28 cm.",
+      "bullets": [
+        "Chart de símbolos a cinco colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}

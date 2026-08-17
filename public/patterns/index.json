@@ -121,6 +121,28 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-kiss.rcpattern",
       "sha256": "1b0f03d0aab678bbd0ee2b53400cdf9e45b7c024f83f2a700439f4cd1a8c6fbd",
       "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-kiss.html"
+    },
+    {
+      "slug": "cafe-cup",
+      "name": "Coffee Cup",
+      "width": 45,
+      "height": 45,
+      "colors": 6,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/cafe-cup-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/cafe-cup.rcpattern",
+      "sha256": "e13290752c57cf20d451b57eeec4c5e3b8c95133fac1b70cce4667c2e1190039",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/cafe-cup.html"
+    },
+    {
+      "slug": "cafe-moka",
+      "name": "Moka Pot",
+      "width": 45,
+      "height": 45,
+      "colors": 5,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/cafe-moka-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/cafe-moka.rcpattern",
+      "sha256": "96b96b1b8cb10e0c7e179b0c0182484ac7362ff19ea0a7ac9d2c1ae29fbc6b55",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/cafe-moka.html"
     }
   ]
 }
