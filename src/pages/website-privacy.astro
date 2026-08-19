@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+import LegalPage from '../components/LegalPage.astro';
+import { EMAIL } from '../data/site';
+---
+<Base
+  title="Website Privacy Policy — RoundCraft"
+  description="What getroundcraft.com measures, which cookies it sets and how to opt out. Covers the website only. The RoundCraft app has its own separate policy."
+  lang="en"
+>
+  <LegalPage eyebrow="Legal" title="Website Privacy Policy" updated="Last updated: August 19, 2026">
+    <p><strong>This policy covers the website <a href="https://getroundcraft.com">getroundcraft.com</a> only.</strong> The RoundCraft Android app is a separate product that stores everything on your device and is covered by its own document, the <a href="/privacy-policy">App Privacy Policy</a>. Neither policy applies to the other.</p>
+
+    <p>The website is operated by <strong>Andre Ortiz Loyola Castañeda</strong>, an independent developer working under the <strong>NaredRitzo</strong> developer brand and publishing craft work as <strong>NaredCraft</strong>.</p>
+
+    <h2>The short version</h2>
+    <ul>
+      <li>There is <strong>no account, no login and no form</strong> on this site. Nothing you type is collected, because there is nothing to type.</li>
+      <li>Free patterns download directly. <strong>No email or registration is required</strong> to get one.</li>
+      <li>The site uses two analytics tools: <strong>Cloudflare Web Analytics</strong> (no cookies) and <strong>Microsoft Clarity</strong> (cookies, plus session recording).</li>
+      <li>There is <strong>no advertising</strong> on this site and no data is ever sold or shared with advertisers.</li>
+      <li>Clarity <strong>masks text you type</strong>, so the contents of the pattern search box are not recorded.</li>
+    </ul>
+
+    <h2>What the website measures</h2>
+    <table>
+      <thead><tr><th>Tool</th><th>What it collects</th><th>Cookies</th></tr></thead>
+      <tbody>
+        <tr>
+          <th scope="row">Cloudflare Web Analytics</th>
+          <td>Aggregate visit counts: the page URL, the referring site, country, device type, browser and page load timings. No identifier is stored and visitors are not followed between sites.</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <th scope="row">Microsoft Clarity</th>
+          <td>How pages are used: mouse movement, clicks, scrolling, which pages were viewed and in what order, plus device, browser, operating system and approximate location by country. This is combined into a session recording and into aggregate heatmaps.</td>
+          <td>Yes, see below</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Clarity exists to answer a single question: whether the free patterns are actually useful to the people who find them. It shows which buttons get pressed and where people give up. It is not used to identify anyone.</p>
+
+    <h2>Cookies</h2>
+    <p>Only Microsoft Clarity sets cookies on this site.</p>
+    <table>
+      <thead><tr><th>Cookie</th><th>Purpose</th><th>Lifetime</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><code>_clck</code></th><td>Keeps a random identifier so repeat visits from the same browser are counted as one visitor rather than several.</td><td>Up to 1 year</td></tr>
+        <tr><th scope="row"><code>_clsk</code></th><td>Groups the pages of a single visit into one recording.</td><td>Up to 1 day</td></tr>
+      </tbody>
+    </table>
+    <p>These are analytics cookies. They are not advertising cookies and they are not used to build a profile of you across other websites.</p>
+
+    <h2>Who processes the data</h2>
+    <ul>
+      <li><strong>Microsoft</strong> processes Clarity data as our provider. See the <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener">Microsoft Privacy Statement</a> and the <a href="https://learn.microsoft.com/clarity/setup-and-installation/clarity-cookie-consent" target="_blank" rel="noopener">Clarity cookie documentation</a>. Data may be processed on servers outside your country, including the United States.</li>
+      <li><strong>Cloudflare</strong> processes the aggregate analytics. See the <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Privacy Policy</a>.</li>
+      <li><strong>GitHub</strong> hosts and serves these pages, which means it processes the standard server request data every web server receives. See the <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>.</li>
+    </ul>
+    <p>Each provider keeps the data for its own retention period, described in the documents linked above.</p>
+
+    <h2>What we do not collect</h2>
+    <ul>
+      <li>No name, email, address, phone number or payment detail. The site never asks for any.</li>
+      <li>No advertising identifiers and no third-party ad networks.</li>
+      <li>No purchases. Premium is bought inside the app through Google Play, never here.</li>
+      <li>No newsletter, because there is no signup form.</li>
+    </ul>
+
+    <h2>Downloads and outbound links</h2>
+    <p>Pattern PDFs and <code>.rcpattern</code> files download straight from this site with no registration. Clarity records that the button was pressed, not who pressed it.</p>
+    <p>The site links out to Google Play, Etsy, Buy Me a Coffee and Pinterest. Once you follow one of those links you are on their property and their privacy policy applies, not this one.</p>
+
+    <h2>Your choices</h2>
+    <p>If you would rather not be recorded by Clarity, any of these works and none of them break the site:</p>
+    <ul>
+      <li>Block cookies for <code>getroundcraft.com</code> in your browser settings.</li>
+      <li>Use a content blocker or a privacy-focused browser. Clarity is on the standard blocklists.</li>
+      <li>Browse in a private or incognito window, which discards the cookies when you close it.</li>
+    </ul>
+    <p>Everything on this site works with cookies blocked. Nothing is gated behind them.</p>
+
+    <h2>Your rights</h2>
+    <p>Depending on where you live, you may have the right to access, correct, delete or object to the processing of your data, and to lodge a complaint with your local data protection authority. Because no identifier on this site is linked to a real identity, the practical route is to write to <a href={`mailto:${EMAIL}`}>{EMAIL}</a> and we will remove what can be located.</p>
+
+    <h2>Children</h2>
+    <p>This website is not directed at children under 13 and we do not knowingly collect data from them.</p>
+
+    <h2>Changes</h2>
+    <p>If the tools on this site change, this page changes with them and the date at the top is updated.</p>
+
+    <h2>Contact</h2>
+    <p>Andre Ortiz Loyola Castañeda (NaredRitzo). Email: <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
+  </LegalPage>
+</Base>

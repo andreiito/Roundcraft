@@ -20,7 +20,11 @@ const more = [
   { href: ETSY_URL, label: t('footer.etsy'), external: true },
   { href: COFFEE_URL, label: t('footer.coffee'), external: true },
 ];
+// Two privacy policies on purpose: the app one is the URL declared in the Play
+// Console and linked from inside the app, so it cannot move. The website one
+// covers analytics and cookies, which apply here and not in the app.
 const legal = [
+  { href: localizedPath('/website-privacy', lang), label: t('footer.privacySite') },
   { href: localizedPath('/privacy-policy', lang), label: t('footer.privacy') },
   { href: localizedPath('/terms', lang), label: t('footer.terms') },
   { href: `mailto:${EMAIL}`, label: t('footer.contact') },

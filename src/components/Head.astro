@@ -29,7 +29,7 @@ const ogUrl = new URL(ogImage, site).href;
 
 // Both are empty until an id is pasted into src/data/analytics.ts, and nothing
 // third-party loads while they are.
-import { CF_BEACON_TOKEN, GA4_ID } from '../data/analytics';
+import { CF_BEACON_TOKEN, CLARITY_ID, GA4_ID } from '../data/analytics';
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -101,19 +101,38 @@ import { CF_BEACON_TOKEN, GA4_ID } from '../data/analytics';
   </Fragment>
 )}
 
-{GA4_ID && (
+{CLARITY_ID && (
+  <script is:inline define:vars={{ CLARITY_ID }}>
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, 'clarity', 'script', CLARITY_ID);
+  </script>
+)}
+
+{(GA4_ID || CLARITY_ID) && (
   <script is:inline>
     // One delegated listener for every tracked action, so counting a new one is
     // a data-track attribute rather than a change here. Clicks are reported with
     // the pattern slug when the element carries one, which is what makes
-    // "which pattern converts" answerable.
+    // "which pattern converts" answerable. Whichever backend is loaded gets it;
+    // Clarity alone is enough to answer that question without a funnel.
     document.addEventListener('click', (e) => {
       const el = e.target instanceof Element ? e.target.closest('[data-track]') : null;
-      if (!el || typeof window.gtag !== 'function') return;
-      window.gtag('event', el.getAttribute('data-track'), {
-        pattern: el.getAttribute('data-track-pattern') || undefined,
-        lang: document.documentElement.lang || undefined,
-      });
+      if (!el) return;
+      const name = el.getAttribute('data-track');
+      const pattern = el.getAttribute('data-track-pattern') || undefined;
+      const lang = document.documentElement.lang || undefined;
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', name, { pattern, lang });
+      }
+      if (typeof window.clarity === 'function') {
+        // `set` makes the value a filterable tag on the recording; `event` is
+        // what shows up as a named action in the dashboard.
+        if (pattern) window.clarity('set', 'pattern', pattern);
+        window.clarity('event', name);
+      }
     });
   </script>
 )}

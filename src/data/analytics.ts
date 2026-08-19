@@ -42,6 +42,19 @@ export const CF_BEACON_TOKEN = '5fe6805a730448c3a5c549d9571db89b';
 export const GA4_ID = '';
 
 /**
+ * Microsoft Clarity project id.
+ *
+ * What it answers that the other two cannot: what a visitor actually *did*.
+ * Heatmaps and session recordings, so a click on "Download PDF" or "Open in
+ * RoundCraft" is visible without wiring a funnel first. At this traffic level
+ * watching ten sessions beats any percentage.
+ *
+ * It sets cookies (`_clck`, `_clsk`) and records the session, so an EU audience
+ * needs consent before it may load. This file does not add a banner.
+ */
+export const CLARITY_ID = 'y4wpvztheu';
+
+/**
  * The actions worth counting. Any element with `data-track="<name>"` reports a
  * click, so tracking a new one is an attribute rather than a code change.
  *
@@ -56,4 +69,4 @@ export const TRACKED = [
   'pattern_view',
 ] as const;
 
-export const analyticsEnabled = Boolean(CF_BEACON_TOKEN || GA4_ID);
+export const analyticsEnabled = Boolean(CF_BEACON_TOKEN || GA4_ID || CLARITY_ID);

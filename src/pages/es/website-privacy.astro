@@ -1,0 +1,96 @@
+---
+import Base from '../../layouts/Base.astro';
+import LegalPage from '../../components/LegalPage.astro';
+import { EMAIL } from '../../data/site';
+---
+<Base
+  title="Política de Privacidad del Sitio — RoundCraft"
+  description="Qué mide getroundcraft.com, qué cookies usa y cómo desactivarlas. Cubre solo el sitio web. La app RoundCraft tiene su propia política aparte."
+  lang="es"
+>
+  <LegalPage eyebrow="Legal" title="Política de Privacidad del Sitio" updated="Última actualización: 19 de agosto de 2026">
+    <p><strong>Esta política cubre únicamente el sitio web <a href="https://getroundcraft.com">getroundcraft.com</a>.</strong> La app RoundCraft para Android es un producto distinto, guarda todo en tu dispositivo y se rige por su propio documento, la <a href="/es/privacy-policy">Política de Privacidad de la App</a>. Ninguna de las dos aplica a la otra.</p>
+
+    <p>El sitio lo opera <strong>Andre Ortiz Loyola Castañeda</strong>, desarrollador independiente que trabaja bajo la marca de desarrollador <strong>NaredRitzo</strong> y publica su trabajo artesanal como <strong>NaredCraft</strong>.</p>
+
+    <h2>La versión corta</h2>
+    <ul>
+      <li>Aquí no hay <strong>cuenta, ni login, ni formularios</strong>. Nada de lo que escribas se recoge, porque no hay dónde escribir.</li>
+      <li>Los patrones gratis se descargan directo. <strong>No hace falta correo ni registro</strong> para llevarte uno.</li>
+      <li>El sitio usa dos herramientas de analítica: <strong>Cloudflare Web Analytics</strong> (sin cookies) y <strong>Microsoft Clarity</strong> (con cookies y grabación de sesión).</li>
+      <li><strong>No hay publicidad</strong> en este sitio y los datos nunca se venden ni se comparten con anunciantes.</li>
+      <li>Clarity <strong>enmascara el texto que escribes</strong>, así que el contenido del buscador de patrones no queda grabado.</li>
+    </ul>
+
+    <h2>Qué mide el sitio</h2>
+    <table>
+      <thead><tr><th>Herramienta</th><th>Qué recoge</th><th>Cookies</th></tr></thead>
+      <tbody>
+        <tr>
+          <th scope="row">Cloudflare Web Analytics</th>
+          <td>Conteos agregados de visitas: la URL de la página, el sitio que te trajo, país, tipo de dispositivo, navegador y tiempos de carga. No guarda ningún identificador ni sigue a los visitantes entre sitios.</td>
+          <td>Ninguna</td>
+        </tr>
+        <tr>
+          <th scope="row">Microsoft Clarity</th>
+          <td>Cómo se usan las páginas: movimiento del ratón, clics, scroll, qué páginas se vieron y en qué orden, además de dispositivo, navegador, sistema operativo y ubicación aproximada por país. Todo eso se combina en una grabación de sesión y en mapas de calor agregados.</td>
+          <td>Sí, ver abajo</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Clarity está aquí para responder una sola pregunta: si los patrones gratis de verdad le sirven a quien los encuentra. Muestra qué botones se pulsan y dónde abandona la gente. No se usa para identificar a nadie.</p>
+
+    <h2>Cookies</h2>
+    <p>La única herramienta que pone cookies en este sitio es Microsoft Clarity.</p>
+    <table>
+      <thead><tr><th>Cookie</th><th>Para qué</th><th>Duración</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><code>_clck</code></th><td>Guarda un identificador aleatorio para que varias visitas desde el mismo navegador cuenten como un visitante y no como varios.</td><td>Hasta 1 año</td></tr>
+        <tr><th scope="row"><code>_clsk</code></th><td>Agrupa las páginas de una misma visita en una sola grabación.</td><td>Hasta 1 día</td></tr>
+      </tbody>
+    </table>
+    <p>Son cookies de analítica. No son cookies publicitarias y no se usan para construir un perfil tuyo en otros sitios.</p>
+
+    <h2>Quién procesa los datos</h2>
+    <ul>
+      <li><strong>Microsoft</strong> procesa los datos de Clarity como proveedor nuestro. Consulta la <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener">Declaración de Privacidad de Microsoft</a> y la <a href="https://learn.microsoft.com/clarity/setup-and-installation/clarity-cookie-consent" target="_blank" rel="noopener">documentación de cookies de Clarity</a>. Los datos pueden procesarse en servidores fuera de tu país, incluido Estados Unidos.</li>
+      <li><strong>Cloudflare</strong> procesa la analítica agregada. Consulta la <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Política de Privacidad de Cloudflare</a>.</li>
+      <li><strong>GitHub</strong> aloja y sirve estas páginas, lo que implica que procesa los datos de petición que recibe cualquier servidor web. Consulta la <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Declaración de Privacidad de GitHub</a>.</li>
+    </ul>
+    <p>Cada proveedor conserva los datos durante su propio periodo de retención, descrito en los documentos enlazados arriba.</p>
+
+    <h2>Qué no recogemos</h2>
+    <ul>
+      <li>Ni nombre, ni correo, ni dirección, ni teléfono, ni datos de pago. El sitio nunca los pide.</li>
+      <li>Ningún identificador publicitario ni redes de anuncios de terceros.</li>
+      <li>Ninguna compra. Premium se compra dentro de la app a través de Google Play, nunca aquí.</li>
+      <li>Ninguna lista de correo, porque no hay formulario de suscripción.</li>
+    </ul>
+
+    <h2>Descargas y enlaces salientes</h2>
+    <p>Los PDF de patrones y los archivos <code>.rcpattern</code> se descargan directo desde este sitio, sin registro. Clarity registra que se pulsó el botón, no quién lo pulsó.</p>
+    <p>El sitio enlaza a Google Play, Etsy, Buy Me a Coffee y Pinterest. En cuanto sigues uno de esos enlaces estás en su territorio y aplica su política de privacidad, no esta.</p>
+
+    <h2>Tus opciones</h2>
+    <p>Si prefieres que Clarity no te grabe, cualquiera de estas funciona y ninguna rompe el sitio:</p>
+    <ul>
+      <li>Bloquea las cookies de <code>getroundcraft.com</code> en la configuración de tu navegador.</li>
+      <li>Usa un bloqueador de contenido o un navegador centrado en privacidad. Clarity está en las listas de bloqueo estándar.</li>
+      <li>Navega en una ventana privada o de incógnito, que descarta las cookies al cerrarla.</li>
+    </ul>
+    <p>Todo en este sitio funciona con las cookies bloqueadas. No hay nada detrás de un muro.</p>
+
+    <h2>Tus derechos</h2>
+    <p>Según dónde vivas, puedes tener derecho a acceder, corregir, eliminar u oponerte al tratamiento de tus datos, y a presentar una reclamación ante tu autoridad de protección de datos. Como ningún identificador de este sitio está ligado a una identidad real, la vía práctica es escribir a <a href={`mailto:${EMAIL}`}>{EMAIL}</a> y quitaremos lo que se pueda localizar.</p>
+
+    <h2>Menores</h2>
+    <p>Este sitio no está dirigido a menores de 13 años y no recogemos datos suyos a sabiendas.</p>
+
+    <h2>Cambios</h2>
+    <p>Si cambian las herramientas del sitio, cambia esta página con ellas y se actualiza la fecha de arriba.</p>
+
+    <h2>Contacto</h2>
+    <p>Andre Ortiz Loyola Castañeda (NaredRitzo). Correo: <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
+  </LegalPage>
+</Base>
