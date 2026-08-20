@@ -1,0 +1,35 @@
+{
+  "slug": "spooky-ghost",
+  "name": "Boo Ghost",
+  "width": 45,
+  "height": 45,
+  "colors": 4,
+  "publishedAt": "2026-08-20",
+  "tags": [
+    "tapestry",
+    "holiday",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free tapestry crochet pattern: a sheet ghost saying BOO, 45 by 45 stitches in 4 colors. Symbol chart plus a written row-by-row pattern, printable PDF in English and Spanish.",
+      "about": "A sheet ghost under the word BOO, with two eyes and the smallest possible mouth. The word sits in its own band above the figure because a legible capital needs five stitches across and seven down at this size, so three letters take seventeen columns and there is no room to overlap them with anything. The hem waves along one unbroken edge rather than hanging in separate lobes, which is what keeps it a sheet instead of giving the ghost legs. Worked flat in single crochet with no shaping, in 4 colors, the fewest in this catalog. Five color changes per row. Finishes around 28 by 28 cm, and it shares its canvas with the sugar skull so the two hang together.",
+      "bullets": [
+        "Four-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de tapestry crochet gratis: un fantasma de sábana diciendo BOO, 45 por 45 puntos en 4 colores. Chart de símbolos y patrón escrito fila a fila, PDF imprimible en inglés y español.",
+      "about": "Un fantasma de sábana debajo de la palabra BOO, con dos ojos y la boca más chica posible. La palabra va en su propia banda arriba porque una mayúscula legible pide cinco puntos de ancho y siete de alto a este tamaño, así que tres letras ocupan diecisiete columnas y no queda espacio para encimarlas con nada. El ruedo ondula en un solo borde continuo en vez de colgar en lóbulos separados, que es lo que lo mantiene sábana y no le saca patas al fantasma. Se teje plano en punto bajo, sin aumentos ni disminuciones, en 4 colores, los menos de todo el catálogo. Cinco cambios de color por vuelta. Te termina en unos 28 por 28 cm, y comparte lienzo con la calavera de azúcar para que hagan conjunto.",
+      "bullets": [
+        "Chart de símbolos a cuatro colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}

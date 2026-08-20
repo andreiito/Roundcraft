@@ -154,6 +154,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-sugar-skull.rcpattern",
       "sha256": "3eba7e5213a1969a5fbd2f722eb9c84f011a917c9879b1190330909e96824f41",
       "page": "https://andreiito.github.io/Roundcraft/patterns/spooky-sugar-skull.html"
+    },
+    {
+      "slug": "spooky-ghost",
+      "name": "Boo Ghost",
+      "width": 45,
+      "height": 45,
+      "colors": 4,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-ghost-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-ghost.rcpattern",
+      "sha256": "c2030bbf2c5f2fd517417158dd8a8c0f99c147ef92111a5b5d7011c5616a130a",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/spooky-ghost.html"
     }
   ]
 }
