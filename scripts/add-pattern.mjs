@@ -33,6 +33,7 @@ const ASSETS = 'public/patterns/assets';
 const INDEX = 'public/patterns/index.json';
 const SOURCES = 'src/data/patterns';
 const TAGS_FILE = 'src/data/tags.json';
+const ORDER_FILE = 'src/data/order.json';
 
 // Where Tapestry Studio keeps its patterns, most recent layout first. The
 // folder has moved once already, so this looks rather than assumes; --from
@@ -201,6 +202,20 @@ const at = index.patterns.findIndex((p) => p.slug === slug);
 const known = at >= 0;
 if (known) index.patterns[at] = meta;
 else index.patterns.push(meta);
+
+// Same hand-picked order the pages use, so the catalog a person sees and the
+// one a program reads cannot disagree. A slug not in the list keeps its append
+// position at the end, which is where a just-published pattern belongs until
+// someone says where it goes.
+const order = JSON.parse(readFileSync(ORDER_FILE, 'utf8'));
+const rank = (s) => {
+  const i = order.indexOf(s);
+  return i < 0 ? Infinity : i;
+};
+index.patterns.sort((a, b) => rank(a.slug) - rank(b.slug));
+if (!order.includes(slug)) {
+  console.log(`  note      ${slug} is not in ${ORDER_FILE}; it sits last in the catalog`);
+}
 if (!dryRun) writeFileSync(INDEX, JSON.stringify(index, null, 2) + '\n');
 console.log(`  ${known ? 'update ' : 'add    '}  index.json (${index.patterns.length} pattern${index.patterns.length === 1 ? '' : 's'})`);
 

@@ -24,26 +24,15 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/no-internet-dino.html"
     },
     {
-      "slug": "yin-yang-cat-paws",
-      "name": "Yin Yang Cat Paws",
-      "width": 16,
-      "height": 30,
-      "colors": 2,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/yin-yang-cat-paws-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/yin-yang-cat-paws.rcpattern",
-      "sha256": "311bc71351b63ab89be2c8bcbfeb84da8d59c29d8e60efe835c687e1a51fb65e",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/yin-yang-cat-paws.html"
-    },
-    {
-      "slug": "ancient-eye",
-      "name": "Ancient Eye",
-      "width": 49,
-      "height": 33,
-      "colors": 5,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/ancient-eye-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/ancient-eye.rcpattern",
-      "sha256": "95e6b5fd79c01899a81ec53a6ec4d92f79ad185da45d40f4752af448dca74404",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/ancient-eye.html"
+      "slug": "emoji-floppy",
+      "name": "Floppy Disk",
+      "width": 45,
+      "height": 45,
+      "colors": 7,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-floppy-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-floppy.rcpattern",
+      "sha256": "6812fd47bc9a3df341cafe76edf0d15ce8c8b5af97db8bf7fa5e6fd58493a678",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-floppy.html"
     },
     {
       "slug": "paper-boat",
@@ -57,26 +46,48 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/paper-boat.html"
     },
     {
-      "slug": "emoji-cd",
-      "name": "CD",
+      "slug": "spooky-sugar-skull",
+      "name": "Sugar Skull",
       "width": 45,
       "height": 45,
-      "colors": 5,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-cd-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-cd.rcpattern",
-      "sha256": "a138520f042419870419fa591dfe4eb63d125f7b71a3fd0f133e2bc07f56294d",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-cd.html"
+      "colors": 8,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-sugar-skull-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-sugar-skull.rcpattern",
+      "sha256": "3eba7e5213a1969a5fbd2f722eb9c84f011a917c9879b1190330909e96824f41",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/spooky-sugar-skull.html"
     },
     {
-      "slug": "emoji-floppy",
-      "name": "Floppy Disk",
+      "slug": "yin-yang-cat-paws",
+      "name": "Yin Yang Cat Paws",
+      "width": 16,
+      "height": 30,
+      "colors": 2,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/yin-yang-cat-paws-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/yin-yang-cat-paws.rcpattern",
+      "sha256": "311bc71351b63ab89be2c8bcbfeb84da8d59c29d8e60efe835c687e1a51fb65e",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/yin-yang-cat-paws.html"
+    },
+    {
+      "slug": "spooky-ghost",
+      "name": "Boo Ghost",
       "width": 45,
       "height": 45,
-      "colors": 7,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-floppy-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-floppy.rcpattern",
-      "sha256": "6812fd47bc9a3df341cafe76edf0d15ce8c8b5af97db8bf7fa5e6fd58493a678",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-floppy.html"
+      "colors": 4,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-ghost-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-ghost.rcpattern",
+      "sha256": "c2030bbf2c5f2fd517417158dd8a8c0f99c147ef92111a5b5d7011c5616a130a",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/spooky-ghost.html"
+    },
+    {
+      "slug": "ancient-eye",
+      "name": "Ancient Eye",
+      "width": 49,
+      "height": 33,
+      "colors": 5,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/ancient-eye-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/ancient-eye.rcpattern",
+      "sha256": "95e6b5fd79c01899a81ec53a6ec4d92f79ad185da45d40f4752af448dca74404",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/ancient-eye.html"
     },
     {
       "slug": "emoji-fire",
@@ -90,6 +101,17 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-fire.html"
     },
     {
+      "slug": "emoji-cd",
+      "name": "CD",
+      "width": 45,
+      "height": 45,
+      "colors": 5,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-cd-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-cd.rcpattern",
+      "sha256": "a138520f042419870419fa591dfe4eb63d125f7b71a3fd0f133e2bc07f56294d",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-cd.html"
+    },
+    {
       "slug": "emoji-ily",
       "name": "I Love You Hand",
       "width": 45,
@@ -101,17 +123,6 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-ily.html"
     },
     {
-      "slug": "emoji-middle-finger",
-      "name": "Middle Finger",
-      "width": 45,
-      "height": 45,
-      "colors": 6,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-middle-finger-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-middle-finger.rcpattern",
-      "sha256": "25a71aa261b22a8a0cbf385f8cc899033605e237121b259d208c423bf3d8fc03",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-middle-finger.html"
-    },
-    {
       "slug": "emoji-kiss",
       "name": "Kiss",
       "width": 45,
@@ -121,6 +132,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-kiss.rcpattern",
       "sha256": "d499ac19ad6d11913e70a55c21d2d2e09a3a3cf3c8d5d91a5b369f2b5ee50fb1",
       "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-kiss.html"
+    },
+    {
+      "slug": "spooky-mothman",
+      "name": "Mothman",
+      "width": 45,
+      "height": 45,
+      "colors": 5,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-mothman-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-mothman.rcpattern",
+      "sha256": "c789c1bd80c6aa8039d4d87f984860f6158c9b9ce651b49eef09fc4cbf27b709",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/spooky-mothman.html"
     },
     {
       "slug": "cafe-cup",
@@ -145,37 +167,15 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/cafe-moka.html"
     },
     {
-      "slug": "spooky-sugar-skull",
-      "name": "Sugar Skull",
+      "slug": "emoji-middle-finger",
+      "name": "Middle Finger",
       "width": 45,
       "height": 45,
-      "colors": 8,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-sugar-skull-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-sugar-skull.rcpattern",
-      "sha256": "3eba7e5213a1969a5fbd2f722eb9c84f011a917c9879b1190330909e96824f41",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/spooky-sugar-skull.html"
-    },
-    {
-      "slug": "spooky-ghost",
-      "name": "Boo Ghost",
-      "width": 45,
-      "height": 45,
-      "colors": 4,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-ghost-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-ghost.rcpattern",
-      "sha256": "c2030bbf2c5f2fd517417158dd8a8c0f99c147ef92111a5b5d7011c5616a130a",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/spooky-ghost.html"
-    },
-    {
-      "slug": "spooky-mothman",
-      "name": "Mothman",
-      "width": 45,
-      "height": 45,
-      "colors": 5,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-mothman-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-mothman.rcpattern",
-      "sha256": "c789c1bd80c6aa8039d4d87f984860f6158c9b9ce651b49eef09fc4cbf27b709",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/spooky-mothman.html"
+      "colors": 6,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-middle-finger-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-middle-finger.rcpattern",
+      "sha256": "25a71aa261b22a8a0cbf385f8cc899033605e237121b259d208c423bf3d8fc03",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-middle-finger.html"
     }
   ]
 }

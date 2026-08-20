@@ -1,5 +1,6 @@
 import type { Lang } from '../i18n/utils';
 
+import order from './order.json';
 import tagsJson from './tags.json';
 
 /** Tag vocabulary for the catalog filter, shared with scripts/add-pattern.mjs
@@ -150,12 +151,30 @@ const sources = Object.values(
   import.meta.glob<{ default: PatternSource }>('./patterns/*.json', { eager: true }),
 ).map((m) => m.default);
 
-/** Oldest first: the catalog reads in publication order, so page 1 stays the
- *  same page it was yesterday and a new pattern lands at the end instead of
- *  shifting everything down. Ties break on slug so the order is deterministic
- *  when several patterns share a publish date. */
+/** Catalog order, chosen by hand in order.json rather than derived from the
+ *  publish date. Publication order put whole series back to back, so the grid
+ *  read as three emoji, three coffee things, three spooky things; the hand
+ *  order interleaves them and the first screen carries the range instead of one
+ *  theme. Shared with scripts/add-pattern.mjs, which sorts index.json by the
+ *  same list, so the page and the machine-readable catalog cannot disagree.
+ *
+ *  A slug missing from the list lands at the end by publish date instead of
+ *  disappearing, so publishing a pattern and naming its position stay separate
+ *  steps. A slug in the list with no pattern is a typo and fails the build. */
+const rank = new Map(order.map((slug, i) => [slug, i]));
+
+const unknown = order.filter((slug) => !sources.some((s) => s.slug === slug));
+if (unknown.length) {
+  throw new Error(`src/data/order.json lists patterns that do not exist: ${unknown.join(', ')}`);
+}
+
 export const patterns: Pattern[] = sources
-  .sort((a, b) => (a.publishedAt < b.publishedAt ? -1 : a.publishedAt > b.publishedAt ? 1 : a.slug.localeCompare(b.slug)))
+  .sort((a, b) => {
+    const ra = rank.get(a.slug) ?? Infinity;
+    const rb = rank.get(b.slug) ?? Infinity;
+    if (ra !== rb) return ra - rb;
+    return a.publishedAt < b.publishedAt ? -1 : a.publishedAt > b.publishedAt ? 1 : a.slug.localeCompare(b.slug);
+  })
   .map(expand);
 
 /** Tags in use across the published patterns, in TAGS declaration order, so the
