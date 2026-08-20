@@ -13,6 +13,24 @@ import sitemap from '@astrojs/sitemap';
 // patterns/foo.html, so the redirect stub overwrites the real page and points at
 // itself. That also destroys the .html URLs printed into QR codes. The
 // trailing-slash recovery lives in src/pages/404.astro instead.
+// Routes that are physically <dir>/index.html, so the server only serves them
+// with a trailing slash and answers 301 without one. Mirror of DIR_INDEX in
+// src/i18n/utils.ts; keep the two in step. The config cannot import from src
+// because Astro loads this file before the TS pipeline exists.
+const DIR_INDEX = new Set(['/', '/es/', '/patterns/', '/es/patterns/']);
+
+/** @astrojs/sitemap strips the trailing slash off every entry, which turns the
+ *  four directory-index routes into 301s. Search Console then reports them as
+ *  "Page with redirect" and the hreflang annotations point at redirects too, so
+ *  both the <loc> and every xhtml:link href get normalised here. */
+function withCanonicalSlash(rawUrl) {
+  const url = new URL(rawUrl);
+  const slashed = url.pathname.endsWith('/') ? url.pathname : `${url.pathname}/`;
+  if (!DIR_INDEX.has(slashed)) return rawUrl;
+  url.pathname = slashed;
+  return url.href;
+}
+
 export default defineConfig({
   site: 'https://getroundcraft.com',
   build: { format: 'preserve' },
@@ -24,6 +42,13 @@ export default defineConfig({
   integrations: [
     sitemap({
       i18n: { defaultLocale: 'en', locales: { en: 'en', es: 'es' } },
+      serialize(item) {
+        item.url = withCanonicalSlash(item.url);
+        if (item.links) {
+          item.links = item.links.map((l) => ({ ...l, url: withCanonicalSlash(l.url) }));
+        }
+        return item;
+      },
     }),
   ],
 });
