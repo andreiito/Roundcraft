@@ -143,6 +143,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/cafe-moka.rcpattern",
       "sha256": "96b96b1b8cb10e0c7e179b0c0182484ac7362ff19ea0a7ac9d2c1ae29fbc6b55",
       "page": "https://andreiito.github.io/Roundcraft/patterns/cafe-moka.html"
+    },
+    {
+      "slug": "spooky-sugar-skull",
+      "name": "Sugar Skull",
+      "width": 45,
+      "height": 45,
+      "colors": 8,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-sugar-skull-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-sugar-skull.rcpattern",
+      "sha256": "3eba7e5213a1969a5fbd2f722eb9c84f011a917c9879b1190330909e96824f41",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/spooky-sugar-skull.html"
     }
   ]
 }
