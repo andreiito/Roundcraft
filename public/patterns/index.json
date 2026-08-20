@@ -165,6 +165,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-ghost.rcpattern",
       "sha256": "c2030bbf2c5f2fd517417158dd8a8c0f99c147ef92111a5b5d7011c5616a130a",
       "page": "https://andreiito.github.io/Roundcraft/patterns/spooky-ghost.html"
+    },
+    {
+      "slug": "spooky-mothman",
+      "name": "Mothman",
+      "width": 45,
+      "height": 45,
+      "colors": 5,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-mothman-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-mothman.rcpattern",
+      "sha256": "c789c1bd80c6aa8039d4d87f984860f6158c9b9ce651b49eef09fc4cbf27b709",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/spooky-mothman.html"
     }
   ]
 }

@@ -1,0 +1,35 @@
+{
+  "slug": "spooky-mothman",
+  "name": "Mothman",
+  "width": 45,
+  "height": 45,
+  "colors": 5,
+  "publishedAt": "2026-08-20",
+  "tags": [
+    "tapestry",
+    "holiday",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free tapestry crochet pattern: Mothman with glowing red eyes, 45 by 45 stitches in 5 colors. Symbol chart plus a written row-by-row pattern, printable PDF in English and Spanish.",
+      "about": "Mothman, wings spread and two red eyes staring out. The eyes are the whole thing: they are the only saturated color in the piece and everything else is a dark silhouette behind them. The trailing edge of each wing carries two broad notches, which is what a moth wing does and what keeps this from reading as a bat or a manta ray. The two points on the head read as antennae rather than ears. Work it flat in single crochet with no shaping, in 5 colors on a pale mauve that lets the dark body sit forward. Four and a half color changes per row and not one stitch left alone in a field of another color, so it is far easier than it looks. Finishes around 28 by 28 cm and shares its canvas with the sugar skull and the ghost.",
+      "bullets": [
+        "Five-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de tapestry crochet gratis: Mothman con ojos rojos, 45 por 45 puntos en 5 colores. Chart de símbolos y patrón escrito fila a fila, PDF imprimible en inglés y español.",
+      "about": "Mothman, con las alas abiertas y dos ojos rojos mirando de frente. Los ojos son todo: son el único color saturado de la pieza y lo demás es una silueta oscura detrás de ellos. El borde de cada ala lleva dos muescas anchas, que es lo que hace un ala de polilla y lo que evita que se lea como murciélago o como mantarraya. Las dos puntas de la cabeza se leen como antenas, no como orejas. Se teje plano en punto bajo, sin aumentos ni disminuciones, en 5 colores sobre un malva pálido que deja el cuerpo oscuro adelante. Cuatro cambios y medio de color por vuelta y ni una puntada sola en medio de otro color, así que es mucho más fácil de lo que parece. Te termina en unos 28 por 28 cm y comparte lienzo con la calavera y el fantasma.",
+      "bullets": [
+        "Chart de símbolos a cinco colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}
