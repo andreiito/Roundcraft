@@ -1,7 +1,37 @@
+import { readFileSync } from 'node:fs';
+
 import type { Lang } from '../i18n/utils';
 
 import order from './order.json';
 import tagsJson from './tags.json';
+
+/** Real pixel size of a preview, read out of the PNG header at build time.
+ *
+ *  The three templates that render a preview used to hardcode 780x1320 for all
+ *  of them, which was true of exactly one pattern. The rest range from 320x600
+ *  to 980x660 (landscape), so the browser reserved a box of the wrong shape and
+ *  resized it once the real image decoded. Nothing today paints in that gap,
+ *  because the PNGs are small enough to arrive before the render-blocking CSS,
+ *  but that is load-order luck rather than a guarantee.
+ *
+ *  Read from the file instead of stored per pattern: a number copied into JSON
+ *  by hand is a number that goes stale the first time an image is re-exported.
+ *  Build-time only, so this module must never reach the client. */
+function previewSize(slug: string): { w: number; h: number } {
+  const path = new URL(`../../public/patterns/assets/${slug}-preview.png`, import.meta.url);
+  let head: Buffer;
+  try {
+    head = readFileSync(path).subarray(0, 24);
+  } catch {
+    throw new Error(`Missing preview image for "${slug}": expected public/patterns/assets/${slug}-preview.png`);
+  }
+  // PNG: 8-byte signature, then the IHDR chunk, whose width and height are the
+  // two big-endian uint32s at offsets 16 and 20.
+  if (head.toString('binary', 1, 4) !== 'PNG' || head.toString('ascii', 12, 16) !== 'IHDR') {
+    throw new Error(`Preview image for "${slug}" is not a PNG with a leading IHDR chunk`);
+  }
+  return { w: head.readUInt32BE(16), h: head.readUInt32BE(20) };
+}
 
 /** Tag vocabulary for the catalog filter, shared with scripts/add-pattern.mjs
  *  so a tag cannot be spelled one way in the data and another in the UI. Add a
@@ -53,6 +83,10 @@ export interface Pattern {
   colors: number;
   publishedAt: string;
   preview: string;
+  /** Intrinsic pixel size of `preview`, so every <img> can reserve the right
+   *  shape instead of one shape for all of them. */
+  previewW: number;
+  previewH: number;
   ogImage: string;
   pdf: { en: string; es: string };
   rcpattern: string;
@@ -133,9 +167,12 @@ function expand(src: PatternSource): Pattern {
       appPitch: shared.appPitch,
     };
   }
+  const preview = previewSize(slug);
   return {
     ...src,
     preview: `/patterns/assets/${slug}-preview.png`,
+    previewW: preview.w,
+    previewH: preview.h,
     ogImage: `/patterns/assets/${slug}-pin-photo.png`,
     pdf: { en: `/patterns/assets/${slug}-en.pdf`, es: `/patterns/assets/${slug}-es.pdf` },
     rcpattern: `/patterns/assets/${slug}.rcpattern`,

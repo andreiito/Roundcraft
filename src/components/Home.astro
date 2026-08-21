@@ -5,12 +5,17 @@ import DeviceFrame from './DeviceFrame.astro';
 import QuoteCard from './QuoteCard.astro';
 import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
 import { playUrl } from '../data/site';
+import { getPattern } from '../data/patterns';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const tt = useTranslations(lang);
 const pricing = localizedPath('/pricing', lang);
 const patternsHref = `${localizedPath('/patterns', lang)}/`;
+// The teaser image comes from the pattern record rather than a pasted path, so
+// its dimensions cannot drift from the file. The alt text below describes this
+// specific chart, hence the fixed slug.
+const teaser = getPattern('abducted-cow')!;
 // Screenshots are captured twice, once per app language, so a Spanish reader
 // never sees an English UI in the frames.
 const shot = (name: string) => `/img/screens/${lang === 'es' ? 'es/' : ''}${name}.jpg`;
@@ -355,7 +360,7 @@ const copy = {
       <a class="btn btn-ghost" href={patternsHref}>{copy.patternsCta} <Icon name="arrow" size={18} /></a>
     </div>
     <a class="teaser-card" href={patternsHref} aria-label={copy.patternsCta}>
-      <img src="/patterns/assets/abducted-cow-preview.png" width="780" height="1320" loading="lazy" decoding="async"
+      <img src={teaser.preview} width={teaser.previewW} height={teaser.previewH} loading="lazy" decoding="async"
         alt="Free tapestry crochet chart of a UFO beaming up a cow" />
       <span class="pill-tag">{lang === 'es' ? 'Gratis' : 'Free'}</span>
     </a>

@@ -123,7 +123,7 @@ const haystack = (slug: string) => {
           data-slug={p.slug} data-tags={p.tags.join(' ')} data-text={haystack(p.slug)}>
           <a class="pc-media" href={detailHref(p.slug)}>
             <span class="pill-tag free">{copy.free}</span>
-            <img src={p.preview} width="780" height="1320" loading="lazy" decoding="async"
+            <img src={p.preview} width={p.previewW} height={p.previewH} loading="lazy" decoding="async"
               alt={`Tapestry crochet chart: ${p.name}`} />
           </a>
           <div class="pc-body">

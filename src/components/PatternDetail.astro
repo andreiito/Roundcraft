@@ -25,7 +25,11 @@ const ui = {
       <p class="muted">{L.subtitle}</p>
     </header>
 
-    <img class="pd-hero" src={pattern.preview} width="780" height="1320" loading="eager" decoding="async"
+    {/* Real intrinsic size, not a shared guess: .pd-hero sets no aspect-ratio,
+        so these attributes are what reserves the box before the image decodes.
+        The charts range from 320x600 to 980x660 landscape. */}
+    <img class="pd-hero" src={pattern.preview} width={pattern.previewW} height={pattern.previewH}
+      loading="eager" decoding="async"
       alt={`Tapestry crochet chart: ${pattern.name}`} data-reveal />
 
     <div class="pd-block card" data-reveal>
