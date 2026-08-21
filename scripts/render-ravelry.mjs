@@ -7,15 +7,18 @@
 //
 // Ravelry is not Pinterest. There a listing photo with a title, a logo and a
 // FREE badge burned into it reads as an ad, and the first photo is the search
-// thumbnail. So these are the chart and nothing else. Two versions of each,
+// thumbnail. So these are the chart and nothing else. Three versions of each,
 // because they answer different questions:
 //
-//   -art.png    flat colour blocks. What the finished piece looks like, which
-//               is what a thumbnail has to say in 200 px.
-//   -chart.png  the same chart with a countable grid, heavy every tenth
-//               stitch. Usable as a working chart.
+//   (art)      flat colour blocks. What the finished piece looks like, which
+//              is what a thumbnail has to say in 200 px.
+//   (chart)    the same chart with a countable grid, heavy every tenth stitch.
+//   (symbols)  the working chart: a symbol per stitch, the same character the
+//              colour carries in the PDF legend, and majors every FIVE to match
+//              the PDF's grid. Someone printing in black and white, or telling
+//              two close yarns apart, needs this one.
 //
-// Both come from the published .rcpattern, so they cannot drift from the file
+// All three come from the published .rcpattern, so they cannot drift from the file
 // people download: re-run this after re-publishing a pattern and the images
 // follow. Output lands in ravelry/ (git-ignored, these are upload artefacts,
 // not site assets) named the way the PDFs are, brand first, so they file
@@ -68,6 +71,9 @@ for (const slug of slugs) {
   const files = [
     [`${base} (art).png`, renderChartPng(pattern, cell)],
     [`${base} (chart).png`, renderChartGridPng(pattern, cell)],
+    // Symbols need room the colour grid does not, so this one is rendered
+    // larger rather than letting the glyphs collapse on a 66-row chart.
+    [`${base} (symbols).png`, renderChartGridPng(pattern, Math.max(cell, 34), { major: 5, symbols: true })],
   ];
   for (const [name, png] of files) {
     writeFileSync(join(OUT, name), png);

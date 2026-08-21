@@ -34,12 +34,23 @@ npm run ravelry-images                        # all of them, catalog order
 npm run ravelry-images -- --slug spooky-mothman
 ```
 
-`render-ravelry.mjs` writes two PNGs per pattern into `ravelry/` (git-ignored,
-they are upload artefacts): `(art)` is flat colour blocks, `(chart)` is the same
-chart with a countable grid, heavy every tenth stitch. Neither carries a title,
-a logo or a badge — Ravelry is not Pinterest, a listing photo with marketing
-text burned into it reads as an ad there, and the first photo is the search
-thumbnail.
+`render-ravelry.mjs` writes three PNGs per pattern into `ravelry/` (git-ignored,
+they are upload artefacts). None carries a title, a logo or a badge — Ravelry is
+not Pinterest, a listing photo with marketing text burned into it reads as an ad
+there, and the first photo is the search thumbnail.
+
+- `(art)` flat colour blocks. The one that goes first: at 200 px a grid turns to
+  grey mush and this still reads.
+- `(chart)` the same chart with a countable grid, heavy every tenth stitch.
+- `(symbols)` the working chart. A character per stitch, black on light yarns
+  and white on dark, and majors every FIVE to match the PDF's own grid.
+
+The symbol a colour gets is its position in first-appearance order through the
+cells, which is how the generator assigns them, so the image and the PDF legend
+agree about what a cell means. Worth re-checking if the generator's `SYMBOLS`
+ever changes: extract the symbols from a shipped PDF's content streams and
+compare. Note that `\` is escaped as `\\` inside a PDF string, so a naive
+regex reports it missing when it is there.
 
 Both are rendered from the published `.rcpattern`, so they cannot disagree with
 the file people download. Re-run it after re-publishing a pattern.

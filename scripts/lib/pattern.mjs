@@ -6,7 +6,12 @@
 
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
+import { GLYPH_H, GLYPH_W, GLYPHS, symbolAt } from './glyphs.mjs';
 import { encodePng, hexToRgb } from './png.mjs';
+
+// Same threshold the generator uses to pick ink over a yarn, so a cell that
+// reads black-on-colour in the PDF reads black-on-colour here.
+const isLight = ([r, g, b]) => (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.55;
 
 /** Run-length "N*#RRGGBB" or a bare colour, comma separated. */
 export function decodeCells(encoded) {
@@ -89,14 +94,19 @@ const RULE_10 = [34, 34, 34];
  *
  * Lines are drawn ON the cell's own edge pixels rather than between cells, so
  * the geometry stays width * cell and every square is the same size. Heavy
- * lines land every tenth stitch counted from the left and from the BOTTOM,
+ * lines land every `major` stitches counted from the left and from the BOTTOM,
  * because row 1 is the bottom row: counting them from the top would disagree
  * with the written pattern.
  *
  * Grids need room. Below about 12 px a cell the rules eat the colour and the
  * whole thing greys out, which is why the catalog preview has none.
+ *
+ * With `symbols`, each stitch also gets the character its colour carries in the
+ * PDF legend, black on light yarns and white on dark ones. That is what makes a
+ * chart workable by someone printing in black and white or picking colours
+ * apart that read the same in a photo.
  */
-export function renderChartGridPng({ payload, cells }, cell = 30) {
+export function renderChartGridPng({ payload, cells }, cell = 30, { major = 10, symbols = false } = {}) {
   const { width, height } = payload;
   const heavy = Math.max(2, Math.round(cell / 12));
   const w = width * cell;
@@ -108,6 +118,19 @@ export function renderChartGridPng({ payload, cells }, cell = 30) {
     const i = (y * w + x) * 3;
     rgb[i] = r; rgb[i + 1] = g; rgb[i + 2] = b;
   };
+
+  // First-appearance order through the cells, which is the order the generator
+  // hands out symbols in. Row 0 of the payload is the bottom row, so the scan
+  // starts where the work starts.
+  const symbolOf = new Map();
+  if (symbols) {
+    for (const value of cells) {
+      if (value && !symbolOf.has(value)) symbolOf.set(value, symbolAt(symbolOf.size));
+    }
+  }
+  const scale = Math.max(1, Math.round((cell * 0.62) / GLYPH_H));
+  const glyphW = GLYPH_W * scale;
+  const glyphH = GLYPH_H * scale;
 
   for (let y = 0; y < height; y++) {
     const source = (height - 1 - y) * width;
@@ -124,6 +147,21 @@ export function renderChartGridPng({ payload, cells }, cell = 30) {
         }
       }
 
+      if (symbols && value) {
+        const glyph = GLYPHS[symbolOf.get(value)];
+        const ink = isLight([r, g, b]) ? [0, 0, 0] : [255, 255, 255];
+        const gx = x0 + Math.round((cell - glyphW) / 2);
+        const gy = y0 + Math.round((cell - glyphH) / 2);
+        for (let ry = 0; ry < GLYPH_H; ry++) {
+          for (let rx = 0; rx < GLYPH_W; rx++) {
+            if (glyph[ry][rx] !== '#') continue;
+            for (let sy = 0; sy < scale; sy++) {
+              for (let sx = 0; sx < scale; sx++) dot(gx + rx * scale + sx, gy + ry * scale + sy, ink);
+            }
+          }
+        }
+      }
+
       // Right and bottom edge of every cell, so interior lines are shared and
       // the outer border is drawn once by the last row and column.
       for (let k = 0; k < cell; k++) {
@@ -136,9 +174,9 @@ export function renderChartGridPng({ payload, cells }, cell = 30) {
       // Drawing it on the upper edge put every heavy line one row too high, and
       // it still looked plausible: 10, 20, 30 bands, just anchored wrong.
       const tens = [];
-      if ((x + 1) % 10 === 0 || x + 1 === width) tens.push('right');
+      if ((x + 1) % major === 0 || x + 1 === width) tens.push('right');
       if (x === 0) tens.push('left');
-      if ((fromBottom - 1) % 10 === 0) tens.push('under');
+      if ((fromBottom - 1) % major === 0) tens.push('under');
       if (fromBottom === height) tens.push('over');
       for (const side of tens) {
         for (let t = 0; t < heavy; t++) {
