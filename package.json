@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "publish-pattern": "node scripts/add-pattern.mjs"
+    "publish-pattern": "node scripts/add-pattern.mjs",
+    "ravelry-images": "node scripts/render-ravelry.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

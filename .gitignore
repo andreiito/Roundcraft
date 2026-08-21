@@ -11,3 +11,5 @@ node_modules/
 .DS_Store
 # logs
 npm-debug.log*
+# ravelry upload artefacts, rebuilt by npm run ravelry-images
+ravelry/

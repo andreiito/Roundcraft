@@ -78,3 +78,80 @@ export function renderChartPng({ payload, cells }, cell = 20) {
 
   return encodePng(w, h, rgb);
 }
+
+const RULE = [140, 140, 140];
+const RULE_10 = [34, 34, 34];
+
+/**
+ * The same chart with a countable grid, and nothing else: no title, no logo, no
+ * badge. For listing photos on channels where marketing text on the image reads
+ * as spam, and for anyone who wants to work straight off the picture.
+ *
+ * Lines are drawn ON the cell's own edge pixels rather than between cells, so
+ * the geometry stays width * cell and every square is the same size. Heavy
+ * lines land every tenth stitch counted from the left and from the BOTTOM,
+ * because row 1 is the bottom row: counting them from the top would disagree
+ * with the written pattern.
+ *
+ * Grids need room. Below about 12 px a cell the rules eat the colour and the
+ * whole thing greys out, which is why the catalog preview has none.
+ */
+export function renderChartGridPng({ payload, cells }, cell = 30) {
+  const { width, height } = payload;
+  const heavy = Math.max(2, Math.round(cell / 12));
+  const w = width * cell;
+  const h = height * cell;
+  const rgb = new Uint8Array(w * h * 3);
+
+  const dot = (x, y, [r, g, b]) => {
+    if (x < 0 || y < 0 || x >= w || y >= h) return;
+    const i = (y * w + x) * 3;
+    rgb[i] = r; rgb[i + 1] = g; rgb[i + 2] = b;
+  };
+
+  for (let y = 0; y < height; y++) {
+    const source = (height - 1 - y) * width;
+    const fromBottom = height - y;
+    for (let x = 0; x < width; x++) {
+      const value = cells[source + x];
+      const [r, g, b] = value ? hexToRgb(value) : EMPTY;
+      const x0 = x * cell;
+      const y0 = y * cell;
+      for (let dy = 0; dy < cell; dy++) {
+        let i = ((y0 + dy) * w + x0) * 3;
+        for (let dx = 0; dx < cell; dx++) {
+          rgb[i++] = r; rgb[i++] = g; rgb[i++] = b;
+        }
+      }
+
+      // Right and bottom edge of every cell, so interior lines are shared and
+      // the outer border is drawn once by the last row and column.
+      for (let k = 0; k < cell; k++) {
+        dot(x0 + cell - 1, y0 + k, RULE);
+        dot(x0 + k, y0 + cell - 1, RULE);
+      }
+
+      // A cell's LOWER edge in the image is the boundary under that row, so the
+      // rule after ten rows is the lower edge of row 11, not the upper edge.
+      // Drawing it on the upper edge put every heavy line one row too high, and
+      // it still looked plausible: 10, 20, 30 bands, just anchored wrong.
+      const tens = [];
+      if ((x + 1) % 10 === 0 || x + 1 === width) tens.push('right');
+      if (x === 0) tens.push('left');
+      if ((fromBottom - 1) % 10 === 0) tens.push('under');
+      if (fromBottom === height) tens.push('over');
+      for (const side of tens) {
+        for (let t = 0; t < heavy; t++) {
+          for (let k = 0; k < cell; k++) {
+            if (side === 'right') dot(x0 + cell - 1 - t, y0 + k, RULE_10);
+            if (side === 'left') dot(x0 + t, y0 + k, RULE_10);
+            if (side === 'under') dot(x0 + k, y0 + cell - 1 - t, RULE_10);
+            if (side === 'over') dot(x0 + k, y0 + t, RULE_10);
+          }
+        }
+      }
+    }
+  }
+
+  return encodePng(w, h, rgb);
+}
