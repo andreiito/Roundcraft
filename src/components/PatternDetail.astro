@@ -77,7 +77,19 @@ const ui = {
   .check-list li { display: flex; align-items: flex-start; gap: 0.6rem; color: var(--ink); font-size: 0.96rem; }
   .check-list :global(.icon) { color: var(--clay); flex: none; margin-top: 2px; }
 
-  .dl-row { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+  /* Equal columns rather than flex: as a flex row each button sized to its own
+     label, so "English" came out shorter than "Spanish" and the row left a
+     stripe of dead space that reads as part of the button. Everything else in
+     this block is full width, so the halves line up with it.
+     auto-fit rather than a viewport breakpoint because the labels are what
+     decides, and they differ per language: the longest is 245px in English,
+     and a fixed breakpoint set below that wraps the text to two lines. Below
+     two columns of 17rem the grid drops to one button per row on its own. */
+  .dl-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+    gap: 0.7rem;
+  }
   .dl-row .btn, .dl-rc { justify-content: center; }
   .dl-rc { display: flex; margin-top: 0.7rem; }
   .note { margin-top: 1rem; font-size: 0.9rem; }
