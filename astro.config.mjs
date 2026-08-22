@@ -33,7 +33,15 @@ function withCanonicalSlash(rawUrl) {
 
 export default defineConfig({
   site: 'https://getroundcraft.com',
-  build: { format: 'preserve' },
+  // inlineStylesheets 'always': the shared bundle is ~18 KB and was a
+  // render-blocking request, so on a slow connection the page painted as
+  // unstyled HTML and then reflowed once the CSS landed. Measured at CLS 0.2445
+  // on Slow 3G, dominated by <body> losing the UA default 8px margin five
+  // seconds in. Astro's 'auto' default only inlines under 4 KB.
+  // The trade: ~19 KB more HTML per page and no CSS reuse across pages. Worth it
+  // because nearly every visitor arrives from Ravelry on a first visit, where
+  // one less round trip beats a cache that will not be reused.
+  build: { format: 'preserve', inlineStylesheets: 'always' },
   i18n: {
     locales: ['en', 'es'],
     defaultLocale: 'en',
