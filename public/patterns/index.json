@@ -176,6 +176,39 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-middle-finger.rcpattern",
       "sha256": "25a71aa261b22a8a0cbf385f8cc899033605e237121b259d208c423bf3d8fc03",
       "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-middle-finger.html"
+    },
+    {
+      "slug": "xmas-candy-cane",
+      "name": "Candy Cane",
+      "width": 45,
+      "height": 45,
+      "colors": 4,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/xmas-candy-cane-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/xmas-candy-cane.rcpattern",
+      "sha256": "f9cbda71f2958fe7c1ff844ed318c81758971f6b937591cc408169382f0591da",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/xmas-candy-cane.html"
+    },
+    {
+      "slug": "xmas-santa",
+      "name": "Santa",
+      "width": 45,
+      "height": 45,
+      "colors": 7,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/xmas-santa-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/xmas-santa.rcpattern",
+      "sha256": "ade9031bb5cda6b25191941cb2373d03e2b8cf4f46a5e59162bb2aadac6e1489",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/xmas-santa.html"
+    },
+    {
+      "slug": "xmas-elf",
+      "name": "Christmas Elf",
+      "width": 45,
+      "height": 45,
+      "colors": 8,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/xmas-elf-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/xmas-elf.rcpattern",
+      "sha256": "f925945a7a55193954f95c78ad942617dabc6a32ec98f5a74fc084c1e40c77e3",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/xmas-elf.html"
     }
   ]
 }

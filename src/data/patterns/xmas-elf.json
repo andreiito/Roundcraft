@@ -1,0 +1,35 @@
+{
+  "slug": "xmas-elf",
+  "name": "Christmas Elf",
+  "width": 45,
+  "height": 45,
+  "colors": 8,
+  "publishedAt": "2026-08-24",
+  "tags": [
+    "tapestry",
+    "holiday",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free tapestry crochet pattern: Christmas elf, 45 by 45 stitches in 8 colors. Symbol chart plus a written row-by-row pattern, printable PDF in English and Spanish.",
+      "about": "A Christmas elf, and what makes it one is not the face. It is the two breaks in the silhouette: the ears leave the head and the hat sweeps the other way from Santa's, with a gold bell on the tip. Take the ears off and this is a child in a green hat. The hat is Santa's mirrored, same swept curve and same taper, so the two read as a pair rather than as two hats that happen to share a set. Eight colors on cream, worked flat in single crochet with no shaping. The easiest of the three to hold: three and a half color changes per row, a maximum of eight, and no isolated stitches. Finishes around 28 by 28 cm.",
+      "bullets": [
+        "Eight-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de tapestry crochet gratis: duende navideño, 45 por 45 puntos en 8 colores. Chart de símbolos y patrón escrito fila a fila, PDF imprimible en inglés y español.",
+      "about": "Un duende navideño, y lo que lo hace duende no es la cara. Son los dos cortes en la silueta: las orejas se salen de la cabeza y el gorro barre al lado contrario que el de Santa, con un cascabel dorado en la punta. Quítale las orejas y esto es un niño con gorro verde. El gorro es el de Santa espejado, misma curva barrida y mismo estrechamiento, para que los dos se lean como pareja y no como dos gorros que coinciden en el set. Ocho colores sobre crema, tejido plano en punto bajo, sin aumentos ni disminuciones. Es el más llevadero de los tres: tres cambios y medio de color por vuelta, ocho como máximo, y ninguna puntada aislada. Te termina en unos 28 por 28 cm.",
+      "bullets": [
+        "Chart de símbolos a ocho colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}
