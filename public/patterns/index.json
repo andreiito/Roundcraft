@@ -231,6 +231,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/hazard-sign.rcpattern",
       "sha256": "192db656e44f5d0dd2acbf0eadfab40fa86b59b806018b49569b1abea897d050",
       "page": "https://andreiito.github.io/Roundcraft/patterns/hazard-sign.html"
+    },
+    {
+      "slug": "exit-sign",
+      "name": "Exit Sign",
+      "width": 46,
+      "height": 25,
+      "colors": 2,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/exit-sign-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/exit-sign.rcpattern",
+      "sha256": "d4049c2ddec1985e579de909b0117a3dbbd59d74cf31d2e2a3a06cd1d529ff23",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/exit-sign.html"
     }
   ]
 }
