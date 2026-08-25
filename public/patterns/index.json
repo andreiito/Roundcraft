@@ -220,6 +220,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/stop-sign.rcpattern",
       "sha256": "aaf63d26a4dd4a09c9b1e37c7b0ad29ae87dd5da4e931f16d820bd7c257accf8",
       "page": "https://andreiito.github.io/Roundcraft/patterns/stop-sign.html"
+    },
+    {
+      "slug": "hazard-sign",
+      "name": "Hazard Sign",
+      "width": 33,
+      "height": 29,
+      "colors": 3,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/hazard-sign-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/hazard-sign.rcpattern",
+      "sha256": "192db656e44f5d0dd2acbf0eadfab40fa86b59b806018b49569b1abea897d050",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/hazard-sign.html"
     }
   ]
 }
