@@ -1,0 +1,35 @@
+{
+  "slug": "stop-sign",
+  "name": "Stop Sign",
+  "width": 31,
+  "height": 31,
+  "colors": 3,
+  "publishedAt": "2026-08-25",
+  "tags": [
+    "tapestry",
+    "geometric",
+    "intermediate"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free tapestry crochet pattern: stop sign, 31 by 31 stitches in 3 colors. Symbol chart plus a written row-by-row pattern, printable PDF in English and Spanish.",
+      "about": "A stop sign, octagon and all, in three colors on a pale sky ground. The octagon is drawn as three constraints rather than as a traced outline, which is why the corners come out at exactly 45 degrees: the one angle a grid of stitches renders without a staircase. Red rim, white border, red field, and no black outline anywhere. The word is what costs you: crossing STOP means entering and leaving white eight times, so eleven of the thirty-one rows carry most of the work and the other twenty are almost plain. There are no isolated stitches. Worked flat in single crochet with no shaping, it finishes around 19 by 19 cm, which is coaster or mug-rug territory rather than a wall hanging.",
+      "bullets": [
+        "Three-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de tapestry crochet gratis: señal de alto, 31 por 31 puntos en 3 colores. Chart de símbolos y patrón escrito fila a fila, PDF imprimible en inglés y español.",
+      "about": "Una señal de alto, con octágono y todo, en tres colores sobre un fondo azul cielo. El octágono va dibujado como tres restricciones y no como un contorno trazado, y por eso las esquinas salen a exactamente 45 grados: el único ángulo que una malla de puntadas rinde sin escalera. Canto rojo, borde blanco, campo rojo, y ni un contorno negro en toda la pieza. Lo que cuesta es la palabra: cruzar STOP significa entrar y salir del blanco ocho veces, así que once de las treinta y una vueltas cargan casi todo el trabajo y las otras veinte van casi lisas. No hay ninguna puntada aislada. Se teje plano en punto bajo, sin aumentos ni disminuciones, y te termina en unos 19 por 19 cm, o sea territorio de posavasos más que de colgante de pared.",
+      "bullets": [
+        "Chart de símbolos a tres colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}

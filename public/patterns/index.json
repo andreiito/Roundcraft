@@ -209,6 +209,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/xmas-elf.rcpattern",
       "sha256": "f925945a7a55193954f95c78ad942617dabc6a32ec98f5a74fc084c1e40c77e3",
       "page": "https://andreiito.github.io/Roundcraft/patterns/xmas-elf.html"
+    },
+    {
+      "slug": "stop-sign",
+      "name": "Stop Sign",
+      "width": 31,
+      "height": 31,
+      "colors": 3,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/stop-sign-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/stop-sign.rcpattern",
+      "sha256": "aaf63d26a4dd4a09c9b1e37c7b0ad29ae87dd5da4e931f16d820bd7c257accf8",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/stop-sign.html"
     }
   ]
 }
