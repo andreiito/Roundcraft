@@ -30,6 +30,16 @@ const ogUrl = new URL(ogImage, site).href;
 // Both are empty until an id is pasted into src/data/analytics.ts, and nothing
 // third-party loads while they are.
 import { CF_BEACON_TOKEN, CLARITY_ID, GA4_ID } from '../data/analytics';
+
+// Imported for their hashed URLs rather than hardcoded: these two carry every
+// character the site actually renders, and preloading them starts the download
+// with the HTML instead of after the CSS is parsed. With font-display: optional
+// in fonts.css that head start is what decides whether a first-time visitor
+// gets the real typography or the fallback. The latin-ext files are left out on
+// purpose; preloading a file the page will probably never need wastes the
+// bandwidth these two are competing for.
+import frauncesLatin from '@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2?url';
+import hankenLatin from '@fontsource-variable/hanken-grotesk/files/hanken-grotesk-latin-wght-normal.woff2?url';
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -41,6 +51,9 @@ import { CF_BEACON_TOKEN, CLARITY_ID, GA4_ID } from '../data/analytics';
 <link rel="alternate" hreflang="en" href={enHref} />
 <link rel="alternate" hreflang="es" href={esHref} />
 <link rel="alternate" hreflang="x-default" href={enHref} />
+
+<link rel="preload" href={frauncesLatin} as="font" type="font/woff2" crossorigin="anonymous" />
+<link rel="preload" href={hankenLatin} as="font" type="font/woff2" crossorigin="anonymous" />
 
 <meta name="theme-color" content="#FBF7EF" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#17110C" media="(prefers-color-scheme: dark)" />
