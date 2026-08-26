@@ -51,6 +51,17 @@ const c = {
   }
   .qc-total-label { color: var(--ink-soft); font-size: 0.9rem; }
   .qc-price { font-size: 2rem; font-weight: 700; color: var(--clay); line-height: 1; letter-spacing: -0.02em; }
+  /* The count-up rewrites this text every frame, and "0" is one digit while
+     "58" is two, so the box changed width mid-animation and nudged itself
+     inside the space-between row. Reserving two digits keeps the width fixed
+     from the first frame to the last. tabular-nums so the reserved space holds
+     even if --font-mono ever falls back to a proportional face. */
+  .qc-price [data-countup] {
+    display: inline-block;
+    min-width: 2ch;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
   footer {
     margin-top: 0.9rem; display: inline-flex; align-items: center; gap: 0.4rem;
     font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
