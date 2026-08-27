@@ -18,7 +18,13 @@ const patternsHref = `${localizedPath('/patterns', lang)}/`;
 const teaser = getPattern('abducted-cow')!;
 // Screenshots are captured twice, once per app language, so a Spanish reader
 // never sees an English UI in the frames.
-const shot = (name: string) => `/img/screens/${lang === 'es' ? 'es/' : ''}${name}.jpg`;
+// WebP rather than JPEG: these are UI captures, flat colour and text, which is
+// what WebP compresses best. The nine screens went from 1,066 KB to 306 KB per
+// language at quality 82, with no visible difference at the 232-300px they are
+// displayed at. Cloudflare had flagged timer.jpg as a 4.7s LCP element, since
+// the feature-row shots load lazily and only start downloading once someone
+// scrolls to them.
+const shot = (name: string) => `/img/screens/${lang === 'es' ? 'es/' : ''}${name}.webp`;
 
 const copy = {
   en: {
