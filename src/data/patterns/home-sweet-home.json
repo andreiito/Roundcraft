@@ -1,0 +1,35 @@
+{
+  "slug": "home-sweet-home",
+  "name": "Home Sweet Home",
+  "width": 54,
+  "height": 69,
+  "colors": 3,
+  "publishedAt": "2026-08-27",
+  "tags": [
+    "tapestry",
+    "decor",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free tapestry crochet pattern: HOME SWEET HOME sampler with a little house, 54 by 69 stitches in 3 colors. Symbol chart plus a written row-by-row pattern, printable PDF in English and Spanish.",
+      "about": "HOME SWEET HOME on three lines, in ink on warm cream, with the middle word in terracotta and a little house at the foot with a terracotta door. Three colors, and the accent is given real work rather than a token forty stitches, because a whole ball of yarn for a doorway is a waste of your money. It is a long easy project rather than a quick hard one: 3,726 stitches at 6.2 color changes per row, which sits between two other patterns here that are both tagged beginner, and the chart has not one run shorter than two stitches in it. Text is where the work is on a piece like this, about 88% of it, which is why there is one house and not a border of flowers: a full frame would add four color changes to every single row and take this from comfortable to the hardest chart on the site. Worked flat in single crochet with no shaping, it finishes around 34 by 43 cm.",
+      "bullets": [
+        "Three-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de tapestry crochet gratis: HOME SWEET HOME con casita, 54 por 69 puntos en 3 colores. Chart de símbolos y patrón escrito fila a fila, PDF imprimible en inglés y español.",
+      "about": "HOME SWEET HOME en tres líneas, en tinta sobre crema cálida, con la palabra del medio en terracota y una casita al pie con la puerta del mismo terracota. Tres colores, y al acento se le da trabajo de verdad en vez de unas cuarenta puntadas de adorno, porque un ovillo entero para una puerta es tirar tu dinero. Es un proyecto largo y fácil, no uno corto y difícil: 3.726 puntadas a 6.2 cambios de color por vuelta, que queda entre otros dos patrones de aquí etiquetados como principiante, y el chart no tiene ni un tramo menor a dos puntos. En una pieza así el trabajo está en el texto, cerca del 88%, y por eso hay una casita y no una orla de flores: un marco completo le sumaría cuatro cambios de color a cada vuelta y lo llevaría de cómodo a ser el chart más difícil del sitio. Se teje plano en punto bajo, sin aumentos ni disminuciones, y te termina en unos 34 por 43 cm.",
+      "bullets": [
+        "Chart de símbolos a tres colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}

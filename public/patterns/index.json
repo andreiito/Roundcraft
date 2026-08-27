@@ -242,6 +242,39 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-fire.rcpattern",
       "sha256": "702cdbf618b7b787358052e63788e427fd0d78afae393c7be309c3b598317787",
       "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-fire.html"
+    },
+    {
+      "slug": "home-sweet-home",
+      "name": "Home Sweet Home",
+      "width": 54,
+      "height": 69,
+      "colors": 3,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/home-sweet-home-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/home-sweet-home.rcpattern",
+      "sha256": "cfc1f5e0cb64cc015e768497cf708f82dc877f8f870456654ad43f6428bf7fdf",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/home-sweet-home.html"
+    },
+    {
+      "slug": "open-sign",
+      "name": "Open Sign",
+      "width": 59,
+      "height": 38,
+      "colors": 2,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/open-sign-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/open-sign.rcpattern",
+      "sha256": "44b81461f57720f39a2d04db2c4db879d632f8b6c1beb61dc1fb3d3afcbf5bcd",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/open-sign.html"
+    },
+    {
+      "slug": "closed-sign",
+      "name": "Closed Sign",
+      "width": 59,
+      "height": 38,
+      "colors": 2,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/closed-sign-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/closed-sign.rcpattern",
+      "sha256": "6719eb2bb780763f7536cad351f315e06397996747bdb45eede17f8057aa016e",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/closed-sign.html"
     }
   ]
 }
