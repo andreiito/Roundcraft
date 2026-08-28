@@ -67,6 +67,14 @@ const PER_PAGE = 8;
 
 const detailHref = (slug: string) => `${localizedPath('/patterns', lang)}/${slug}`;
 
+/** Lowercase and strip accents, so a query typed without them still matches.
+ *  The match is a plain substring test, so "cojin" would otherwise miss the
+ *  fourteen patterns whose Spanish copy says "cojín", and "patron" would miss
+ *  every one of them. Applied to the index here and to the query in the script
+ *  below; both sides have to be folded or neither is. */
+const fold = (s: string) =>
+  s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
 /** Everything the search box matches against, lowercased at build time. Both
  *  languages are indexed on purpose: plenty of Spanish speakers browse the
  *  English page, and "cow" should find the same pattern as "vaca". */
@@ -78,7 +86,7 @@ const haystack = (slug: string) => {
     p.locales[l].seoDesc,
   ]);
   const tagWords = p.tags.flatMap((t) => [t, TAGS[t].en, TAGS[t].es]);
-  return [p.name, p.slug.replace(/-/g, ' '), ...fromLocales, ...tagWords].join(' ').toLowerCase();
+  return fold([p.name, p.slug.replace(/-/g, ' '), ...fromLocales, ...tagWords].join(' '));
 };
 ---
 <section class="section">
@@ -406,7 +414,11 @@ const haystack = (slug: string) => {
     };
 
     const apply = () => {
-      const q = (search?.value || '').trim().toLowerCase();
+      // Folded the same way data-text was folded at build time. The helper in
+      // the frontmatter cannot be reached from here, so the rule is written
+      // twice on purpose; change one and the other stops matching.
+      const q = (search?.value || '').trim().toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
       const matched = cards.filter((card) => {
         const matchesTag = !activeTag || (card.dataset.tags || '').split(' ').includes(activeTag);
         const matchesText = !q || (card.dataset.text || '').includes(q);
