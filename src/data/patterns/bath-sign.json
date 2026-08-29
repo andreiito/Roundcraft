@@ -1,0 +1,35 @@
+{
+  "slug": "bath-sign",
+  "name": "Bath Sign",
+  "width": 30,
+  "height": 80,
+  "colors": 2,
+  "publishedAt": "2026-08-28",
+  "tags": [
+    "tapestry",
+    "decor",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free crochet BATH sign pattern: vertical bathroom panel with toilet roll, 2 colors, 30x80 stitches. Beginner tapestry chart, printable PDF.",
+      "about": "BATH set one letter to a line in ink on pale aqua, with a toilet roll on the rule above and below. Two colors, worked flat in single crochet with no shaping, and the easiest chart on the site at three color changes a row. Finishes around 19 by 50 cm, a tall narrow panel for a bathroom door or the wall beside it.",
+      "bullets": [
+        "Two-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de crochet gratis letrero BATH: panel vertical de baño con rollo de papel, 2 colores, 30x80 puntos. Chart tapestry, PDF imprimible.",
+      "about": "BATH puesto de a una letra por renglón, en tinta sobre aqua pálido, con un rollo de papel sobre el filete de arriba y el de abajo. Dos colores, tejido plano en punto bajo, sin aumentos ni disminuciones, y es el chart más fácil del sitio con tres cambios de color por vuelta. Te queda en unos 19 por 50 cm, para la puerta del baño o la pared de al lado.",
+      "bullets": [
+        "Chart de símbolos a dos colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}

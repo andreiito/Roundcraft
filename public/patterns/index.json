@@ -275,6 +275,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/cafe-moka.rcpattern",
       "sha256": "96b96b1b8cb10e0c7e179b0c0182484ac7362ff19ea0a7ac9d2c1ae29fbc6b55",
       "page": "https://andreiito.github.io/Roundcraft/patterns/cafe-moka.html"
+    },
+    {
+      "slug": "bath-sign",
+      "name": "Bath Sign",
+      "width": 30,
+      "height": 80,
+      "colors": 2,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/bath-sign-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/bath-sign.rcpattern",
+      "sha256": "fda6867e291ba2a750797c5d23b2ee6eedb996e2c7f2699de1d21b89ffa24e56",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/bath-sign.html"
     }
   ]
 }
