@@ -1,0 +1,36 @@
+{
+  "slug": "scene-saguaro-dusk",
+  "name": "Saguaro Dusk",
+  "width": 52,
+  "height": 54,
+  "colors": 4,
+  "publishedAt": "2026-09-03",
+  "tags": [
+    "tapestry",
+    "nature",
+    "decor",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free crochet desert sunset pattern: saguaro cactus, sun and mesa in 4 colors, 52x54 stitches. Beginner tapestry chart, printable PDF.",
+      "about": "A saguaro in silhouette against a dusk sky, with the sun clear above the horizon and a flat-topped mesa behind it, standing on three bands of desert floor. Four colors, worked flat in single crochet with no shaping. Every shape in it is a straight edge or a large circle, so there are no isolated stitches anywhere and no run shorter than two, at around three color changes a row. Finishes around 32 by 34 cm, a panel for a wall or the back of a cushion.",
+      "bullets": [
+        "Four-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de crochet gratis atardecer en el desierto: cactus saguaro, sol y meseta en 4 colores, 52x54 puntos. Chart tapestry, PDF imprimible.",
+      "about": "Un saguaro en silueta contra el cielo del atardecer, con el sol despejado sobre el horizonte y una meseta de cima plana detrás, parado sobre tres franjas de suelo del desierto. Cuatro colores, tejido plano en punto bajo, sin aumentos ni disminuciones. Cada forma es una recta o un círculo grande, así que no hay ninguna puntada suelta ni tramos de menos de dos puntos, y son unos tres cambios de color por vuelta. Te queda en unos 32 por 34 cm, para colgar en la pared o para el reverso de un cojín.",
+      "bullets": [
+        "Chart de símbolos a cuatro colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}

@@ -286,6 +286,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/bath-sign.rcpattern",
       "sha256": "fda6867e291ba2a750797c5d23b2ee6eedb996e2c7f2699de1d21b89ffa24e56",
       "page": "https://andreiito.github.io/Roundcraft/patterns/bath-sign.html"
+    },
+    {
+      "slug": "scene-saguaro-dusk",
+      "name": "Saguaro Dusk",
+      "width": 52,
+      "height": 54,
+      "colors": 4,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/scene-saguaro-dusk-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/scene-saguaro-dusk.rcpattern",
+      "sha256": "2017933b613b56ebfe905c6057f2601cb00dbbab0d417de182ab02ee93a6bef1",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/scene-saguaro-dusk.html"
     }
   ]
 }
