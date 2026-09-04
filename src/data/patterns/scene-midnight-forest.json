@@ -1,0 +1,36 @@
+{
+  "slug": "scene-midnight-forest",
+  "name": "Midnight Forest",
+  "width": 40,
+  "height": 45,
+  "colors": 4,
+  "publishedAt": "2026-09-04",
+  "tags": [
+    "tapestry",
+    "nature",
+    "decor",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free crochet night forest pattern: full moon, glow and pine treeline in 4 colors, 40x45 stitches. Beginner tapestry chart, printable PDF.",
+      "about": "A full moon inside its own ring of glow, with a pine treeline biting into its base and eleven stars in the dark above. Four colors, worked flat in single crochet with no shaping, around three color changes a row. Night does the work here: it puts foliage, bark and ground into one dark field, so the whole palette goes on depth instead. The eleven stars are single stitches, the only fiddly part of an otherwise flat chart. Finishes around 25 by 28 cm.",
+      "bullets": [
+        "Four-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de crochet gratis bosque nocturno: luna llena, resplandor y pinos en 4 colores, 40x45 puntos. Chart tapestry, PDF imprimible.",
+      "about": "Una luna llena dentro de su propio anillo de resplandor, con una hilera de pinos mordiéndole la base y once estrellas en el oscuro de arriba. Cuatro colores, tejido plano en punto bajo, sin aumentos ni disminuciones, unos tres cambios de color por vuelta. Acá la noche hace el trabajo: mete follaje, corteza y suelo en un solo campo oscuro, así que toda la paleta se va en profundidad. Las once estrellas son puntadas sueltas, lo único delicado de un chart que por lo demás es plano. Te queda en unos 25 por 28 cm.",
+      "bullets": [
+        "Chart de símbolos a cuatro colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}

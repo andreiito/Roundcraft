@@ -13,6 +13,17 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/abducted-cow.html"
     },
     {
+      "slug": "scene-saguaro-dusk",
+      "name": "Saguaro Dusk",
+      "width": 52,
+      "height": 54,
+      "colors": 4,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/scene-saguaro-dusk-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/scene-saguaro-dusk.rcpattern",
+      "sha256": "2017933b613b56ebfe905c6057f2601cb00dbbab0d417de182ab02ee93a6bef1",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/scene-saguaro-dusk.html"
+    },
+    {
       "slug": "no-internet-dino",
       "name": "No Internet Dino",
       "width": 29,
@@ -288,15 +299,15 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/bath-sign.html"
     },
     {
-      "slug": "scene-saguaro-dusk",
-      "name": "Saguaro Dusk",
-      "width": 52,
-      "height": 54,
+      "slug": "scene-midnight-forest",
+      "name": "Midnight Forest",
+      "width": 40,
+      "height": 45,
       "colors": 4,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/scene-saguaro-dusk-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/scene-saguaro-dusk.rcpattern",
-      "sha256": "2017933b613b56ebfe905c6057f2601cb00dbbab0d417de182ab02ee93a6bef1",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/scene-saguaro-dusk.html"
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/scene-midnight-forest-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/scene-midnight-forest.rcpattern",
+      "sha256": "70606a0e014f3cb5d2b9b9e7ffe31b34a3425281082234ec5fb3b8b76be2eb7c",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/scene-midnight-forest.html"
     }
   ]
 }
