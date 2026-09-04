@@ -134,15 +134,15 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-ily.html"
     },
     {
-      "slug": "emoji-kiss",
-      "name": "Kiss",
-      "width": 45,
+      "slug": "scene-midnight-forest",
+      "name": "Midnight Forest",
+      "width": 40,
       "height": 45,
-      "colors": 5,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-kiss-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-kiss.rcpattern",
-      "sha256": "d499ac19ad6d11913e70a55c21d2d2e09a3a3cf3c8d5d91a5b369f2b5ee50fb1",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-kiss.html"
+      "colors": 4,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/scene-midnight-forest-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/scene-midnight-forest.rcpattern",
+      "sha256": "70606a0e014f3cb5d2b9b9e7ffe31b34a3425281082234ec5fb3b8b76be2eb7c",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/scene-midnight-forest.html"
     },
     {
       "slug": "spooky-mothman",
@@ -299,15 +299,15 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/bath-sign.html"
     },
     {
-      "slug": "scene-midnight-forest",
-      "name": "Midnight Forest",
-      "width": 40,
+      "slug": "emoji-kiss",
+      "name": "Kiss",
+      "width": 45,
       "height": 45,
-      "colors": 4,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/scene-midnight-forest-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/scene-midnight-forest.rcpattern",
-      "sha256": "70606a0e014f3cb5d2b9b9e7ffe31b34a3425281082234ec5fb3b8b76be2eb7c",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/scene-midnight-forest.html"
+      "colors": 5,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-kiss-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-kiss.rcpattern",
+      "sha256": "d499ac19ad6d11913e70a55c21d2d2e09a3a3cf3c8d5d91a5b369f2b5ee50fb1",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-kiss.html"
     }
   ]
 }
