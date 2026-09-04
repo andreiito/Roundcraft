@@ -233,15 +233,15 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/azulejo.html"
     },
     {
-      "slug": "xmas-elf",
-      "name": "Christmas Elf",
-      "width": 45,
-      "height": 45,
-      "colors": 8,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/xmas-elf-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/xmas-elf.rcpattern",
-      "sha256": "f925945a7a55193954f95c78ad942617dabc6a32ec98f5a74fc084c1e40c77e3",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/xmas-elf.html"
+      "slug": "hongo",
+      "name": "Hongo",
+      "width": 53,
+      "height": 59,
+      "colors": 4,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/hongo-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/hongo.rcpattern",
+      "sha256": "3cb360c96cc95a5cb41a425ba30130ce4b255e78b07d45a78bd2f0fcf73d9d37",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/hongo.html"
     },
     {
       "slug": "emoji-middle-finger",
@@ -319,6 +319,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-kiss.rcpattern",
       "sha256": "d499ac19ad6d11913e70a55c21d2d2e09a3a3cf3c8d5d91a5b369f2b5ee50fb1",
       "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-kiss.html"
+    },
+    {
+      "slug": "xmas-elf",
+      "name": "Christmas Elf",
+      "width": 45,
+      "height": 45,
+      "colors": 8,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/xmas-elf-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/xmas-elf.rcpattern",
+      "sha256": "f925945a7a55193954f95c78ad942617dabc6a32ec98f5a74fc084c1e40c77e3",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/xmas-elf.html"
     }
   ]
 }

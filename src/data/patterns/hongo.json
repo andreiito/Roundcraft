@@ -1,0 +1,36 @@
+{
+  "slug": "hongo",
+  "name": "Hongo",
+  "width": 53,
+  "height": 59,
+  "colors": 4,
+  "publishedAt": "2026-09-04",
+  "tags": [
+    "tapestry",
+    "nature",
+    "decor",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free crochet mushroom pattern: two red toadstools with white spots in 4 colors, 53x59 stitches. Beginner tapestry chart, printable PDF.",
+      "about": "Two toadstools on a sage ground, a large one and a smaller one in front of it, growing out of dark earth. Four colors, worked flat in single crochet with no shaping, around four color changes a row and no isolated stitches. The stems are the pale yarn and the caps' shaded undersides the dark one, so the same four balls carry the spots, the rings and the ground as well. Finishes around 33 by 37 cm, a panel for a wall or the front of a cushion.",
+      "bullets": [
+        "Four-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de crochet gratis hongos: dos amanitas rojas con lunares en 4 colores, 53x59 puntos. Chart tapestry, PDF imprimible.",
+      "about": "Dos hongos sobre fondo salvia, uno grande y uno más chico adelante, saliendo de la tierra oscura. Cuatro colores, tejido plano en punto bajo, sin aumentos ni disminuciones, unos cuatro cambios de color por vuelta y ninguna puntada suelta. Los tallos van en el hilo claro y la parte de abajo de los sombreros en el oscuro, así que los mismos cuatro ovillos hacen también los lunares, los anillos y el suelo. Te queda en unos 33 por 37 cm, un panel para la pared o el frente de un cojín.",
+      "bullets": [
+        "Chart de símbolos a cuatro colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}
