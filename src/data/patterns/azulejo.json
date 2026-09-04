@@ -1,0 +1,36 @@
+{
+  "slug": "azulejo",
+  "name": "Azulejo",
+  "width": 40,
+  "height": 76,
+  "colors": 4,
+  "publishedAt": "2026-09-04",
+  "tags": [
+    "tapestry",
+    "geometric",
+    "decor",
+    "intermediate"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free crochet azulejo tile pattern: interlocking diamond lattice in 4 colors, 40x76 stitches. Tapestry chart for a table runner, printable PDF.",
+      "about": "Interlocking diamond rings in cobalt on glazed cream, each with a saffron or terracotta core, inside a terracotta border. Four colors, worked flat in single crochet with no shaping. Every edge in it is horizontal, vertical or 45 degrees, the angles a grid draws without a staircase, so there is not one isolated stitch and no run shorter than two anywhere in the chart. Around ten color changes a row, but the same rhythm in every row rather than scattered, which is a different thing to work. Finishes around 25 by 48 cm, a runner for a table or a long panel for a wall.",
+      "bullets": [
+        "Four-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de crochet gratis azulejo: celosía de rombos entrelazados en 4 colores, 40x76 puntos. Chart tapestry para camino de mesa, PDF imprimible.",
+      "about": "Rombos entrelazados en cobalto sobre crema esmaltada, cada uno con su núcleo de azafrán o terracota, dentro de un marco de terracota. Cuatro colores, tejido plano en punto bajo, sin aumentos ni disminuciones. Cada borde es horizontal, vertical o de 45 grados, que son los ángulos que una cuadrícula dibuja sin escalones, así que no hay ni una puntada suelta ni tramos de menos de dos puntos en todo el chart. Son unos diez cambios de color por vuelta, pero con el mismo ritmo en cada una y no dispersos, que se teje muy distinto. Te queda en unos 25 por 48 cm, un camino de mesa o un panel largo para la pared.",
+      "bullets": [
+        "Chart de símbolos a cuatro colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}

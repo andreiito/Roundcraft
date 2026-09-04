@@ -222,6 +222,17 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/xmas-candy-cane.html"
     },
     {
+      "slug": "azulejo",
+      "name": "Azulejo",
+      "width": 40,
+      "height": 76,
+      "colors": 4,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/azulejo-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/azulejo.rcpattern",
+      "sha256": "d4d54adbfb1cec77a882a73c30e44e5ded4cc25fc71ad38d8077b234a64ae025",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/azulejo.html"
+    },
+    {
       "slug": "xmas-elf",
       "name": "Christmas Elf",
       "width": 45,
