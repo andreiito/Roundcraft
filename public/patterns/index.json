@@ -223,24 +223,24 @@
     },
     {
       "slug": "azulejo",
-      "name": "Azulejo",
+      "name": "Azulejo Tiles",
       "width": 40,
       "height": 76,
       "colors": 4,
       "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/azulejo-preview.png",
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/azulejo.rcpattern",
-      "sha256": "d4d54adbfb1cec77a882a73c30e44e5ded4cc25fc71ad38d8077b234a64ae025",
+      "sha256": "52297a28e6cd5f0463d14ce72022a789bd86452c3eae1a55eed953441a8b04ca",
       "page": "https://andreiito.github.io/Roundcraft/patterns/azulejo.html"
     },
     {
       "slug": "hongo",
-      "name": "Hongo",
+      "name": "Toadstool",
       "width": 53,
       "height": 59,
       "colors": 4,
       "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/hongo-preview.png",
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/hongo.rcpattern",
-      "sha256": "3cb360c96cc95a5cb41a425ba30130ce4b255e78b07d45a78bd2f0fcf73d9d37",
+      "sha256": "bef73c9f155541be9d8cbd93610d184922f947f9f9e14bdaaadc3623b742438b",
       "page": "https://andreiito.github.io/Roundcraft/patterns/hongo.html"
     },
     {
