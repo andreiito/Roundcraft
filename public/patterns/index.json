@@ -266,6 +266,17 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/lighthouse.html"
     },
     {
+      "slug": "xmas-tree",
+      "name": "Christmas Tree",
+      "width": 19,
+      "height": 53,
+      "colors": 5,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/xmas-tree-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/xmas-tree.rcpattern",
+      "sha256": "b5ed35ca148664b96378b3f0fe3c89ece13ab9c6a3e8a355660e6500df554813",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/xmas-tree.html"
+    },
+    {
       "slug": "hazard-sign",
       "name": "Hazard Sign",
       "width": 33,
