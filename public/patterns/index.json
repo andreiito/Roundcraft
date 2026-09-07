@@ -255,6 +255,17 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-middle-finger.html"
     },
     {
+      "slug": "lighthouse",
+      "name": "Lighthouse",
+      "width": 19,
+      "height": 53,
+      "colors": 4,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/lighthouse-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/lighthouse.rcpattern",
+      "sha256": "dfa680f5b46628e68b320d1b35a322f3e5f9bc51851601eaadfcc76089aa4036",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/lighthouse.html"
+    },
+    {
       "slug": "hazard-sign",
       "name": "Hazard Sign",
       "width": 33,
