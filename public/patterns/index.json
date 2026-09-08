@@ -343,6 +343,17 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/arrow.html"
     },
     {
+      "slug": "pencil",
+      "name": "Pencil",
+      "width": 19,
+      "height": 53,
+      "colors": 5,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/pencil-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/pencil.rcpattern",
+      "sha256": "47b8c246fde17d1b8eeecf1cd282745e7fef1fe7d0d61c5be5e14f9538ac991e",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/pencil.html"
+    },
+    {
       "slug": "xmas-elf",
       "name": "Christmas Elf",
       "width": 45,
