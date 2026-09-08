@@ -156,15 +156,15 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/spooky-mothman.html"
     },
     {
-      "slug": "cafe-cup",
-      "name": "Coffee Cup",
-      "width": 45,
-      "height": 45,
-      "colors": 6,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/cafe-cup-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/cafe-cup.rcpattern",
-      "sha256": "e13290752c57cf20d451b57eeec4c5e3b8c95133fac1b70cce4667c2e1190039",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/cafe-cup.html"
+      "slug": "lighthouse",
+      "name": "Lighthouse",
+      "width": 19,
+      "height": 53,
+      "colors": 4,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/lighthouse-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/lighthouse.rcpattern",
+      "sha256": "dfa680f5b46628e68b320d1b35a322f3e5f9bc51851601eaadfcc76089aa4036",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/lighthouse.html"
     },
     {
       "slug": "xmas-santa",
@@ -255,15 +255,15 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-middle-finger.html"
     },
     {
-      "slug": "lighthouse",
-      "name": "Lighthouse",
-      "width": 19,
-      "height": 53,
-      "colors": 4,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/lighthouse-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/lighthouse.rcpattern",
-      "sha256": "dfa680f5b46628e68b320d1b35a322f3e5f9bc51851601eaadfcc76089aa4036",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/lighthouse.html"
+      "slug": "cafe-cup",
+      "name": "Coffee Cup",
+      "width": 45,
+      "height": 45,
+      "colors": 6,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/cafe-cup-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/cafe-cup.rcpattern",
+      "sha256": "e13290752c57cf20d451b57eeec4c5e3b8c95133fac1b70cce4667c2e1190039",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/cafe-cup.html"
     },
     {
       "slug": "xmas-tree",
