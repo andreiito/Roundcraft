@@ -90,6 +90,17 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/spooky-ghost.html"
     },
     {
+      "slug": "sunflower",
+      "name": "Sunflower",
+      "width": 47,
+      "height": 47,
+      "colors": 4,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/sunflower-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/sunflower.rcpattern",
+      "sha256": "ab0258c9d6a838d8ba23867dbca1fdbb4b045f615ada04f25232c40fbcd2fdea",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/sunflower.html"
+    },
+    {
       "slug": "ancient-eye",
       "name": "Ancient Eye",
       "width": 49,
