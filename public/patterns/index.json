@@ -332,15 +332,15 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/bath-sign.html"
     },
     {
-      "slug": "emoji-kiss",
-      "name": "Kiss",
-      "width": 45,
-      "height": 45,
-      "colors": 5,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-kiss-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-kiss.rcpattern",
-      "sha256": "d499ac19ad6d11913e70a55c21d2d2e09a3a3cf3c8d5d91a5b369f2b5ee50fb1",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-kiss.html"
+      "slug": "arrow",
+      "name": "Arrow",
+      "width": 19,
+      "height": 53,
+      "colors": 4,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/arrow-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/arrow.rcpattern",
+      "sha256": "61e1fd3a5aebcf18ebf0ec6ae653b8165b43439fc6b91702e23eb4d5754d5edc",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/arrow.html"
     },
     {
       "slug": "xmas-elf",
@@ -352,6 +352,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/xmas-elf.rcpattern",
       "sha256": "f925945a7a55193954f95c78ad942617dabc6a32ec98f5a74fc084c1e40c77e3",
       "page": "https://andreiito.github.io/Roundcraft/patterns/xmas-elf.html"
+    },
+    {
+      "slug": "emoji-kiss",
+      "name": "Kiss",
+      "width": 45,
+      "height": 45,
+      "colors": 5,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-kiss-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-kiss.rcpattern",
+      "sha256": "d499ac19ad6d11913e70a55c21d2d2e09a3a3cf3c8d5d91a5b369f2b5ee50fb1",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-kiss.html"
     }
   ]
 }
