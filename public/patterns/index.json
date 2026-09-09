@@ -385,6 +385,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-kiss.rcpattern",
       "sha256": "d499ac19ad6d11913e70a55c21d2d2e09a3a3cf3c8d5d91a5b369f2b5ee50fb1",
       "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-kiss.html"
+    },
+    {
+      "slug": "ant",
+      "name": "Ant",
+      "width": 23,
+      "height": 27,
+      "colors": 2,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/ant-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/ant.rcpattern",
+      "sha256": "19fd682d87f194da8b462693b10cb4be716222a9f2601513252d4cd11931df56",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/ant.html"
     }
   ]
 }
