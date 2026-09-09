@@ -407,6 +407,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/cafe-moka.rcpattern",
       "sha256": "96b96b1b8cb10e0c7e179b0c0182484ac7362ff19ea0a7ac9d2c1ae29fbc6b55",
       "page": "https://andreiito.github.io/Roundcraft/patterns/cafe-moka.html"
+    },
+    {
+      "slug": "frog",
+      "name": "Frog",
+      "width": 43,
+      "height": 41,
+      "colors": 4,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/frog-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/frog.rcpattern",
+      "sha256": "f74e241e8e21eb5d0063eea45df6aaeb46ef0eae6bb5d95d16ac51565298897b",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/frog.html"
     }
   ]
 }
