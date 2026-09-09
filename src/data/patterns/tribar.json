@@ -1,0 +1,36 @@
+{
+  "slug": "tribar",
+  "name": "Impossible Triangle",
+  "width": 43,
+  "height": 43,
+  "colors": 4,
+  "publishedAt": "2026-09-09",
+  "tags": [
+    "tapestry",
+    "geometric",
+    "decor",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free crochet impossible triangle pattern: the Penrose tribar in three tones, 4 colors, 43x43 stitches. Tapestry chart, printable PDF.",
+      "about": "An impossible triangle — the Penrose tribar. Three beams, each passing in front of the next, which no solid object can do. Four colors, worked flat in single crochet with no shaping. It is far more approachable than it looks: around four and a half color changes a row and never more than six, with no isolated stitches anywhere, because every edge in the figure is either horizontal or a regular step of one column per two rows. The three tones do the work of six faces — a face belongs to a direction rather than to a beam, so each pair of beams shares one tone — and that is what keeps it to four yarns. Square, with two stitches of ground on every side; finishes about 27 by 27 cm.",
+      "bullets": [
+        "Four-color symbol chart, readable even printed in black and white",
+        "Written row-by-row pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de crochet gratis triángulo imposible: el tribar de Penrose en tres tonos, 4 colores, 43x43 puntos. Chart tapestry, PDF imprimible.",
+      "about": "Un triángulo imposible: el tribar de Penrose. Tres vigas, cada una pasando por delante de la siguiente, cosa que ningún objeto sólido puede hacer. Cuatro colores, tejido plano en punto bajo, sin aumentos ni disminuciones. Es mucho más accesible de lo que parece: unos cuatro y medio cambios de color por vuelta y nunca más de seis, sin ninguna puntada aislada, porque cada borde de la figura es horizontal o un escalón regular de una columna por cada dos filas. Los tres tonos hacen el trabajo de seis caras —una cara pertenece a una dirección y no a una viga, así que cada par de vigas comparte un tono— y eso es lo que lo mantiene en cuatro hilos. Cuadrado, con dos puntos de fondo en los cuatro lados; te queda en unos 27 por 27 cm.",
+      "bullets": [
+        "Chart de símbolos a cuatro colores, legible incluso impreso en blanco y negro",
+        "Patrón escrito fila a fila con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}

@@ -321,15 +321,15 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-cd.html"
     },
     {
-      "slug": "cafe-moka",
-      "name": "Moka Pot",
-      "width": 45,
-      "height": 45,
-      "colors": 5,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/cafe-moka-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/cafe-moka.rcpattern",
-      "sha256": "96b96b1b8cb10e0c7e179b0c0182484ac7362ff19ea0a7ac9d2c1ae29fbc6b55",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/cafe-moka.html"
+      "slug": "tribar",
+      "name": "Impossible Triangle",
+      "width": 43,
+      "height": 43,
+      "colors": 4,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/tribar-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/tribar.rcpattern",
+      "sha256": "8af3ec127f91c991106b51d098bf186fe4d5b8fd179fd677d5ebce1d83e8ce3a",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/tribar.html"
     },
     {
       "slug": "bath-sign",
@@ -396,6 +396,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/ant.rcpattern",
       "sha256": "9eb0e0a893e16fed7f7085ec7d411be3d053116dd32a7841b3cbef50f8538db4",
       "page": "https://andreiito.github.io/Roundcraft/patterns/ant.html"
+    },
+    {
+      "slug": "cafe-moka",
+      "name": "Moka Pot",
+      "width": 45,
+      "height": 45,
+      "colors": 5,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/cafe-moka-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/cafe-moka.rcpattern",
+      "sha256": "96b96b1b8cb10e0c7e179b0c0182484ac7362ff19ea0a7ac9d2c1ae29fbc6b55",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/cafe-moka.html"
     }
   ]
 }
