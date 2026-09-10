@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import OpenInApp from './OpenInApp.astro';
+import RelatedPatterns from './RelatedPatterns.astro';
 import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
 import { playUrl } from '../data/site';
 import { downloadName, type Pattern } from '../data/patterns';
@@ -51,6 +52,8 @@ const ui = {
       <OpenInApp fileUrl={pattern.deepLinkTarget} label={ui.open} campaign={`pattern_${pattern.slug}`} pattern={pattern.slug} class="open-app" />
       <p class="license muted">{L.license}</p>
     </div>
+
+    <RelatedPatterns lang={lang} pattern={pattern} />
 
     <div class="pd-block app-cta" data-reveal>
       <h2>{ui.appTitle}</h2>

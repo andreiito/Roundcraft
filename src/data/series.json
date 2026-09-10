@@ -1,0 +1,9 @@
+{
+  "cats": { "en": "Cats", "es": "Gatos" },
+  "spooky": { "en": "Spooky", "es": "Terror" },
+  "christmas": { "en": "Christmas", "es": "Navidad" },
+  "signs": { "en": "Door signs", "es": "Letreros" },
+  "coffee": { "en": "Coffee", "es": "Café" },
+  "emoji": { "en": "Emoji", "es": "Emoji" },
+  "scenes": { "en": "Scenes", "es": "Paisajes" }
+}

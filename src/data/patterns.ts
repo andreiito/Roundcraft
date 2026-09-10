@@ -4,6 +4,7 @@ import type { Lang } from '../i18n/utils';
 
 import order from './order.json';
 import tagsJson from './tags.json';
+import seriesJson from './series.json';
 
 /** Real pixel size of a preview, read out of the PNG header at build time.
  *
@@ -41,6 +42,14 @@ export const TAGS: Record<string, { en: string; es: string }> = tagsJson;
 
 export type TagId = keyof typeof tagsJson;
 
+/** A series is a NARROWER grouping than a tag: `animals` holds a frog, an ant, a
+ *  dinosaur and four cats, which is not what "more like this" means. Tags drive
+ *  the catalog filter and are user-facing; a series drives recommendations and
+ *  exists only to answer "show me the rest of these". Optional -- a pattern that
+ *  belongs to no group still gets tag-based recommendations. */
+export const SERIES: Record<string, { en: string; es: string }> = seriesJson;
+export type SeriesId = keyof typeof seriesJson;
+
 /**
  * What a pattern actually has to say for itself. One JSON file per pattern in
  * ./patterns/, written by scripts/add-pattern.mjs and then filled in by hand.
@@ -60,6 +69,7 @@ interface PatternSource {
   colors: number;
   publishedAt: string;
   tags: TagId[];
+  series?: SeriesId;
   locales: Record<Lang, { seoDesc: string; about: string; bullets: string[] }>;
 }
 
@@ -102,6 +112,7 @@ export interface Pattern {
    *  drop the redirect hop. */
   deepLinkTarget: string;
   tags: TagId[];
+  series?: SeriesId;
   meta: { en: string; es: string };
   locales: Record<Lang, PatternLocale>;
 }
@@ -234,4 +245,48 @@ export function downloadName(pattern: Pattern, kind: 'pdf-en' | 'pdf-es' | 'rcpa
   const base = `RoundCraft free pattern - ${pattern.name}`;
   if (kind === 'rcpattern') return `${base}.rcpattern`;
   return `${base} (${kind === 'pdf-en' ? 'EN' : 'ES'}).pdf`;
+}
+
+/** Tags nearly every pattern carries say nothing about similarity, so they are
+ *  worth nothing in the score. `tapestry` is on all of them: counting it would
+ *  give every pair the same bonus, which is the same as counting nothing while
+ *  looking like a signal. */
+const COMMON_TAGS = new Set(
+  (Object.keys(TAGS) as TagId[]).filter(
+    (t) => patterns.filter((p) => p.tags.includes(t)).length > patterns.length * 0.6,
+  ),
+);
+
+/** Skill tags are a real but weak signal: two beginner patterns have something
+ *  in common, just far less than two cats do. */
+const SKILL_TAGS = new Set<TagId>(['beginner', 'intermediate', 'advanced'] as TagId[]);
+
+/** What to show under "you might also like", ranked. Same series outranks any
+ *  number of shared tags, because a series is an explicit statement that two
+ *  patterns are the same thing in different clothes.
+ *
+ *  Returned in two lists rather than one: the rest of a series is a different
+ *  promise from a loose recommendation, and collapsing them would bury three
+ *  cats among six animals. */
+export function related(pattern: Pattern, limit = 6): { series: Pattern[]; alsoLike: Pattern[] } {
+  const inSeries = pattern.series
+    ? patterns.filter((p) => p.slug !== pattern.slug && p.series === pattern.series)
+    : [];
+
+  const seen = new Set([pattern.slug, ...inSeries.map((p) => p.slug)]);
+  const scored = patterns
+    .filter((p) => !seen.has(p.slug))
+    .map((p) => {
+      let score = 0;
+      if (p.series && p.series === pattern.series) score += 100;
+      for (const t of p.tags) {
+        if (!pattern.tags.includes(t) || COMMON_TAGS.has(t)) continue;
+        score += SKILL_TAGS.has(t) ? 2 : 10;
+      }
+      return { p, score };
+    })
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score);
+
+  return { series: inSeries.slice(0, limit), alsoLike: scored.slice(0, limit).map((x) => x.p) };
 }
