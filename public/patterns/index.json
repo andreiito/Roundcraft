@@ -429,6 +429,50 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/bath-sign.rcpattern",
       "sha256": "fda6867e291ba2a750797c5d23b2ee6eedb996e2c7f2699de1d21b89ffa24e56",
       "page": "https://andreiito.github.io/Roundcraft/patterns/bath-sign.html"
+    },
+    {
+      "slug": "black-cat",
+      "name": "Black Cat",
+      "width": 31,
+      "height": 36,
+      "colors": 2,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/black-cat-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/black-cat.rcpattern",
+      "sha256": "e680739db51834b3dcce8cdcf5d282f10e74beab4f07969d69b862f13f5e2d7b",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/black-cat.html"
+    },
+    {
+      "slug": "tabby-cat",
+      "name": "Tabby Cat",
+      "width": 31,
+      "height": 36,
+      "colors": 3,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/tabby-cat-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/tabby-cat.rcpattern",
+      "sha256": "064cd050a2b8c96d8f18372f0591add9c7565db097d07b7f86a169b123e44b87",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/tabby-cat.html"
+    },
+    {
+      "slug": "ginger-cat",
+      "name": "Ginger Cat",
+      "width": 31,
+      "height": 36,
+      "colors": 3,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/ginger-cat-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/ginger-cat.rcpattern",
+      "sha256": "e781f5ce464a0ac9e9d64406ad963ed977d4c4af142d287340d5a928625e3c73",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/ginger-cat.html"
+    },
+    {
+      "slug": "grey-cat",
+      "name": "Grey Cat",
+      "width": 31,
+      "height": 36,
+      "colors": 3,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/grey-cat-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/grey-cat.rcpattern",
+      "sha256": "a44cca0fe5a78fb7fbf3484562ab0f0ff333aa71d303618304e6615da6c3d74a",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/grey-cat.html"
     }
   ]
 }

@@ -1,0 +1,35 @@
+{
+  "slug": "grey-cat",
+  "name": "Grey Cat",
+  "width": 31,
+  "height": 36,
+  "colors": 3,
+  "publishedAt": "2026-09-10",
+  "tags": [
+    "tapestry",
+    "animals",
+    "intermediate"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free crochet grey cat pattern: a gray silver tabby on blush, 3 colors, 31x36 stitches. Tapestry chart, printable PDF.",
+      "about": "A grey cat — spell it gray if you like — worked as a silver tabby on a blush ground. At 31 by 36 stitches this is small enough to be a thing rather than a wall hanging: in worsted weight it comes out about 19 by 22 cm, which is a cushion front, the pocket of a tote, a framed square, or the centre panel of a baby blanket if you border it. In fine cotton at 24 stitches per 10 cm it drops to 13 by 15 cm and becomes a coaster or a pouch front. Grey against blush is the pairing that keeps a cool coat from going flat — a grey cat on a grey-white ground loses its edges. Three colors, worked flat in single crochet.",
+      "bullets": [
+        "Three-color symbol chart, plus the finished size at two gauges",
+        "Row-by-row written pattern with color runs and RS/WS sides",
+        "Yarn legend with stitch counts for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de crochet gratis gato gris: atigrado plateado sobre rosa empolvado, 3 colores, 31x36 puntos. Chart tapestry, PDF imprimible.",
+      "about": "Un gato gris, tejido como atigrado plateado sobre fondo rosa empolvado. Con 31 por 36 puntos es lo bastante chico para ser un objeto y no un tapiz: en hilo grueso te queda en unos 19 por 22 cm, que es una funda de cojín, el bolsillo de una bolsa, un cuadro para enmarcar, o el panel central de una manta de bebé si le pones borde. En algodón fino a 24 puntos por 10 cm baja a 13 por 15 cm y se vuelve un portavasos o el frente de un monedero. El gris contra el rosa es la combinación que evita que un pelaje frío se apague: un gato gris sobre fondo gris blanquecino pierde sus bordes. Tres colores, tejido plano en punto bajo.",
+      "bullets": [
+        "Chart de símbolos a tres colores, con la medida final en dos muestras",
+        "Patrón escrito vuelta a vuelta con tramos de color y lados RS/WS",
+        "Leyenda de hilos con conteo de puntos por color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}
