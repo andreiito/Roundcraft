@@ -42,5 +42,9 @@
   "decor": {
     "en": "Decor",
     "es": "Decoración"
+  },
+  "lettering": {
+    "en": "Lettering",
+    "es": "Letras"
   }
 }
