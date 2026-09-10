@@ -332,15 +332,15 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/tribar.html"
     },
     {
-      "slug": "bath-sign",
-      "name": "Bath Sign",
-      "width": 30,
-      "height": 80,
-      "colors": 2,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/bath-sign-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/bath-sign.rcpattern",
-      "sha256": "fda6867e291ba2a750797c5d23b2ee6eedb996e2c7f2699de1d21b89ffa24e56",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/bath-sign.html"
+      "slug": "one-more-row",
+      "name": "Just One More Row",
+      "width": 50,
+      "height": 68,
+      "colors": 3,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/one-more-row-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/one-more-row.rcpattern",
+      "sha256": "9b348347d4c0b64cf71270e6f8b37c7807fd803ef855a8dc7e8a1f76cd26cf1d",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/one-more-row.html"
     },
     {
       "slug": "arrow",
@@ -420,15 +420,15 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/frog.html"
     },
     {
-      "slug": "one-more-row",
-      "name": "Just One More Row",
-      "width": 50,
-      "height": 68,
-      "colors": 3,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/one-more-row-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/one-more-row.rcpattern",
-      "sha256": "9b348347d4c0b64cf71270e6f8b37c7807fd803ef855a8dc7e8a1f76cd26cf1d",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/one-more-row.html"
+      "slug": "bath-sign",
+      "name": "Bath Sign",
+      "width": 30,
+      "height": 80,
+      "colors": 2,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/bath-sign-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/bath-sign.rcpattern",
+      "sha256": "fda6867e291ba2a750797c5d23b2ee6eedb996e2c7f2699de1d21b89ffa24e56",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/bath-sign.html"
     }
   ]
 }
