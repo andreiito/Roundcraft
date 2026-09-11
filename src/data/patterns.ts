@@ -130,7 +130,7 @@ const SHARED = {
       'Personal use. You may sell the finished items. Please do not redistribute the PDF. This pattern is always free on this page.',
     appPitch:
       'RoundCraft is the professional crochet app. Smart row counters, a project timer and a quote calculator to price your finished pieces, plus a tapestry mode to follow this pattern stitch by stitch.',
-    seoTitle: (name: string) => `${name} — Free Tapestry Crochet Pattern | RoundCraft`,
+    seoTitle: (name: string) => `${name}: Free Tapestry Crochet Pattern | RoundCraft`,
     subtitle: (p: PatternSource) =>
       `${p.width} × ${p.height} · ${(p.width * p.height).toLocaleString('en-US')} stitches · ${p.colors} colors · by NaredCraft`,
     meta: (p: PatternSource) => `${p.width} × ${p.height} · ${p.colors} colors · tapestry crochet`,
@@ -143,7 +143,7 @@ const SHARED = {
       'Uso personal. Puedes vender las piezas terminadas. No redistribuyas el PDF. Este patrón es siempre gratuito en esta página.',
     appPitch:
       'RoundCraft es la app profesional para tejer. Contadores de vueltas inteligentes, cronómetro de proyecto y calculadora para cotizar tus piezas, con modo tapestry para seguir este patrón punto por punto.',
-    seoTitle: (name: string) => `${name} — Patrón de Tapestry Crochet Gratis | RoundCraft`,
+    seoTitle: (name: string) => `${name}: Patrón de Tapestry Crochet Gratis | RoundCraft`,
     subtitle: (p: PatternSource) =>
       `${p.width} × ${p.height} · ${(p.width * p.height).toLocaleString('es-MX')} puntos · ${p.colors} colores · por NaredCraft`,
     meta: (p: PatternSource) => `${p.width} × ${p.height} · ${p.colors} colores · tapestry crochet`,
