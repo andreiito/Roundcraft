@@ -10,13 +10,16 @@
 // obeyed, so tone belongs to the pattern-copy skill and to the soft report.
 
 export const LIMITS = {
-  // Truncated in the result past 160; wasting the slot under 120. It is also
-  // the og: and twitter: description, so it is the only string that reaches
-  // three surfaces at once.
+  // Truncated in the result past 160, wasting the slot under 120. Externally
+  // imposed by how Google draws a snippet, so this one is a real rule and not
+  // a preference.
   seoDesc: { min: 120, max: 160 },
-  // The 2026-08-28 standard. Length is the enforceable proxy for the real
-  // rule, which is that the paragraph stays three movements long.
-  about: { min: 200, max: 400 },
+  // **A sanity rail, not the standard.** Length was the enforceable proxy for
+  // "three movements", and a proxy is what it stayed: a 400 character paragraph
+  // can still be a design essay and a 500 character one can be exactly right.
+  // What the build checks now is whether the movements are PRESENT, below.
+  // These bounds only catch a runaway or an empty stub.
+  about: { min: 180, max: 650 },
 };
 
 /** Substrings that are always a rule break, in either language. Kept short and
@@ -62,9 +65,34 @@ function fields(locale) {
           ...locale.bullets.map((b, i) => [`bullets[${i}]`, b])];
 }
 
+/** Movement 2: the technical facts that set expectations. A description with no
+ *  yarn count leaves the reader unable to decide whether to start. */
+const COLOR_COUNT = {
+  en: /\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|sixteen|\d+)[\s-](\w+[\s-])?colors?\b/i,
+  es: /\b(un|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce|dieciséis|\d+)\s+(\w+\s+)?colores?\b/i,
+};
+
+/** Movement 2 again: how big the finished thing is. Always in cm, both
+ *  languages; inches are additional in English and absent in Spanish. */
+const FINISHED_SIZE = /\d+\s*(by|por|x|×)\s*\d+\s*cm/i;
+
 /** Objective failures. The build refuses to produce a page with any of these. */
 export function hardFailures(lang, locale) {
   const out = [];
+  const about = locale.about || '';
+
+  // The three movements, checked for presence rather than for length. Movement
+  // 1 (what it is) cannot be tested by a machine; 2 and 3 can, and 3 is the one
+  // that disappears first, so it is the one most worth a gate.
+  if (!DESTINATION[lang].some((w) => about.toLowerCase().includes(w))) {
+    out.push(`${lang}.about names no destination: say what the finished piece becomes`);
+  }
+  if (!FINISHED_SIZE.test(about)) {
+    out.push(`${lang}.about gives no finished size in cm`);
+  }
+  if (!COLOR_COUNT[lang].test(about)) {
+    out.push(`${lang}.about does not say how many colors it takes`);
+  }
   for (const [name, limit] of Object.entries(LIMITS)) {
     const n = (locale[name] || '').length;
     if (n < limit.min || n > limit.max) {
@@ -86,8 +114,12 @@ export function hardFailures(lang, locale) {
 export function softWarnings(lang, locale) {
   const out = [];
   const about = (locale.about || '').toLowerCase();
-  if (!DESTINATION[lang].some((w) => about.includes(w))) {
-    out.push(`${lang}.about names no destination: say what the finished piece becomes`);
+  // The register tell. A description states what a thing is; an essay justifies
+  // a choice, and justification needs connectives. Counting them separates the
+  // two far better than counting characters ever did.
+  const because = (about.match(/\b(that is (what|why|the reason)|which is (what|why)|because|so that|rather than|instead of|es lo que|por eso|porque|en lugar de|en vez de)\b/g) || []).length;
+  if (because >= 2) {
+    out.push(`${lang}.about explains ${because} choices: it is arguing, not describing`);
   }
   for (const tell of JARGON) {
     if (about.includes(tell.toLowerCase())) {
