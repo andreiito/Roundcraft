@@ -1,0 +1,69 @@
+---
+import { canonicalizePath, localizedPath, type Lang } from '../i18n/utils';
+import { type Pattern } from '../data/patterns';
+
+interface Props { lang: Lang; pattern: Pattern; }
+const { lang, pattern } = Astro.props;
+
+// Same constant as Head.astro. Hardcoded there too, and kept identical here on
+// purpose: the canonical, the og:url and the schema must not be able to
+// disagree about what this site is called.
+const site = 'https://getroundcraft.com';
+const abs = (p: string) => new URL(p, site).href;
+
+const canonical = abs(canonicalizePath(Astro.url.pathname));
+const catalog = abs(`${localizedPath('/patterns', lang)}/`);
+const L = pattern.locales[lang];
+
+const t = {
+  en: { home: 'Home', patterns: 'Free patterns' },
+  es: { home: 'Inicio', patterns: 'Patrones gratis' },
+}[lang];
+
+// Product rather than CreativeWork, because Product with a zero-price Offer is
+// what earns a rich result for a free download. Every value is derived from the
+// chart or from copy that already exists on the page: nothing here is a second
+// place to keep a fact.
+//
+// HowTo is deliberately absent. It requires the steps to be ON the page, and
+// ours are inside the PDF. Marking up steps a visitor cannot see is what earns
+// a manual action, so the type is left off rather than faked.
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Product',
+      '@id': `${canonical}#pattern`,
+      name: pattern.name,
+      description: L.seoDesc,
+      image: abs(pattern.preview),
+      url: canonical,
+      brand: { '@type': 'Brand', name: 'NaredCraft' },
+      category: 'Crochet pattern',
+      inLanguage: lang,
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+        availability: 'https://schema.org/InStock',
+        url: canonical,
+      },
+      additionalProperty: [
+        { '@type': 'PropertyValue', name: 'Stitches wide', value: pattern.width },
+        { '@type': 'PropertyValue', name: 'Stitches tall', value: pattern.height },
+        { '@type': 'PropertyValue', name: 'Colors', value: pattern.colors },
+      ],
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonical}#breadcrumb`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: t.home, item: abs(localizedPath('/', lang)) },
+        { '@type': 'ListItem', position: 2, name: t.patterns, item: catalog },
+        { '@type': 'ListItem', position: 3, name: pattern.name },
+      ],
+    },
+  ],
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

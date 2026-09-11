@@ -2,6 +2,7 @@
 import Icon from './Icon.astro';
 import OpenInApp from './OpenInApp.astro';
 import RelatedPatterns from './RelatedPatterns.astro';
+import PatternSchema from './PatternSchema.astro';
 import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
 import { playUrl } from '../data/site';
 import { downloadName, type Pattern } from '../data/patterns';
@@ -17,6 +18,8 @@ const ui = {
   es: { back: 'Todos los patrones gratis', downloadTitle: 'Descarga el PDF gratis', pdfEn: 'Descargar PDF, Inglés', pdfEs: 'Descargar PDF, Español', rc: 'Archivo de patrón para la app (.rcpattern)', open: 'Abrir en la app RoundCraft', appTitle: 'Téjelo con RoundCraft' },
 }[lang];
 ---
+<PatternSchema lang={lang} pattern={pattern} />
+
 <section class="section">
   <div class="wrap wrap-narrow">
     <nav class="crumb" data-reveal><a href={catalog}><Icon name="arrow" size={15} class="flip" /> {ui.back}</a></nav>

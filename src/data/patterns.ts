@@ -5,6 +5,7 @@ import type { Lang } from '../i18n/utils';
 import order from './order.json';
 import tagsJson from './tags.json';
 import seriesJson from './series.json';
+import { hardFailures } from './copyRules.mjs';
 
 /** Real pixel size of a preview, read out of the PNG header at build time.
  *
@@ -160,6 +161,21 @@ function expand(src: PatternSource): Pattern {
       throw new Error(
         `src/data/patterns/${slug}.json is missing ${lang} copy (seoDesc, about, bullets). ` +
         `Fill it in, or delete the file to unpublish the pattern.`,
+      );
+    }
+    // The countable half of the copy standard, enforced where it cannot be
+    // skipped. It was set catalogue-wide on 2026-08-28, lived only in that
+    // commit message, and every pattern published from 2026-09-03 drifted past
+    // it. The rules themselves are in copyRules.mjs, shared with
+    // scripts/check-copy.mjs so the gate and the report cannot disagree.
+    //
+    // Only objective things fail a build. Tone is the pattern-copy skill's job.
+    const broken = hardFailures(lang, src.locales[lang]);
+    if (broken.length) {
+      throw new Error(
+        `src/data/patterns/${slug}.json breaks the copy standard:\n  ` +
+        broken.join('\n  ') +
+        `\nSee the pattern-copy skill, or run: node scripts/check-copy.mjs`,
       );
     }
   }
