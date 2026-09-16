@@ -473,6 +473,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/bath-sign.rcpattern",
       "sha256": "fda6867e291ba2a750797c5d23b2ee6eedb996e2c7f2699de1d21b89ffa24e56",
       "page": "https://andreiito.github.io/Roundcraft/patterns/bath-sign.html"
+    },
+    {
+      "slug": "cat-with-a-knife",
+      "name": "Cat With a Knife",
+      "width": 41,
+      "height": 38,
+      "colors": 2,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/cat-with-a-knife-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/cat-with-a-knife.rcpattern",
+      "sha256": "22b7db2de613dd7ef3eafd6a8aa11a60307b8df197a2c9130377377013e02793",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/cat-with-a-knife.html"
     }
   ]
 }

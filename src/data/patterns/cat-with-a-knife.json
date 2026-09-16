@@ -1,0 +1,36 @@
+{
+  "slug": "cat-with-a-knife",
+  "name": "Cat With a Knife",
+  "width": 41,
+  "height": 38,
+  "colors": 2,
+  "publishedAt": "2026-09-16",
+  "tags": [
+    "tapestry",
+    "animals",
+    "beginner"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free crochet cat with a knife pattern: a street stencil cat in 2 colors, 41x38 stitches. Beginner tapestry chart, printable PDF in EN and ES.",
+      "about": "A cat sitting with a knife held at its side, traced from a street stencil. Two colors, worked flat in single crochet with no shaping and around three color changes a row. Finishes about 26 by 24 cm (10 by 9.5 in), which fronts a cushion, hangs by a kitchen door or goes in a frame. Adapted from a stencil by an unidentified street artist.",
+      "bullets": [
+        "Two-color symbol chart, clear even printed in black and white",
+        "Row-by-row written pattern with color runs and RS/WS sides",
+        "Yarn legend with the stitch count for each color",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de crochet gratis gato con cuchillo: silueta de stencil callejero en 2 colores, 41x38 puntos. Chart tapestry, PDF imprimible.",
+      "about": "Un gato sentado con un cuchillo al costado, calcado de un stencil callejero. Dos colores, tejido plano a ganchillo en punto bajo, sin aumentos ni disminuciones y unos tres cambios de color por vuelta. Te queda en unos 26 por 24 cm, para el frente de un cojín, colgado junto a la puerta de la cocina o dentro de un marco. Adaptado de un stencil de artista urbano sin identificar.",
+      "bullets": [
+        "Chart de símbolos a dos colores, claro incluso impreso en blanco y negro",
+        "Patrón escrito vuelta a vuelta con tramos de color y lados RS/WS",
+        "Leyenda de hilos con el conteo de puntos de cada color",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  },
+  "series": "cats"
+}
