@@ -46,15 +46,15 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-floppy.html"
     },
     {
-      "slug": "black-cat",
-      "name": "Black Cat",
+      "slug": "ginger-cat",
+      "name": "Ginger Cat",
       "width": 31,
       "height": 36,
-      "colors": 2,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/black-cat-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/black-cat.rcpattern",
-      "sha256": "e680739db51834b3dcce8cdcf5d282f10e74beab4f07969d69b862f13f5e2d7b",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/black-cat.html"
+      "colors": 3,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/ginger-cat-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/ginger-cat.rcpattern",
+      "sha256": "e781f5ce464a0ac9e9d64406ad963ed977d4c4af142d287340d5a928625e3c73",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/ginger-cat.html"
     },
     {
       "slug": "cat-with-a-knife",
@@ -244,15 +244,15 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/closed-sign.html"
     },
     {
-      "slug": "ginger-cat",
-      "name": "Ginger Cat",
+      "slug": "black-cat",
+      "name": "Black Cat",
       "width": 31,
       "height": 36,
-      "colors": 3,
-      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/ginger-cat-preview.png",
-      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/ginger-cat.rcpattern",
-      "sha256": "e781f5ce464a0ac9e9d64406ad963ed977d4c4af142d287340d5a928625e3c73",
-      "page": "https://andreiito.github.io/Roundcraft/patterns/ginger-cat.html"
+      "colors": 2,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/black-cat-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/black-cat.rcpattern",
+      "sha256": "e680739db51834b3dcce8cdcf5d282f10e74beab4f07969d69b862f13f5e2d7b",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/black-cat.html"
     },
     {
       "slug": "xmas-candy-cane",
