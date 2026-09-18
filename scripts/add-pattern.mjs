@@ -25,6 +25,7 @@
 
 import { createHash } from 'node:crypto';
 import { copyFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { homedir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { readRcPattern, renderChartPng } from './lib/pattern.mjs';
@@ -38,10 +39,17 @@ const ORDER_FILE = 'src/data/order.json';
 // Where Tapestry Studio keeps its patterns, most recent layout first. The
 // folder has moved once already, so this looks rather than assumes; --from
 // overrides. Each pattern lives in its own subfolder named after its slug.
+//
+// The relative entries only reach the generator while this repo sits beside it.
+// It does not: this repo was re-cloned into ~/dev on 2026-09-01 to get out of
+// iCloud's reach, and the generator stayed on the Desktop. Without the
+// home-anchored entry every publish dies on "Cannot find a folder" and needs
+// --from with the absolute path typed out.
 const ROOT_CANDIDATES = [
   '../Count Row App/tapestry-studio/patterns',
   '../tapestry-studio/patterns',
   '../NaredCraft - WebTapestry/patterns',
+  join(homedir(), 'Desktop/Count Row App/tapestry-studio/patterns'),
 ];
 
 // The app's import allow-list is checked against these strings, and the
