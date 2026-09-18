@@ -70,12 +70,12 @@
     {
       "slug": "spooky-sugar-skull",
       "name": "Sugar Skull",
-      "width": 45,
-      "height": 45,
+      "width": 41,
+      "height": 41,
       "colors": 8,
       "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-sugar-skull-preview.png",
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/spooky-sugar-skull.rcpattern",
-      "sha256": "3eba7e5213a1969a5fbd2f722eb9c84f011a917c9879b1190330909e96824f41",
+      "sha256": "41666ad2c10c2f385c9d3da142e24690b8dfa5518833514126df625310821b0c",
       "page": "https://andreiito.github.io/Roundcraft/patterns/spooky-sugar-skull.html"
     },
     {
