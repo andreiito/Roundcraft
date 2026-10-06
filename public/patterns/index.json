@@ -484,6 +484,17 @@
       "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/emoji-kiss.rcpattern",
       "sha256": "d499ac19ad6d11913e70a55c21d2d2e09a3a3cf3c8d5d91a5b369f2b5ee50fb1",
       "page": "https://andreiito.github.io/Roundcraft/patterns/emoji-kiss.html"
+    },
+    {
+      "slug": "wolf",
+      "name": "Wolf",
+      "width": 23,
+      "height": 23,
+      "colors": 4,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/wolf-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/wolf.rcpattern",
+      "sha256": "93fb14f46050d5e307b1dcdfebb21952afbb57ecb18e7a03a1d9500fcecfab3d",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/wolf.html"
     }
   ]
 }
