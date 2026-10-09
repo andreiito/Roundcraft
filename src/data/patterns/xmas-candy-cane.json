@@ -1,20 +1,20 @@
 {
   "slug": "xmas-candy-cane",
   "name": "Candy Cane",
-  "width": 45,
-  "height": 45,
+  "width": 31,
+  "height": 43,
   "colors": 4,
   "publishedAt": "2026-08-24",
   "tags": [
     "tapestry",
     "holiday",
-    "beginner"
+    "intermediate"
   ],
   "series": "christmas",
   "locales": {
     "en": {
-      "seoDesc": "Free crochet candy cane pattern: striped cane on mint, 4 colors, 45x45 stitches. Beginner tapestry chart, printable PDF in EN and ES.",
-      "about": "A candy cane, hook and all, on a pale mint ground, its stripes measured along the cane so they carry round the bend without breaking up. Four colors, worked flat in single crochet with no shaping and no isolated stitches. Finishes around 28 by 28 cm, a square for a Christmas cushion, a door or a frame.",
+      "seoDesc": "Free crochet candy cane pattern: striped cane on mint, 4 colors, 31x43 stitches. Intermediate tapestry chart, printable PDF in EN and ES.",
+      "about": "A candy cane, hook and all, on a pale mint ground, its stripes measured along the cane so they carry round the bend without breaking up. Four colors, worked flat in single crochet with no shaping and no isolated stitches. Finishes around 19 by 27 cm (7.5 by 10.5 in), a tall panel for a door, a frame or a cushion.",
       "bullets": [
         "Four-color symbol chart, readable even printed in black and white",
         "Written row-by-row pattern with color runs and RS/WS sides",
@@ -23,8 +23,8 @@
       ]
     },
     "es": {
-      "seoDesc": "Patrón de crochet gratis de bastón de caramelo: rayas sobre menta, 4 colores, 45x45 puntos. Chart tapestry para principiantes, PDF imprimible.",
-      "about": "Un bastón de caramelo, con gancho y todo, sobre fondo menta claro, con las rayas medidas a lo largo del bastón para que sigan la curva sin romperse. Cuatro colores, tejido plano en punto bajo, sin aumentos ni disminuciones y sin puntadas sueltas. Te queda en unos 28 por 28 cm, para un cojín navideño, la puerta o un marco.",
+      "seoDesc": "Patrón de crochet gratis de bastón de caramelo: rayas sobre menta, 4 colores, 31x43 puntos. Chart tapestry de nivel intermedio, PDF imprimible.",
+      "about": "Un bastón de caramelo, con gancho y todo, sobre fondo menta claro, con las rayas medidas a lo largo del bastón para que sigan la curva sin romperse. Cuatro colores, tejido plano en punto bajo, sin aumentos ni disminuciones y sin puntadas sueltas. Te queda en unos 19 por 27 cm, un panel alto para la puerta, un marco o un cojín.",
       "bullets": [
         "Chart de símbolos a cuatro colores, legible incluso impreso en blanco y negro",
         "Patrón escrito fila a fila con tramos de color y lados RS/WS",

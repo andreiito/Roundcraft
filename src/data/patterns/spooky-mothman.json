@@ -1,20 +1,20 @@
 {
   "slug": "spooky-mothman",
   "name": "Mothman",
-  "width": 45,
-  "height": 45,
+  "width": 41,
+  "height": 32,
   "colors": 5,
   "publishedAt": "2026-08-20",
   "tags": [
     "tapestry",
     "holiday",
-    "beginner"
+    "intermediate"
   ],
   "series": "spooky",
   "locales": {
     "en": {
-      "seoDesc": "Free crochet Mothman pattern: winged cryptid with red eyes, 5 colors, 45x45 stitches. Beginner tapestry chart, printable PDF in EN and ES.",
-      "about": "Mothman, wings spread and two red eyes staring out, the eyes the only saturated color against a dark silhouette. Five colors on a pale mauve, worked flat in single crochet with no shaping and no isolated stitches. Finishes around 28 by 28 cm, easier than it looks, and it hangs well as Halloween wall art.",
+      "seoDesc": "Free crochet Mothman pattern: winged cryptid with red eyes, 5 colors, 41x32 stitches. Intermediate tapestry chart, printable PDF in EN and ES.",
+      "about": "Mothman, wings spread and two red eyes staring out, the eyes the only saturated color against a dark silhouette. Five colors on a pale mauve, worked flat in single crochet with no shaping and no isolated stitches. Finishes around 26 by 20 cm (10 by 8 in), and it hangs well as Halloween wall art.",
       "bullets": [
         "Five-color symbol chart, readable even printed in black and white",
         "Written row-by-row pattern with color runs and RS/WS sides",
@@ -23,8 +23,8 @@
       ]
     },
     "es": {
-      "seoDesc": "Patrón de crochet gratis de Mothman: criatura alada de ojos rojos, 5 colores, 45x45 puntos. Chart tapestry para principiantes, PDF imprimible.",
-      "about": "Mothman, con las alas abiertas y dos ojos rojos mirando de frente, los ojos como único color saturado sobre una silueta oscura. Cinco colores sobre malva pálido, tejido plano en punto bajo, sin aumentos ni disminuciones y sin puntadas sueltas. Te queda en unos 28 por 28 cm, más fácil de lo que parece, y luce colgado en Halloween.",
+      "seoDesc": "Patrón de crochet gratis de Mothman: criatura alada de ojos rojos, 5 colores, 41x32 puntos. Chart tapestry de nivel intermedio, PDF imprimible.",
+      "about": "Mothman, con las alas abiertas y dos ojos rojos mirando de frente, los ojos como único color saturado sobre una silueta oscura. Cinco colores sobre malva pálido, tejido plano en punto bajo, sin aumentos ni disminuciones y sin puntadas sueltas. Te queda en unos 26 por 20 cm, y luce colgado en Halloween.",
       "bullets": [
         "Chart de símbolos a cinco colores, legible incluso impreso en blanco y negro",
         "Patrón escrito fila a fila con tramos de color y lados RS/WS",
