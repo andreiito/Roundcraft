@@ -17,7 +17,7 @@ import sitemap from '@astrojs/sitemap';
 // with a trailing slash and answers 301 without one. Mirror of DIR_INDEX in
 // src/i18n/utils.ts; keep the two in step. The config cannot import from src
 // because Astro loads this file before the TS pipeline exists.
-const DIR_INDEX = new Set(['/', '/es/', '/patterns/', '/es/patterns/']);
+const DIR_INDEX = new Set(['/', '/es/', '/patterns/', '/es/patterns/', '/studio/', '/es/studio/']);
 
 /** @astrojs/sitemap strips the trailing slash off every entry, which turns the
  *  four directory-index routes into 301s. Search Console then reports them as

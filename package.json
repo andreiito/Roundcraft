@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "publish-pattern": "node scripts/add-pattern.mjs",
+    "sync-studio": "node scripts/sync-studio.mjs",
     "ravelry-images": "node scripts/render-ravelry.mjs"
   },
   "dependencies": {

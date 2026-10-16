@@ -17,3 +17,12 @@ export const EMAIL = 'naredcraft@gmail.com';
 
 /** The lead-magnet section stays a single static URL in both languages. */
 export const PATTERNS_URL = '/patterns/';
+
+/** The free web Tapestry Studio. The landing is /studio/; the editor itself is
+ *  the Vite bundle copied to public/studio/app/ by `npm run sync-studio`. */
+export const STUDIO_APP_URL = '/studio/app/';
+
+/** Flip to true together with VITE_SEND_TO_APP in tapestry-studio/.env.public,
+ *  once a RoundCraft release that opens roundcraft://studio links is on Play.
+ *  Until then the landing says "coming soon" instead of promising the hand-off. */
+export const STUDIO_SEND_LIVE = false;

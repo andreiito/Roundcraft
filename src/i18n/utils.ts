@@ -25,7 +25,7 @@ export function localizedPath(path: string, lang: Lang): string {
 /** Routes that are physically <dir>/index.html and so keep a trailing slash.
  *  Everything else under build.format:'preserve' is a real .html file, served
  *  without one. */
-const DIR_INDEX = new Set(['/', '/es/', '/patterns/', '/es/patterns/']);
+const DIR_INDEX = new Set(['/', '/es/', '/patterns/', '/es/patterns/', '/studio/', '/es/studio/']);
 
 /** Match the physical build output. Astro.url reports a trailing slash on named
  *  routes, and `/patterns/paper-boat/` is a directory that does not exist, so any

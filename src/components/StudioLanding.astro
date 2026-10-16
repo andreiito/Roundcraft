@@ -1,0 +1,230 @@
+---
+import Icon from './Icon.astro';
+import AppIcon from './AppIcon.astro';
+import { localizedPath, type Lang } from '../i18n/utils';
+import { playUrl, STUDIO_APP_URL, STUDIO_SEND_LIVE } from '../data/site';
+
+// Landing for the free web Tapestry Studio. It exists so the page that ranks
+// has words on it; the editor at /studio/app/ is an empty canvas and is
+// noindex. One primary action everywhere: open the Studio.
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const patternsHref = `${localizedPath('/patterns', lang)}/`;
+const supportHref = localizedPath('/support', lang);
+
+const copy = {
+  en: {
+    eyebrow: 'Free · No sign-up',
+    title: 'Design your tapestry crochet patterns',
+    lede: 'Draw your chart stitch by stitch in the browser, follow it row by row while you crochet, and keep it on your own device. Free, with no account.',
+    open: 'Open the Studio',
+    patterns: 'Browse free patterns',
+    shotAlt: 'Tapestry Studio editor with a pixel chart and the colour palette',
+    featuresTitle: 'Everything a tapestry chart needs',
+    features: [
+      { icon: 'tapestry', title: 'Grids up to 100 × 100', body: 'Paint, erase, zoom and undo. Resize the grid whenever the design grows.' },
+      { icon: 'colors', title: 'The eight RoundCraft colours', body: 'A bright, high-contrast palette that reads clearly on a chart and in yarn.' },
+      { icon: 'counters', title: 'Crochet mode', body: 'Follow the chart one stitch at a time, row by row, with right and wrong side marked.' },
+      { icon: 'stitches', title: 'Written rows', body: 'Every row spelled out in working order, for when you prefer reading to counting squares.' },
+      { icon: 'photos', title: 'Trace a picture', body: 'Put an image behind the grid, adjust its size and opacity, and paint over it.' },
+      { icon: 'materials', title: 'Yarn estimate', body: 'How many stitches of each colour, and roughly how much yarn that takes.' },
+    ],
+    privacyTitle: 'Your designs stay with you',
+    privacy: 'Patterns are saved in your browser, and nothing is uploaded. Download a copy whenever you want to keep one safe or move it to another computer, and export a PNG to share it.',
+    stepsTitle: 'How it works',
+    steps: [
+      { title: 'Create a pattern', body: 'Give it a name and choose how many stitches wide and rows high.' },
+      { title: 'Paint it', body: 'Pick a colour and tap the squares. Drag to paint several at once.' },
+      { title: 'Crochet it', body: 'Switch to crochet mode and follow your chart one stitch at a time.' },
+    ],
+    appEyebrow: 'Made by the RoundCraft team',
+    appTitle: 'Take it further in RoundCraft',
+    appLive: 'Send your design to the RoundCraft app with a QR code and crochet it on your phone, with row counters and a timer for every project.',
+    appSoon: 'Soon you will be able to send your design straight to the RoundCraft app with a QR code. Meanwhile the app already counts rows, times every project and prices your work.',
+    appCta: 'Get it on Google Play',
+    faqTitle: 'Questions',
+    faq: [
+      { q: 'Is it really free?', a: 'Yes. The Studio is free and has no account, trial or watermark on your chart.' },
+      { q: 'Where are my patterns saved?', a: 'In your browser, on this device. Nothing reaches our servers. If you clear your browser data they are gone, so download a copy of the ones you care about.' },
+      { q: 'Why only eight colours?', a: 'They are the free palette of the RoundCraft app, so anything you design here opens there exactly as you drew it. RoundCraft Premium adds more colours inside the app.' },
+      { q: 'Does it work on a phone?', a: 'It runs in the phone browser, but a computer or tablet gives you room to paint comfortably.' },
+    ],
+    support: 'Enjoying the Studio? Here is how you can support it',
+  },
+  es: {
+    eyebrow: 'Gratis · Sin registro',
+    title: 'Diseña tus patrones de crochet tapestry',
+    lede: 'Dibuja tu gráfico punto por punto en el navegador, síguelo vuelta por vuelta mientras tejes y guárdalo en tu propio dispositivo. Gratis y sin crear cuenta.',
+    open: 'Abrir el Studio',
+    patterns: 'Ver patrones gratis',
+    shotAlt: 'Editor de Tapestry Studio con un gráfico de píxeles y la paleta de colores',
+    featuresTitle: 'Todo lo que necesita un gráfico tapestry',
+    features: [
+      { icon: 'tapestry', title: 'Cuadrículas de hasta 100 × 100', body: 'Pinta, borra, haz zoom y deshaz. Cambia el tamaño cuando el diseño crezca.' },
+      { icon: 'colors', title: 'Los ocho colores de RoundCraft', body: 'Una paleta viva y con buen contraste, que se lee clara en el gráfico y en el hilo.' },
+      { icon: 'counters', title: 'Modo tejer', body: 'Sigue el gráfico punto por punto, vuelta por vuelta, con el derecho y el revés marcados.' },
+      { icon: 'stitches', title: 'Vueltas escritas', body: 'Cada vuelta en el orden en que se teje, para cuando prefieres leer a contar cuadros.' },
+      { icon: 'photos', title: 'Calca una imagen', body: 'Pon una imagen detrás de la cuadrícula, ajusta su tamaño y opacidad, y pinta encima.' },
+      { icon: 'materials', title: 'Estimación de hilo', body: 'Cuántos puntos lleva cada color y aproximadamente cuánto hilo necesitas.' },
+    ],
+    privacyTitle: 'Tus diseños se quedan contigo',
+    privacy: 'Los patrones se guardan en tu navegador y nada se sube. Descarga una copia cuando quieras guardarla o pasarla a otra computadora, y exporta un PNG para compartirla.',
+    stepsTitle: 'Cómo funciona',
+    steps: [
+      { title: 'Crea un patrón', body: 'Ponle nombre y elige cuántos puntos de ancho y cuántas vueltas de alto.' },
+      { title: 'Píntalo', body: 'Elige un color y toca los cuadros. Arrastra para pintar varios a la vez.' },
+      { title: 'Téjelo', body: 'Cambia al modo tejer y sigue tu gráfico punto por punto.' },
+    ],
+    appEyebrow: 'Hecho por el equipo de RoundCraft',
+    appTitle: 'Llévalo más lejos con RoundCraft',
+    appLive: 'Envía tu diseño a la app RoundCraft con un código QR y téjelo desde tu teléfono, con contadores de vueltas y un cronómetro para cada proyecto.',
+    appSoon: 'Muy pronto podrás enviar tu diseño directo a la app RoundCraft con un código QR. Mientras tanto, la app ya cuenta vueltas, cronometra cada proyecto y cotiza tus tejidos.',
+    appCta: 'Descárgala en Google Play',
+    faqTitle: 'Preguntas',
+    faq: [
+      { q: '¿De verdad es gratis?', a: 'Sí. El Studio es gratis, sin cuenta, sin periodo de prueba y sin marca de agua en tu gráfico.' },
+      { q: '¿Dónde se guardan mis patrones?', a: 'En tu navegador, en este dispositivo. Nada llega a nuestros servidores. Si borras los datos del navegador se pierden, así que descarga una copia de los que te importan.' },
+      { q: '¿Por qué solo ocho colores?', a: 'Son la paleta gratuita de la app RoundCraft, así que todo lo que diseñes aquí se abre allá tal como lo dibujaste. RoundCraft Premium suma más colores dentro de la app.' },
+      { q: '¿Funciona en el celular?', a: 'Sí, en el navegador del teléfono, aunque en una computadora o tableta tienes más espacio para pintar con comodidad.' },
+    ],
+    support: '¿Te gusta el Studio? Así puedes apoyarlo',
+  },
+}[lang];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: copy.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+<section class="section studio-hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text" data-reveal>
+      <span class="eyebrow">{copy.eyebrow}</span>
+      <h1>{copy.title}</h1>
+      <p class="lede">{copy.lede}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href={STUDIO_APP_URL} data-track="studio_open">{copy.open} <Icon name="arrow" size={18} /></a>
+        <a class="btn btn-ghost btn-lg" href={patternsHref}>{copy.patterns}</a>
+      </div>
+    </div>
+    <a class="hero-shot" href={STUDIO_APP_URL} data-track="studio_open" data-reveal>
+      <img src="/img/studio-editor.webp" width="1440" height="1200" alt={copy.shotAlt} loading="eager" decoding="async" />
+    </a>
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="wrap">
+    <h2 class="sec-title" data-reveal>{copy.featuresTitle}</h2>
+    <ul class="feat-grid" data-reveal>
+      {copy.features.map((f) => (
+        <li class="card feat">
+          <AppIcon name={f.icon} size={44} alt="" />
+          <h3>{f.title}</h3>
+          <p>{f.body}</p>
+        </li>
+      ))}
+    </ul>
+    <div class="privacy card" data-reveal>
+      <AppIcon name="branding" size={40} alt="" />
+      <div>
+        <h3>{copy.privacyTitle}</h3>
+        <p>{copy.privacy}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap wrap-narrow">
+    <h2 class="sec-title" data-reveal>{copy.stepsTitle}</h2>
+    <ol class="steps" data-reveal>
+      {copy.steps.map((s, i) => (
+        <li>
+          <span class="step-n">{i + 1}</span>
+          <div><h3>{s.title}</h3><p>{s.body}</p></div>
+        </li>
+      ))}
+    </ol>
+    <div class="steps-cta" data-reveal>
+      <a class="btn btn-primary btn-lg" href={STUDIO_APP_URL} data-track="studio_open">{copy.open} <Icon name="arrow" size={18} /></a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="wrap wrap-narrow app-block" data-reveal>
+    <AppIcon name="app" size={64} alt="" />
+    <span class="eyebrow">{copy.appEyebrow}</span>
+    <h2>{copy.appTitle}</h2>
+    <p>{STUDIO_SEND_LIVE ? copy.appLive : copy.appSoon}</p>
+    <a class="btn btn-primary" href={playUrl('studio_landing')} target="_blank" rel="noopener" data-track="play_store">{copy.appCta}</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap wrap-narrow">
+    <h2 class="sec-title" data-reveal>{copy.faqTitle}</h2>
+    <div class="faq" data-reveal>
+      {copy.faq.map((f) => (
+        <details class="card">
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="support-link" data-reveal><a href={supportHref}>{copy.support} →</a></p>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<style>
+  .studio-hero { padding-top: clamp(2.5rem, 1.5rem + 4vw, 5rem); }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(2rem, 1rem + 4vw, 4rem); align-items: center; }
+  .hero-text h1 { font-size: var(--fs-2xl); margin: 0.7rem 0 1rem; line-height: 1.05; }
+  .lede { font-size: var(--fs-md); color: var(--ink-soft); line-height: 1.5; max-width: 38ch; margin-bottom: 1.8rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+  .hero-shot { display: block; border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow-lg); transition: transform var(--dur) var(--ease); }
+  .hero-shot:hover { transform: translateY(-3px); }
+  .hero-shot img { display: block; width: 100%; height: auto; }
+
+  .sec-title { font-size: var(--fs-xl); text-align: center; margin-bottom: 2rem; }
+  .feat-grid { list-style: none; padding: 0; margin: 0 0 1.4rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .feat { padding: 1.4rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .feat h3 { font-size: 1.05rem; margin-top: 0.3rem; }
+  .feat p { color: var(--ink-soft); font-size: var(--fs-sm); line-height: 1.55; }
+  .privacy { display: flex; gap: 1.1rem; align-items: flex-start; padding: 1.4rem 1.6rem; border-color: var(--clay); background: var(--clay-wash); }
+  .privacy h3 { font-size: 1.05rem; margin-bottom: 0.35rem; }
+  .privacy p { color: var(--ink-soft); font-size: var(--fs-sm); line-height: 1.55; }
+  .privacy :global(.app-icon) { flex: none; }
+
+  .steps { list-style: none; padding: 0; margin: 0 0 2rem; display: flex; flex-direction: column; gap: 1.1rem; }
+  .steps li { display: flex; gap: 1rem; align-items: flex-start; }
+  .step-n { flex: none; width: 2.4rem; height: 2.4rem; border-radius: 50%; background: var(--clay-deep); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+  .steps h3 { font-size: 1.05rem; margin-bottom: 0.2rem; }
+  .steps p { color: var(--ink-soft); }
+  .steps-cta { text-align: center; }
+
+  .app-block { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+  .app-block .eyebrow { justify-content: center; }
+  .app-block h2 { font-size: var(--fs-xl); }
+  .app-block p { color: var(--ink-soft); max-width: 50ch; margin-bottom: 0.8rem; }
+
+  .faq { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; }
+  .faq details { padding: 1rem 1.3rem; }
+  .faq summary { font-weight: 650; cursor: pointer; }
+  .faq details p { color: var(--ink-soft); margin-top: 0.6rem; line-height: 1.6; }
+  .support-link { text-align: center; }
+  .support-link a { color: var(--clay); font-weight: 600; }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .feat-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .feat-grid { grid-template-columns: 1fr; }
+  }
+</style>
