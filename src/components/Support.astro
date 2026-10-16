@@ -1,0 +1,326 @@
+---
+import Icon from './Icon.astro';
+import AppIcon from './AppIcon.astro';
+import DeviceFrame from './DeviceFrame.astro';
+import { localizedPath, type Lang } from '../i18n/utils';
+import { playUrl, ETSY_URL, COFFEE_URL, EMAIL } from '../data/site';
+import { patterns } from '../data/patterns';
+
+// Landing for the "Support this project" button in the free Tapestry Studio.
+//
+// The tip comes first because the visitor arrives straight from something
+// free they just used, which is when reciprocity is strongest, and the card
+// says what a tip pays for instead of asking in the abstract. Everything after
+// it is a way to help that costs nothing, so someone who will not tip still
+// leaves having done something.
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const screens = lang === 'es' ? '/img/screens/es' : '/img/screens';
+const patternsHref = `${localizedPath('/patterns', lang)}/`;
+// Hand-picked: the ones with the most personality, not the newest.
+const FEATURED = ['abducted-cow', 'no-internet-dino', 'cat-with-a-knife', 'scene-saguaro-dusk'];
+const featured = FEATURED.map((slug) => patterns.find((p) => p.slug === slug)).filter((p) => p !== undefined);
+
+const copy = {
+  en: {
+    eyebrow: 'Thank you for being here',
+    title: 'Support this project',
+    lede: "Hi, I'm Andre. Like you, I love making things, and I want these tools to stay free. If they have helped you or you enjoy them, you can support them with a contribution. It helps me reach more people who crochet.",
+    tip: {
+      title: 'Every bit helps',
+      body: 'This project exists to help every maker grow, and your support means a lot to me. If you have enjoyed the tool or the project, you can show your support through Buy Me a Coffee. That help turns into:',
+      impact: [
+        'More free patterns, which I crochet and test with real yarn before sharing them with you',
+        'New tools in the Studio and improvements to the app',
+        'A free, independent space for everyone who crochets',
+      ],
+      cta: 'I want to contribute',
+      note: 'One-off, any amount, through buymeacoffee.com. No account needed.',
+    },
+    app: {
+      eyebrow: 'The app behind this Studio',
+      title: 'Everything you design here, you crochet in RoundCraft',
+      body: 'Row counters, a timer for every project and a price calculator for when you sell what you make. It works offline, on Android.',
+      install: 'Get it on Google Play',
+      reviewTitle: 'Already using it?',
+      review: 'An honest review on Google Play is the single thing that helps most. It only takes a moment and it is how other makers find the app.',
+      reviewCta: 'Write a review',
+      alt: 'RoundCraft project list',
+    },
+    patterns: {
+      eyebrow: 'For people who crochet',
+      title: 'Explore the free patterns',
+      body: 'Color chart and written instructions in English and Spanish. Download the PDF or open them straight in RoundCraft.',
+      cta: 'See all patterns',
+      alt: (name: string) => `Tapestry crochet chart: ${name}`,
+    },
+    more: {
+      title: 'Other ways to support',
+      etsyTitle: 'NaredCraft on Etsy',
+      etsySub: 'Hand-designed patterns, if you want to support and take something home',
+      shareTitle: 'Share with someone who crochets',
+      shareSub: 'Free for you, and it helps more than you would think.',
+      shareCta: 'Share',
+      shareDone: 'Link copied',
+      shareText: 'Free tapestry crochet patterns and a free designer, by RoundCraft',
+    },
+    talk: {
+      eyebrow: 'Get in touch',
+      title: "Tell me what you'd like to see",
+      body: 'Pattern ideas, things you would like here or in the app, or something that is not working: write to me. I read and answer every message.',
+      subject: 'RoundCraft',
+      cta: 'Write to me',
+      maker: 'More about the maker',
+    },
+    disclaimer: 'This page is hosted by the developer and is not part of the RoundCraft Android app. Any tips offered here are voluntary, processed by independent third-party services, and never required to use the app or the Studio.',
+  },
+  es: {
+    eyebrow: 'Gracias por estar aquí',
+    title: 'Apoya este proyecto',
+    lede: 'Hola, soy Andre. Igual que a ti, me encanta crear, y quiero que estas herramientas sigan siendo gratuitas. Si te han sido de ayuda o te gustan, puedes apoyarlas con un aporte. Así me ayudas a llegar a más personas que tejen.',
+    tip: {
+      title: 'Todo aporte ayuda',
+      body: 'Este proyecto nace para ayudar a todas las personas que crean a crecer, y tu apoyo significa mucho para mí. Si te ha gustado la herramienta o el proyecto, puedes mostrar tu apoyo a través de Buy Me a Coffee. Esa ayuda se traduce en:',
+      impact: [
+        'Más patrones gratis, que tejo y pruebo con hilo real antes de compartirlos contigo',
+        'Nuevas herramientas en el Studio y mejoras en la app',
+        'Un espacio gratuito e independiente para toda la comunidad que teje',
+      ],
+      cta: 'Quiero aportar',
+      note: 'Una sola vez, el monto que quieras, vía buymeacoffee.com. No necesitas cuenta.',
+    },
+    app: {
+      eyebrow: 'La app detrás de este Studio',
+      title: 'Lo que diseñas aquí, lo tejes en RoundCraft',
+      body: 'Contadores de vueltas, un cronómetro para cada proyecto y un cotizador para cuando vendes tus tejidos. Funciona sin internet, en Android.',
+      install: 'Descárgala en Google Play',
+      reviewTitle: '¿Ya la usas?',
+      review: 'Una reseña honesta en Google Play es lo que más ayuda. Toma poco tiempo y es como otras personas que tejen encuentran la app.',
+      reviewCta: 'Escribir una reseña',
+      alt: 'Lista de proyectos en RoundCraft',
+    },
+    patterns: {
+      eyebrow: 'Para quienes tejen',
+      title: 'Explora los patrones gratuitos',
+      body: 'Gráfico a color e instrucciones escritas en español e inglés. Descarga el PDF o ábrelos directo en RoundCraft.',
+      cta: 'Ver todos los patrones',
+      alt: (name: string) => `Gráfico de crochet tapestry: ${name}`,
+    },
+    more: {
+      title: 'Otras formas de apoyar',
+      etsyTitle: 'NaredCraft en Etsy',
+      etsySub: 'Patrones diseñados a mano, si quieres apoyar y llevarte algo',
+      shareTitle: 'Compártelo con alguien que teje',
+      shareSub: 'No te cuesta nada y ayuda más de lo que crees.',
+      shareCta: 'Compartir',
+      shareDone: 'Enlace copiado',
+      shareText: 'Patrones de crochet tapestry gratis y un diseñador gratis, de RoundCraft',
+    },
+    talk: {
+      eyebrow: 'Ponte en contacto',
+      title: 'Cuéntame qué te gustaría encontrar',
+      body: 'Ideas de patrones, algo que te gustaría ver aquí o en la app, o algo que no funciona: escríbeme. Leo y respondo cada mensaje.',
+      subject: 'RoundCraft',
+      cta: 'Escríbeme',
+      maker: 'Más sobre quién la hace',
+    },
+    disclaimer: 'Esta página está alojada por el desarrollador y no forma parte de la app RoundCraft para Android. Cualquier propina ofrecida aquí es voluntaria, procesada por servicios externos independientes, y nunca es requisito para usar la app ni el Studio.',
+  },
+}[lang];
+---
+<section class="section sup">
+  <div class="wrap wrap-narrow">
+    <header class="sup-hero" data-reveal>
+      <img class="sup-avatar" src="/img/naredcraft-logo.png" width="120" height="116" alt="NaredCraft" />
+      <span class="eyebrow">{copy.eyebrow}</span>
+      <h1>{copy.title}</h1>
+      <p class="sup-lede">{copy.lede}</p>
+    </header>
+
+    <div class="tip card" data-reveal>
+      <div class="tip-head">
+        <span class="tip-icon"><AppIcon name="gift" size={44} alt="" /></span>
+        <h2>{copy.tip.title}</h2>
+      </div>
+      <p>{copy.tip.body}</p>
+      <ul class="tip-impact">
+        {copy.tip.impact.map((i) => <li><Icon name="check" size={18} />{i}</li>)}
+      </ul>
+      <a class="btn btn-primary btn-lg tip-cta" href={COFFEE_URL} target="_blank" rel="noopener" data-track="support_tip">
+        {copy.tip.cta} <Icon name="arrow" size={18} />
+      </a>
+      <p class="tip-note">{copy.tip.note}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="wrap app-grid">
+    <div class="app-text" data-reveal>
+      <span class="eyebrow">{copy.app.eyebrow}</span>
+      <h2>{copy.app.title}</h2>
+      <p class="muted">{copy.app.body}</p>
+      <a class="btn btn-primary" href={playUrl('support_install')} target="_blank" rel="noopener" data-track="play_store">{copy.app.install}</a>
+      <div class="review card">
+        <strong>{copy.app.reviewTitle}</strong>
+        <p>{copy.app.review}</p>
+        <a class="btn btn-ghost" href={playUrl('support_review')} target="_blank" rel="noopener" data-track="support_review">★ {copy.app.reviewCta}</a>
+      </div>
+    </div>
+    <div class="app-shot" data-reveal>
+      <DeviceFrame src={`${screens}/projects.webp`} alt={copy.app.alt} />
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap wrap-narrow">
+    <div class="pat-head" data-reveal>
+      <span class="eyebrow">{copy.patterns.eyebrow}</span>
+      <h2 class="sup-h2">{copy.patterns.title}</h2>
+      <p class="muted">{copy.patterns.body}</p>
+    </div>
+    <ul class="pat-grid" data-reveal>
+      {featured.map((p) => (
+        <li>
+          <a href={`${patternsHref}${p.slug}`} data-track="support_pattern" data-track-pattern={p.slug}>
+            <img src={p.preview} width={p.previewW} height={p.previewH} loading="lazy" decoding="async" alt={copy.patterns.alt(p.name)} />
+            <span class="pat-name">{p.name}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="pat-cta" data-reveal>
+      <a class="btn btn-ghost" href={patternsHref} data-track="support_patterns">{copy.patterns.cta} <Icon name="arrow" size={18} /></a>
+    </div>
+
+    <h2 class="sup-h2 more-title" data-reveal>{copy.more.title}</h2>
+    <div class="sup-links" data-reveal>
+      <a class="link-card" href={ETSY_URL} target="_blank" rel="noopener" data-track="support_etsy">
+        <span class="lc-icon"><AppIcon name="shop" size={30} alt="" /></span>
+        <span class="lc-text"><span class="lc-title">{copy.more.etsyTitle}</span><span class="lc-sub">{copy.more.etsySub}</span></span>
+        <Icon name="arrow" size={18} class="lc-arrow" />
+      </a>
+      <div class="link-card share-card">
+        <span class="lc-icon"><AppIcon name="share" size={30} alt="" /></span>
+        <span class="lc-text"><span class="lc-title">{copy.more.shareTitle}</span><span class="lc-sub">{copy.more.shareSub}</span></span>
+        <button
+          type="button"
+          class="btn btn-ghost share-btn"
+          data-share-text={copy.more.shareText}
+          data-share-done={copy.more.shareDone}
+          data-track="support_share"
+        >{copy.more.shareCta}</button>
+      </div>
+    </div>
+
+    <div class="talk card" data-reveal>
+      <AppIcon name="feedback" size={52} alt="" />
+      <span class="eyebrow">{copy.talk.eyebrow}</span>
+      <h2>{copy.talk.title}</h2>
+      <p>{copy.talk.body}</p>
+      <a class="btn btn-primary" href={`mailto:${EMAIL}?subject=${encodeURIComponent(copy.talk.subject)}`} data-track="support_contact">{copy.talk.cta}</a>
+    </div>
+    <p class="sup-maker" data-reveal><a href={localizedPath('/developer', lang)}>{copy.talk.maker} →</a></p>
+
+    <p class="sup-disclaimer" data-reveal>{copy.disclaimer}</p>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.share-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const url = location.origin + location.pathname.replace(/\/support(\.html)?$/, '/patterns/');
+      const text = btn.dataset.shareText ?? '';
+      try {
+        if (navigator.share) {
+          await navigator.share({ title: 'RoundCraft', text, url });
+          return;
+        }
+        await navigator.clipboard.writeText(`${text} ${url}`);
+        const label = btn.textContent;
+        btn.textContent = btn.dataset.shareDone ?? label;
+        setTimeout(() => { btn.textContent = label; }, 2000);
+      } catch {
+        // Closing the share sheet rejects; nothing to report.
+      }
+    });
+  });
+</script>
+
+<style>
+  .sup { padding-bottom: clamp(2.5rem, 1.5rem + 4vw, 4.5rem); }
+  .sup-hero { text-align: center; margin-bottom: 2.2rem; }
+  .sup-avatar { width: 88px; height: auto; border-radius: var(--r-md); margin: 0 auto 1.1rem; box-shadow: var(--shadow-sm); }
+  .sup-hero .eyebrow { justify-content: center; margin-bottom: 0.7rem; }
+  .sup-hero h1 { font-size: var(--fs-2xl); margin-bottom: 0.9rem; }
+  .sup-lede { color: var(--ink-soft); font-size: var(--fs-md); max-width: 36ch; margin: 0 auto; line-height: 1.5; }
+
+  .tip { padding: clamp(1.5rem, 1rem + 2vw, 2.4rem); border: 2px solid var(--clay); background: var(--clay-wash); box-shadow: var(--shadow-md); }
+  .tip-head { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 0.9rem; }
+  .tip-icon { display: inline-flex; width: 60px; height: 60px; align-items: center; justify-content: center; border-radius: var(--r-sm); background: var(--surface); border: 1px solid var(--line); flex: none; }
+  .tip h2 { font-size: var(--fs-lg); }
+  .tip p { color: var(--ink-soft); }
+  .tip-impact { list-style: none; padding: 0; margin: 1rem 0 1.5rem; display: flex; flex-direction: column; gap: 0.55rem; }
+  .tip-impact li { display: flex; gap: 0.6rem; align-items: flex-start; color: var(--ink); font-weight: 550; }
+  .tip-impact :global(svg) { color: var(--clay); flex: none; margin-top: 0.2rem; }
+  .tip-cta { width: 100%; }
+  .tip-note { font-size: var(--fs-xs); text-align: center; margin-top: 0.8rem; color: var(--ink-faint) !important; }
+
+  .app-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: clamp(2rem, 1rem + 4vw, 4rem); align-items: center; max-width: 980px; }
+  .app-text h2 { font-size: var(--fs-xl); margin: 0.6rem 0 0.9rem; }
+  .app-text > .muted { margin-bottom: 1.4rem; }
+  .review { margin-top: 1.8rem; padding: 1.2rem 1.4rem; }
+  .review strong { display: block; margin-bottom: 0.35rem; }
+  .review p { color: var(--ink-soft); font-size: var(--fs-sm); margin-bottom: 0.9rem; }
+  .app-shot { display: flex; justify-content: center; }
+  .app-shot :global(.device) { max-width: 260px; }
+
+  .sup-h2 { font-size: var(--fs-lg); margin: 0.6rem 0 1.2rem; }
+  .sup-links { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 3.2rem; }
+  .link-card {
+    display: flex; align-items: center; gap: 1rem;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md);
+    padding: 1rem 1.2rem; box-shadow: var(--shadow-sm);
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+  a.link-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--clay); }
+  .lc-icon { display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: var(--r-sm); background: var(--surface-2); border: 1px solid var(--line); padding: 6px; flex: none; }
+  .lc-text { display: flex; flex-direction: column; }
+  .lc-title { font-weight: 650; color: var(--ink); }
+  .lc-sub { font-size: 0.85rem; color: var(--ink-faint); margin-top: 1px; }
+  .link-card :global(.lc-arrow) { margin-left: auto; color: var(--ink-faint); flex: none; }
+  a.link-card:hover :global(.lc-arrow) { color: var(--clay); }
+  .share-card { border-style: dashed; }
+  .share-btn { margin-left: auto; flex: none; padding: 0.7em 1.2em; cursor: pointer; }
+
+
+  .pat-head { text-align: center; }
+  .pat-head .eyebrow { justify-content: center; }
+  .pat-head .muted { max-width: 46ch; margin: 0 auto 1.6rem; }
+  .pat-grid { list-style: none; padding: 0; margin: 0 0 1.4rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; }
+  .pat-grid a { display: flex; flex-direction: column; gap: 0.4rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: 0.6rem; box-shadow: var(--shadow-sm); transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+  .pat-grid a:hover { transform: translateY(-2px); border-color: var(--clay); }
+  .pat-grid img { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; border-radius: var(--r-sm); background: var(--surface-2); }
+  .pat-name { font-weight: 650; font-size: var(--fs-sm); text-align: center; color: var(--ink); }
+  .pat-cta { text-align: center; margin-bottom: 3.2rem; }
+  .more-title { margin-top: 0; }
+
+  .talk { text-align: center; padding: clamp(1.5rem, 1rem + 2vw, 2.2rem); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-bottom: 1.4rem; }
+  .talk h2 { font-size: var(--fs-lg); }
+  .talk p { color: var(--ink-soft); max-width: 44ch; margin-bottom: 0.6rem; }
+
+  .sup-maker { text-align: center; margin-bottom: 2.4rem; }
+  .sup-maker a { color: var(--clay); font-weight: 600; }
+  .sup-disclaimer { font-size: 0.82rem; color: var(--ink-faint); line-height: 1.6; border: 1px dashed var(--line); border-radius: var(--r-md); padding: 1.1rem 1.3rem; }
+
+  @media (max-width: 760px) {
+    .app-grid { grid-template-columns: 1fr; }
+    .app-shot { order: -1; }
+    .app-shot :global(.device) { max-width: 200px; }
+    .pat-grid { grid-template-columns: repeat(2, 1fr); }
+    .share-card { flex-wrap: wrap; }
+    .share-btn { margin-left: 0; width: 100%; }
+  }
+</style>
