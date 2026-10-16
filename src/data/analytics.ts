@@ -55,6 +55,19 @@ export const GA4_ID = '';
 export const CLARITY_ID = 'y4wpvztheu';
 
 /**
+ * Google AdSense publisher id (`ca-pub-…`). Public by design: it is in every
+ * page that shows an ad, and in /ads.txt.
+ *
+ * Loaded on every page for two reasons, neither of which is showing ads there:
+ * the `google-adsense-account` meta tag is how AdSense verifies the site, and
+ * the same script is what serves Google's consent message (Privacy & messaging
+ * in AdSense) to visitors from the EEA, UK and Switzerland. Auto ads are OFF in
+ * the AdSense dashboard, so ads appear only in the slots placed by hand in the
+ * Tapestry Studio. Mirror of ADSENSE_CLIENT in tapestry-studio/vite.config.ts.
+ */
+export const ADSENSE_CLIENT = 'ca-pub-4121950303983551';
+
+/**
  * The actions worth counting. Any element with `data-track="<name>"` reports a
  * click, so tracking a new one is an attribute rather than a code change.
  *

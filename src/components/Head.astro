@@ -29,7 +29,7 @@ const ogUrl = new URL(ogImage, site).href;
 
 // Both are empty until an id is pasted into src/data/analytics.ts, and nothing
 // third-party loads while they are.
-import { CF_BEACON_TOKEN, CLARITY_ID, GA4_ID } from '../data/analytics';
+import { ADSENSE_CLIENT, CF_BEACON_TOKEN, CLARITY_ID, GA4_ID } from '../data/analytics';
 
 // Imported for their hashed URLs rather than hardcoded: these two carry every
 // character the site actually renders, and preloading them starts the download
@@ -96,6 +96,13 @@ import hankenLatin from '@fontsource-variable/hanken-grotesk/files/hanken-grotes
   })();
 </script>
 
+{ADSENSE_CLIENT && (
+  <Fragment>
+    <meta name="google-adsense-account" content={ADSENSE_CLIENT} />
+    <script is:inline async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`} crossorigin="anonymous" />
+  </Fragment>
+)}
+
 {CF_BEACON_TOKEN && (
   <script
     is:inline
@@ -125,6 +132,29 @@ import hankenLatin from '@fontsource-variable/hanken-grotesk/files/hanken-grotes
       t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
       y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
     })(window, document, 'clarity', 'script', CLARITY_ID);
+  </script>
+)}
+
+{CLARITY_ID && ADSENSE_CLIENT && (
+  <script is:inline>
+    // Hands the answer from Google's consent message to Clarity. In the EEA, UK
+    // and Switzerland Clarity runs cookieless until it gets a consentv2 call;
+    // elsewhere gdprApplies is false and Clarity keeps its default. The message
+    // speaks IAB TCF, so purpose 1 ("store and/or access information on a
+    // device") is what decides whether Clarity may set its cookies.
+    (function () {
+      function apply(td) {
+        if (!td || td.gdprApplies === false) return;
+        if (td.eventStatus !== 'tcloaded' && td.eventStatus !== 'useractioncomplete') return;
+        var v = td.purpose && td.purpose.consents && td.purpose.consents[1] ? 'granted' : 'denied';
+        if (typeof window.clarity === 'function') window.clarity('consentv2', { ad_Storage: v, analytics_Storage: v });
+      }
+      var tries = 0;
+      (function wait() {
+        if (typeof window.__tcfapi === 'function') window.__tcfapi('addEventListener', 2, function (td, ok) { if (ok) apply(td); });
+        else if (++tries < 40) setTimeout(wait, 250);
+      })();
+    })();
   </script>
 )}
 
