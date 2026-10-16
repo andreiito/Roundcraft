@@ -22,6 +22,7 @@ const site = 'https://getroundcraft.com';
 // Shared with alternatePath: this normalisation used to live only here, so the
 // canonical was right while the header's language link pointed at a 404.
 const path = canonicalizePath(pathname);
+const adsHere = !!ADSENSE_CLIENT && ADS_PATHS.test(path);
 const canonical = new URL(path, site).href;
 const enHref = new URL(alternatePath(path, 'en'), site).href;
 const esHref = new URL(alternatePath(path, 'es'), site).href;
@@ -29,7 +30,7 @@ const ogUrl = new URL(ogImage, site).href;
 
 // Both are empty until an id is pasted into src/data/analytics.ts, and nothing
 // third-party loads while they are.
-import { ADSENSE_CLIENT, CF_BEACON_TOKEN, CLARITY_ID, GA4_ID } from '../data/analytics';
+import { ADS_PATHS, ADSENSE_CLIENT, CF_BEACON_TOKEN, CLARITY_ID, GA4_ID } from '../data/analytics';
 
 // Imported for their hashed URLs rather than hardcoded: these two carry every
 // character the site actually renders, and preloading them starts the download
@@ -96,11 +97,9 @@ import hankenLatin from '@fontsource-variable/hanken-grotesk/files/hanken-grotes
   })();
 </script>
 
-{ADSENSE_CLIENT && (
-  <Fragment>
-    <meta name="google-adsense-account" content={ADSENSE_CLIENT} />
-    <script is:inline async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`} crossorigin="anonymous" />
-  </Fragment>
+{ADSENSE_CLIENT && <meta name="google-adsense-account" content={ADSENSE_CLIENT} />}
+{adsHere && (
+  <script is:inline async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`} crossorigin="anonymous" />
 )}
 
 {CF_BEACON_TOKEN && (
@@ -135,7 +134,7 @@ import hankenLatin from '@fontsource-variable/hanken-grotesk/files/hanken-grotes
   </script>
 )}
 
-{CLARITY_ID && ADSENSE_CLIENT && (
+{CLARITY_ID && adsHere && (
   <script is:inline>
     // Hands the answer from Google's consent message to Clarity. In the EEA, UK
     // and Switzerland Clarity runs cookieless until it gets a consentv2 call;

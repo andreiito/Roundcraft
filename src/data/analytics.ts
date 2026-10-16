@@ -68,6 +68,19 @@ export const CLARITY_ID = 'y4wpvztheu';
 export const ADSENSE_CLIENT = 'ca-pub-4121950303983551';
 
 /**
+ * Where the AdSense script loads: the Tapestry Studio and the free patterns.
+ * Everywhere else gets only the verification meta tag, so no ad and no consent
+ * message there. Clarity on those pages runs cookieless for EEA visitors by
+ * itself, since it never receives a consent signal.
+ */
+export const ADS_PATHS = /^\/(es\/)?(studio|patterns)(\/|$)/;
+
+/** Display unit ids (AdSense → Ads → By ad unit). Empty = no unit rendered. */
+export const AD_SLOTS = {
+  patternDetail: '',
+};
+
+/**
  * The actions worth counting. Any element with `data-track="<name>"` reports a
  * click, so tracking a new one is an attribute rather than a code change.
  *
