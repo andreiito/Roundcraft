@@ -5,6 +5,8 @@ import RelatedPatterns from './RelatedPatterns.astro';
 import AdUnit from './AdUnit.astro';
 import { AD_SLOTS } from '../data/analytics';
 import PatternSchema from './PatternSchema.astro';
+import WrittenPattern from './WrittenPattern.astro';
+import { writtenPattern } from '../data/written';
 import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
 import { playUrl } from '../data/site';
 import { downloadName, type Pattern } from '../data/patterns';
@@ -14,6 +16,7 @@ const { lang, pattern } = Astro.props;
 const tt = useTranslations(lang);
 const L = pattern.locales[lang];
 const catalog = `${localizedPath('/patterns', lang)}/`;
+const written = writtenPattern(pattern.slug);
 
 const ui = {
   en: { back: 'All free patterns', downloadTitle: 'Download the free PDF', pdfEn: 'Download PDF, English', pdfEs: 'Download PDF, Spanish', rc: 'Pattern file for the app (.rcpattern)', open: 'Open in the RoundCraft app', appTitle: 'Crochet it with RoundCraft' },
@@ -57,6 +60,8 @@ const ui = {
       <OpenInApp fileUrl={pattern.deepLinkTarget} label={ui.open} campaign={`pattern_${pattern.slug}`} pattern={pattern.slug} class="open-app" />
       <p class="license muted">{L.license}</p>
     </div>
+
+    <WrittenPattern lang={lang} written={written} slug={pattern.slug} />
 
     <AdUnit slot={AD_SLOTS.patternDetail} lang={lang} />
 

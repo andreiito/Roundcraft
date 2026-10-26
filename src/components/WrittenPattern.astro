@@ -1,0 +1,140 @@
+---
+import { type Lang } from '../i18n/utils';
+import { playUrl } from '../data/site';
+import type { Written } from '../data/written';
+
+interface Props { lang: Lang; written: Written; slug: string; }
+const { lang, written, slug } = Astro.props;
+const { width, height, yarns, rows } = written;
+const total = width * height;
+const fmt = (n: number) => n.toLocaleString(lang === 'es' ? 'es-MX' : 'en-US');
+const share = (n: number) => `${Math.round((n / total) * 100)}%`;
+
+const ui = {
+  en: {
+    title: 'Written pattern',
+    summary: `${width} stitches wide and ${height} rows tall, ${fmt(total)} stitches in ${yarns.length} colors.`,
+    yarnTitle: 'Yarn',
+    yarnNote: 'Any yarn works as long as every color is the same weight. The names describe the shade, they are not a specific brand.',
+    colSymbol: 'Symbol', colColor: 'Color', colStitches: 'Stitches', colShare: 'Share',
+    howTitle: 'How to read it',
+    how: [
+      `Work flat in single crochet, from the bottom of the chart up. Chain ${width + 1} and work row 1 into the chain, starting in the second chain from the hook.`,
+      'Row 1 is a right side (RS) row, worked from right to left. Turn, and row 2 is a wrong side (WS) row, worked from left to right. Keep alternating to the top.',
+      'Each entry is a run of one color: "12 X" means 12 single crochet in the color marked X. Carry the colors you are not using along the top of the row and crochet over them, and switch to the new color on the last yarn over of the stitch before it, so every stitch comes out clean.',
+    ],
+    rowsTitle: 'Row by row',
+    row: 'Row',
+    rtl: 'right to left', ltr: 'left to right',
+    nudge: `Counting ${height} rows by hand?`,
+    nudgeLink: 'RoundCraft keeps your place stitch by stitch.',
+  },
+  es: {
+    title: 'Patrón escrito',
+    summary: `${width} puntos de ancho y ${height} filas de alto, ${fmt(total)} puntos en ${yarns.length} colores.`,
+    yarnTitle: 'Hilos',
+    yarnNote: 'Sirve cualquier hilo mientras todos los colores sean del mismo grosor. Los nombres describen el tono, no una marca concreta.',
+    colSymbol: 'Símbolo', colColor: 'Color', colStitches: 'Puntos', colShare: 'Proporción',
+    howTitle: 'Cómo leerlo',
+    how: [
+      `Se teje plano en punto bajo, de abajo hacia arriba del chart. Haz ${width + 1} cadenetas y teje la fila 1 sobre ellas, empezando en la segunda cadeneta desde el ganchillo.`,
+      'La fila 1 es del lado derecho (RS) y se teje de derecha a izquierda. Gira la labor: la fila 2 es del lado revés (WS) y se teje de izquierda a derecha. Sigue alternando hasta arriba.',
+      'Cada entrada es un tramo de un solo color: "12 X" son 12 puntos bajos en el color marcado con X. Lleva los colores que no usas por encima de la fila y teje sobre ellos, y cambia al color nuevo en la última lazada del punto anterior para que cada punto quede limpio.',
+    ],
+    rowsTitle: 'Fila por fila',
+    row: 'Fila',
+    rtl: 'de derecha a izquierda', ltr: 'de izquierda a derecha',
+    nudge: `¿Contar ${height} filas a mano?`,
+    nudgeLink: 'RoundCraft lleva la cuenta punto por punto.',
+  },
+}[lang];
+---
+{/* No data-reveal: the observer waits for 12% of an element to be on screen,
+    and the longest written patterns are taller than eight screens, so the
+    section stayed at opacity 0 on a phone. */}
+<section class="written card" aria-labelledby="written-title">
+  <h2 id="written-title">{ui.title}</h2>
+  <p class="summary">{ui.summary}</p>
+
+  <h3>{ui.yarnTitle}</h3>
+  <table class="yarns">
+    <thead>
+      <tr><th scope="col">{ui.colSymbol}</th><th scope="col">{ui.colColor}</th><th scope="col">{ui.colStitches}</th><th scope="col">{ui.colShare}</th></tr>
+    </thead>
+    <tbody>
+      {yarns.map((y) => (
+        <tr>
+          <td><span class={`chip${y.light ? ' light' : ''}`} style={`--c:${y.hex}`}>{y.symbol}</span></td>
+          <td>{y.name[lang]} <span class="hex">{y.hex}</span></td>
+          <td>{fmt(y.stitches)}</td>
+          <td>{share(y.stitches)}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  <p class="note">{ui.yarnNote}</p>
+
+  <h3>{ui.howTitle}</h3>
+  {ui.how.map((p) => <p class="how">{p}</p>)}
+
+  <h3>{ui.rowsTitle}</h3>
+  <ol class="rows">
+    {rows.map((r) => (
+      <li>
+        <span class="label"><strong>{ui.row} {r.n}</strong> <span class="side">{r.side}, {r.side === 'RS' ? ui.rtl : ui.ltr}</span></span>
+        <span class="runs">
+          {r.runs.map((run) => {
+            const y = yarns[run.yarn];
+            return <span class={`run${y.light ? ' light' : ''}`} style={`--c:${y.hex}`} title={y.name[lang]}>{run.count} {y.symbol}</span>;
+          })}
+        </span>
+      </li>
+    ))}
+  </ol>
+
+  <p class="nudge">
+    {ui.nudge}{' '}
+    <a href={playUrl(`written_${slug}`)} target="_blank" rel="noopener" data-track="play_store" data-track-pattern={slug}>{ui.nudgeLink}</a>
+  </p>
+</section>
+
+<style>
+  .written { padding: 1.5rem 1.7rem; margin-bottom: 1.4rem; }
+  .written h2 { font-size: var(--fs-md); margin-bottom: 0.5rem; }
+  .written h3 { font-size: 1.02rem; margin: 1.6rem 0 0.6rem; }
+  .written p { color: var(--ink-soft); }
+  .summary { margin-bottom: 0.2rem; }
+  .how + .how { margin-top: 0.6rem; }
+  .note { font-size: 0.88rem; margin-top: 0.6rem; }
+
+  .yarns { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .yarns th { text-align: left; font-weight: 600; font-size: 0.8rem; color: var(--ink-faint); padding: 0 0.5rem 0.4rem 0; border-bottom: 1px solid var(--line); }
+  .yarns td { padding: 0.45rem 0.5rem 0.45rem 0; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  .hex { color: var(--ink-faint); font-size: 0.8rem; margin-left: 0.3rem; }
+
+  /* Ink follows the generator's light/dark threshold, the same as the PDF, so
+     a symbol is readable on its own yarn in both places. */
+  .chip, .run {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--c); color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;
+    font-variant-numeric: tabular-nums; font-weight: 600;
+  }
+  .chip.light, .run.light { color: #1b1b1b; }
+  .chip { width: 1.7rem; height: 1.7rem; font-size: 0.85rem; }
+
+  .rows { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
+  .rows li { display: grid; grid-template-columns: 9.5rem 1fr; gap: 0.3rem 0.8rem; padding: 0.55rem 0; border-bottom: 1px solid var(--line); align-items: start; }
+  .label { font-size: 0.92rem; line-height: 1.3; }
+  .side { display: block; font-size: 0.78rem; color: var(--ink-faint); }
+  .runs { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .run { min-width: 2.6rem; padding: 0.15rem 0.4rem; font-size: 0.85rem; }
+  @media (max-width: 520px) {
+    .written { padding: 1.2rem 1rem; }
+    .rows li { grid-template-columns: 1fr; }
+    .side { display: inline; margin-left: 0.3rem; }
+  }
+
+  .nudge { margin-top: 1.2rem; font-size: 0.92rem; }
+  .nudge a { color: var(--clay); font-weight: 600; }
+</style>
