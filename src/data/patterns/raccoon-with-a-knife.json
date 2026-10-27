@@ -1,0 +1,35 @@
+{
+  "slug": "raccoon-with-a-knife",
+  "name": "Raccoon With a Knife",
+  "width": 59,
+  "height": 46,
+  "colors": 3,
+  "publishedAt": "2026-10-27",
+  "tags": [
+    "tapestry",
+    "animals",
+    "intermediate"
+  ],
+  "locales": {
+    "en": {
+      "seoDesc": "Free crochet raccoon pattern: a grumpy masked raccoon holding up a knife, 3 colors, 59x46 stitches. Tapestry chart, printable PDF in EN and ES.",
+      "about": "A grumpy raccoon portrait, bandit mask and scowl included, holding a kitchen knife up beside its cheek. Three colors (cream, grey and black), worked flat in single crochet with no shaping and about seven color changes a row, up to fourteen across the mask. Finishes about 37 by 29 cm (14.5 by 11.5 in), sized for the front of a tote bag, a cushion cover or a wall hanging for anyone who loves raccoons and trash pandas.",
+      "bullets": [
+        "Three-color symbol chart that still reads when printed in black and white",
+        "Row-by-row written instructions with every color run and the RS/WS side",
+        "Yarn legend with the stitch count for cream, grey and black",
+        "Printable PDF, US Letter"
+      ]
+    },
+    "es": {
+      "seoDesc": "Patrón de crochet gratis mapache con cuchillo: retrato gruñón con antifaz en 3 colores, 59x46 puntos. Chart tapestry y PDF imprimible.",
+      "about": "Un mapache gruñón en retrato, con su antifaz y el ceño fruncido, que levanta un cuchillo de cocina junto a la mejilla. Tres colores (crema, gris y negro), tejido plano a crochet en punto bajo, sin aumentos ni disminuciones, con unos siete cambios de color por vuelta y hasta catorce en la franja del antifaz. Te queda en unos 37 por 29 cm, justo para el frente de una tote bag, la funda de un cojín o un tapiz de ganchillo para la pared, para quien adora a los mapaches.",
+      "bullets": [
+        "Chart de símbolos a tres colores que se lee bien incluso impreso en blanco y negro",
+        "Patrón escrito vuelta a vuelta con cada tramo de color y su lado RS/WS",
+        "Leyenda de hilos con los puntos de crema, gris y negro",
+        "PDF listo para imprimir, tamaño carta"
+      ]
+    }
+  }
+}

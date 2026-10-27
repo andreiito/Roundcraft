@@ -24,6 +24,17 @@
       "page": "https://andreiito.github.io/Roundcraft/patterns/scene-saguaro-dusk.html"
     },
     {
+      "slug": "raccoon-with-a-knife",
+      "name": "Raccoon With a Knife",
+      "width": 59,
+      "height": 46,
+      "colors": 3,
+      "preview": "https://andreiito.github.io/Roundcraft/patterns/assets/raccoon-with-a-knife-preview.png",
+      "rcpattern": "https://andreiito.github.io/Roundcraft/patterns/assets/raccoon-with-a-knife.rcpattern",
+      "sha256": "3f2d55c7c92250b836ed254f18b9f160b1b35395ce146852f68cefbe89de0510",
+      "page": "https://andreiito.github.io/Roundcraft/patterns/raccoon-with-a-knife.html"
+    },
+    {
       "slug": "no-internet-dino",
       "name": "No Internet Dino",
       "width": 29,
