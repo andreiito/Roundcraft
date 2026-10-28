@@ -49,8 +49,10 @@ const c = {
     margin-top: 0.85rem; padding-top: 0.85rem; border-top: 1.5px dashed var(--line);
     display: flex; align-items: baseline; justify-content: space-between;
   }
-  .qc-total-label { color: var(--ink-soft); font-size: 0.9rem; }
-  .qc-price { font-size: 2rem; font-weight: 700; color: var(--clay); line-height: 1; letter-spacing: -0.02em; }
+  .qc-total-label { color: var(--ink-soft); font-size: 0.9rem; min-width: 0; }
+  /* "$" and the number are separate spans; without nowrap a narrow card breaks
+     between them and the price reads "$" over "58". */
+  .qc-price { font-size: 2rem; font-weight: 700; color: var(--clay); line-height: 1; letter-spacing: -0.02em; white-space: nowrap; flex: none; }
   /* The count-up rewrites this text every frame, and "0" is one digit while
      "58" is two, so the box changed width mid-animation and nudged itself
      inside the space-between row. Reserving two digits keeps the width fixed

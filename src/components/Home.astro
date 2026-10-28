@@ -583,6 +583,9 @@ const copy = {
   }
   @media (max-width: 560px) {
     .tools-grid, .steps { grid-template-columns: 1fr; }
+    /* Stacked, not side by side: in a row the phone and the price card
+       squeezed each other to ~170px and the price broke over two lines. */
+    .hero-visual { flex-direction: column; align-items: center; }
     .hero-visual :global(.hero-quote) { position: static; margin: -2.5rem auto 0; }
     .quote-visual { padding: 0; }
     .quote-visual :global(.quote-back) { display: none; }
