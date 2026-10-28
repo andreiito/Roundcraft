@@ -1,5 +1,5 @@
 ---
-// A restrained phone bezel around a real app screenshot.
+// A phone around a real app screenshot: bezel, status bar, gesture bar.
 interface Props {
   src: string;
   alt: string;
@@ -11,42 +11,74 @@ interface Props {
 const { src, alt, class: className = '', loading = 'lazy', width = 720, height = 1494 } = Astro.props;
 ---
 <div class={`device ${className}`}>
-  <div class="device-inner" style={`aspect-ratio: ${width} / ${height};`}>
-    <span class="device-notch" aria-hidden="true"></span>
-    <img src={src} alt={alt} width={width} height={height} loading={loading} decoding="async" />
+  <div class="device-inner">
+    <div class="device-status" aria-hidden="true">
+      <span class="ds-time">9:41</span>
+      <span class="ds-camera"></span>
+      <span class="ds-icons"><i class="ds-signal"></i><i class="ds-battery"></i></span>
+    </div>
+    <img src={src} alt={alt} width={width} height={height} loading={loading} decoding="async" style={`aspect-ratio: ${width} / ${height};`} />
+    <div class="device-gesture" aria-hidden="true"><span></span></div>
   </div>
 </div>
 
 <style>
+  /* The screenshots start at the app's own content, with no status bar. Drawn
+     edge to edge, the camera sat on top of the app's header and the content ran
+     into the bezel. A real phone has a status bar above and a gesture bar
+     below, so both are drawn here around the untouched screenshot. Sizes are in
+     cqw so the phone reads the same at 160px and at 300px. */
   .device {
-    /* The ratio lives on the screen, not on the frame: on the frame it
-       included the bezel, so the screen came out narrower than the screenshot
-       and object-fit cropped its sides (16% on a phone-width page). */
-    --bezel: clamp(7px, 3.4%, 11px);
+    --bezel: clamp(8px, 4.2%, 13px);
+    --screen: #fbf8f2;
     width: 100%;
     max-width: 300px;
     padding: var(--bezel);
     background: linear-gradient(160deg, #2a211a, #17110c);
-    border-radius: calc(var(--bezel) * 3.6);
+    border-radius: calc(var(--bezel) * 3.4);
     box-shadow:
       0 2px 4px rgba(0, 0, 0, 0.3),
       var(--shadow-lg),
       inset 0 0 0 1.5px rgba(255, 255, 255, 0.06);
   }
   .device-inner {
+    container-type: inline-size;
     position: relative;
-    border-radius: calc(var(--bezel) * 2.6);
+    display: flex;
+    flex-direction: column;
+    border-radius: calc(var(--bezel) * 2.4);
     overflow: hidden;
-    background: var(--surface);
+    background: var(--screen);
   }
-  .device-notch {
+  .device-status {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 9cqw;
+    padding: 0 7cqw;
+    color: #1f1b16;
+    font: 600 3.6cqw/1 system-ui, -apple-system, 'Roboto', sans-serif;
+    letter-spacing: 0.01em;
+  }
+  .ds-camera {
     position: absolute;
-    top: 8px; left: 50%;
-    transform: translateX(-50%);
-    width: 34%; height: 6px;
+    left: 50%; top: 50%;
+    width: 3.4cqw; height: 3.4cqw;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
     background: #17110c;
-    border-radius: 999px;
-    z-index: 2;
   }
-  .device-inner img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .ds-icons { display: inline-flex; align-items: center; gap: 1.4cqw; }
+  .ds-icons i { display: block; background: #1f1b16; }
+  .ds-signal { width: 3.2cqw; height: 3.2cqw; clip-path: polygon(100% 0, 100% 100%, 0 100%); }
+  .ds-battery { width: 5.2cqw; height: 2.6cqw; border-radius: 0.6cqw; }
+  .device-inner img { display: block; width: 100%; height: auto; }
+  .device-gesture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 6.5cqw;
+  }
+  .device-gesture span { width: 32%; height: 1.3cqw; border-radius: 999px; background: #1f1b16; opacity: 0.55; }
 </style>
