@@ -34,19 +34,25 @@ const t = useTranslations(lang);
 
     <script>
       // Scroll-reveal: fade/slide sections in once, respecting reduced motion.
+      // Anything already on screen stays visible; only content below the fold is hidden.
       const els = document.querySelectorAll('[data-reveal]');
       if (els.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+        const fold = window.innerHeight;
+        const below: Element[] = [];
+        els.forEach((el) => {
+          if (el.getBoundingClientRect().top < fold) el.classList.add('is-in');
+          else below.push(el);
+        });
+        document.documentElement.classList.add('reveal');
         const io = new IntersectionObserver((entries) => {
           entries.forEach((e) => {
             if (e.isIntersecting) {
-              (e.target as HTMLElement).classList.add('is-in');
+              e.target.classList.add('is-in');
               io.unobserve(e.target);
             }
           });
-        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
-        els.forEach((el) => io.observe(el));
-      } else {
-        els.forEach((el) => el.classList.add('is-in'));
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
+        below.forEach((el) => io.observe(el));
       }
     </script>
   </body>

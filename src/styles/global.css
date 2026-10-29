@@ -206,12 +206,15 @@ p { text-wrap: pretty; }
 .prose code { font-family: var(--font-mono); font-size: 0.9em; background: var(--surface-2); padding: 0.1em 0.4em; border-radius: 5px; }
 
 /* --- Scroll reveal (progressive enhancement) ----------------------------- */
-[data-reveal] {
+/* Only hidden once the script has run, and never above the fold: first paint
+   shows the hero and the catalogue immediately, even before JS loads. */
+.reveal [data-reveal]:not(.is-in) {
   opacity: 0;
   transform: translateY(18px);
+}
+.reveal [data-reveal] {
   transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
 }
-[data-reveal].is-in { opacity: 1; transform: none; }
 
 /* section anchor offset for sticky header */
 :target { scroll-margin-top: calc(var(--header-h) + 1rem); }
@@ -224,5 +227,5 @@ p { text-wrap: pretty; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
-  [data-reveal] { opacity: 1; transform: none; }
+  .reveal [data-reveal] { opacity: 1; transform: none; }
 }
