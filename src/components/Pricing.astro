@@ -101,7 +101,7 @@ const copy = {
           <h2 class="plan-name">{p.name}</h2>
           <p class="plan-price"><span class="font-mono">{p.price}</span> <span class="plan-per">{p.per}</span></p>
           {p.was && <p class="plan-was font-mono">{p.was}</p>}
-          <a class={`btn ${p.featured ? 'btn-primary' : 'btn-ghost'}`} href={playUrl(p.campaign)} target="_blank" rel="noopener">{copy.cta}</a>
+          <a class={`btn ${p.featured ? 'btn-primary' : 'btn-ghost'}`} href={playUrl(p.campaign)} target="_blank" rel="noopener" data-track="play_store">{copy.cta}</a>
         </article>
       ))}
     </div>

@@ -18,7 +18,7 @@ const copy = {
     ],
     linksTitle: 'Find RoundCraft and NaredCraft',
     links: [
-      { href: playUrl('developer'), title: 'RoundCraft', sub: 'The crochet app, on Google Play', external: true, icon: 'app' },
+      { href: playUrl('developer'), title: 'RoundCraft', sub: 'The crochet app, on Google Play', external: true, icon: 'app', track: 'play_store' },
       { href: ETSY_URL, title: 'NaredCraft on Etsy', sub: 'Hand-designed crochet patterns', external: true, icon: 'shop' },
       { href: COFFEE_URL, title: 'Buy Me a Coffee', sub: 'A voluntary tip, processed by buymeacoffee.com', external: true, icon: 'gift' },
       { href: `mailto:${EMAIL}`, title: EMAIL, sub: 'Direct email, I read every message', external: false, icon: 'feedback' },
@@ -35,7 +35,7 @@ const copy = {
     ],
     linksTitle: 'Encuentra RoundCraft y NaredCraft',
     links: [
-      { href: playUrl('developer'), title: 'RoundCraft', sub: 'La app de crochet, en Google Play', external: true, icon: 'app' },
+      { href: playUrl('developer'), title: 'RoundCraft', sub: 'La app de crochet, en Google Play', external: true, icon: 'app', track: 'play_store' },
       { href: ETSY_URL, title: 'NaredCraft en Etsy', sub: 'Patrones de crochet diseñados a mano', external: true, icon: 'shop' },
       { href: COFFEE_URL, title: 'Buy Me a Coffee', sub: 'Una propina voluntaria, procesada por buymeacoffee.com', external: true, icon: 'gift' },
       { href: `mailto:${EMAIL}`, title: EMAIL, sub: 'Correo directo, leo cada mensaje', external: false, icon: 'feedback' },
@@ -61,7 +61,7 @@ const copy = {
     <h2 class="dev-links-title" data-reveal>{copy.linksTitle}</h2>
     <div class="dev-links" data-reveal>
       {copy.links.map((l) => (
-        <a class="link-card" href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>
+        <a class="link-card" href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined} data-track={l.track}>
           <span class="lc-icon"><AppIcon name={l.icon} size={30} alt="" /></span>
           <span class="lc-text"><span class="lc-title">{l.title}</span><span class="lc-sub">{l.sub}</span></span>
           <Icon name="arrow" size={18} class="lc-arrow" />

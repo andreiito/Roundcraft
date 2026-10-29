@@ -97,6 +97,10 @@ import hankenLatin from '@fontsource-variable/hanken-grotesk/files/hanken-grotes
   })();
 </script>
 
+{/* Pinterest domain claim for the Naredcraft account. Removing it unclaims the
+    site and drops the pin analytics for everything saved from it. */}
+<meta name="p:domain_verify" content="04be11a6f458e6196cfbb476babe6fa9" />
+
 {ADSENSE_CLIENT && <meta name="google-adsense-account" content={ADSENSE_CLIENT} />}
 {adsHere && (
   <script is:inline async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`} crossorigin="anonymous" />
@@ -170,13 +174,22 @@ import hankenLatin from '@fontsource-variable/hanken-grotesk/files/hanken-grotes
       const name = el.getAttribute('data-track');
       const pattern = el.getAttribute('data-track-pattern') || undefined;
       const lang = document.documentElement.lang || undefined;
+      // Play links already carry their placement as the install-referrer
+      // campaign, so reading it back here keeps one name per button in both
+      // Play Console and Clarity without a second attribute to keep in sync.
+      let placement;
+      try {
+        const ref = el.href ? new URL(el.href).searchParams.get('referrer') : null;
+        placement = ref ? new URLSearchParams(ref).get('utm_campaign') || undefined : undefined;
+      } catch (_) {}
       if (typeof window.gtag === 'function') {
-        window.gtag('event', name, { pattern, lang });
+        window.gtag('event', name, { pattern, lang, placement });
       }
       if (typeof window.clarity === 'function') {
         // `set` makes the value a filterable tag on the recording; `event` is
         // what shows up as a named action in the dashboard.
         if (pattern) window.clarity('set', 'pattern', pattern);
+        if (placement) window.clarity('set', 'placement', placement);
         window.clarity('event', name);
       }
     });

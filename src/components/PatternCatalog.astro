@@ -177,7 +177,7 @@ const haystack = (slug: string) => {
         <p class="lede">{copy.appPitch}</p>
       </div>
       <div class="app-actions">
-        <a class="btn btn-primary" href={playUrl('patterns_index')} target="_blank" rel="noopener">{tt('cta.googlePlay')}</a>
+        <a class="btn btn-primary" href={playUrl('patterns_index')} target="_blank" rel="noopener" data-track="play_store">{tt('cta.googlePlay')}</a>
         <a class="btn btn-ghost" href={localizedPath('/', lang)}>{copy.appCta}</a>
       </div>
     </div>

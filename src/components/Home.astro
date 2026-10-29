@@ -238,7 +238,7 @@ const copy = {
       <h1>{copy.heroTitle}</h1>
       <p class="lede">{copy.heroLede}</p>
       <div class="hero-cta">
-        <a class="btn btn-primary btn-lg" href={playUrl('hero')} target="_blank" rel="noopener">
+        <a class="btn btn-primary btn-lg" href={playUrl('hero')} target="_blank" rel="noopener" data-track="play_store">
           <Icon name="arrow" size={19} /> {tt('cta.googlePlay')}
         </a>
         <a class="btn btn-ghost btn-lg" href="#quote">{copy.heroSecondary}</a>
@@ -407,7 +407,7 @@ const copy = {
     <img class="final-logo brand-lockup" src="/img/logo-lockup.png" width="760" height="807" alt="RoundCraft" loading="lazy" decoding="async" />
     <h2>{copy.finalTitle}</h2>
     <p class="lede">{copy.finalBody}</p>
-    <a class="btn btn-primary btn-lg" href={playUrl('footer_cta')} target="_blank" rel="noopener">
+    <a class="btn btn-primary btn-lg" href={playUrl('footer_cta')} target="_blank" rel="noopener" data-track="play_store">
       <Icon name="arrow" size={19} /> {tt('cta.googlePlay')}
     </a>
     <p class="muted final-sub">{copy.finalSub}</p>

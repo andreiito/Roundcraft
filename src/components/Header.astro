@@ -40,7 +40,7 @@ const nav = [
         <svg class="sun" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.3M12 19.2v2.3M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.3M19.2 12h2.3M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
         <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5Z"/></svg>
       </button>
-      <a class="btn btn-primary cta-desktop" href={playUrl('header')} target="_blank" rel="noopener">
+      <a class="btn btn-primary cta-desktop" href={playUrl('header')} target="_blank" rel="noopener" data-track="play_store">
         {t('nav.getApp')}
       </a>
       <button class="icon-btn menu-btn" type="button" aria-label={t('nav.menu')} aria-expanded="false" aria-controls="mobile-menu">
@@ -52,7 +52,7 @@ const nav = [
   <div class="mobile-menu" id="mobile-menu" hidden>
     <nav class="wrap" aria-label="Mobile">
       {nav.map((item) => <a href={item.href}>{item.label}</a>)}
-      <a class="btn btn-primary" href={playUrl('header_mobile')} target="_blank" rel="noopener">{t('nav.getApp')}</a>
+      <a class="btn btn-primary" href={playUrl('header_mobile')} target="_blank" rel="noopener" data-track="play_store">{t('nav.getApp')}</a>
     </nav>
   </div>
 </header>

@@ -92,7 +92,6 @@ export const TRACKED = [
   'rcpattern_download',
   'open_in_app',
   'play_store',
-  'pattern_view',
 ] as const;
 
 export const analyticsEnabled = Boolean(CF_BEACON_TOKEN || GA4_ID || CLARITY_ID);
