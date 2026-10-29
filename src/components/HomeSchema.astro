@@ -1,0 +1,55 @@
+---
+import { localizedPath, type Lang } from '../i18n/utils';
+import { ETSY_URL, PLAY_STORE_ID } from '../data/site';
+
+interface Props { lang: Lang; description: string; }
+const { lang, description } = Astro.props;
+
+// Same constant as Head.astro and PatternSchema.astro, for the same reason.
+const site = 'https://getroundcraft.com';
+const abs = (p: string) => new URL(p, site).href;
+const home = abs(localizedPath('/', lang));
+const playStore = `https://play.google.com/store/apps/details?id=${PLAY_STORE_ID}`;
+
+// Nearly every search that reaches this site is the brand name, so this is the
+// block that tells Google "RoundCraft" is an Android app made by NaredCraft.
+// No aggregateRating: Google wants it to mirror ratings shown on the page, and
+// the Play rating is not shown here.
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${site}/#org`,
+      name: 'NaredCraft',
+      url: site,
+      logo: abs('/img/naredcraft-logo.png'),
+      sameAs: [ETSY_URL.split('?')[0], 'https://www.pinterest.com/naredcraft/', playStore],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${site}/#website`,
+      name: 'RoundCraft',
+      url: site,
+      inLanguage: ['en', 'es'],
+      publisher: { '@id': `${site}/#org` },
+    },
+    {
+      '@type': 'MobileApplication',
+      '@id': `${site}/#app`,
+      name: 'RoundCraft',
+      description,
+      url: home,
+      image: abs('/icon-512.png'),
+      operatingSystem: 'Android',
+      applicationCategory: 'LifestyleApplication',
+      downloadUrl: playStore,
+      installUrl: playStore,
+      inLanguage: ['en', 'es', 'pt', 'it', 'fr', 'de'],
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      publisher: { '@id': `${site}/#org` },
+    },
+  ],
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -7,7 +7,7 @@ import { AD_SLOTS } from '../data/analytics';
 import PatternSchema from './PatternSchema.astro';
 import WrittenPattern from './WrittenPattern.astro';
 import { writtenPattern } from '../data/written';
-import { useTranslations, localizedPath, type Lang } from '../i18n/utils';
+import { useTranslations, localizedPath, canonicalizePath, type Lang } from '../i18n/utils';
 import { playUrl } from '../data/site';
 import { downloadName, type Pattern } from '../data/patterns';
 
@@ -18,9 +18,19 @@ const L = pattern.locales[lang];
 const catalog = `${localizedPath('/patterns', lang)}/`;
 const written = writtenPattern(pattern.slug);
 
+// A plain share link, not Pinterest's pinit.js: no third-party script, no
+// cookies, and the vertical pin image instead of whichever picture Pinterest
+// would pick off the page.
+const pageUrl = new URL(canonicalizePath(Astro.url.pathname), 'https://getroundcraft.com').href;
+const pinUrl = 'https://www.pinterest.com/pin/create/button/?' + new URLSearchParams({
+  url: pageUrl,
+  media: new URL(pattern.ogImage, 'https://getroundcraft.com').href,
+  description: L.seoDesc,
+}).toString();
+
 const ui = {
-  en: { back: 'All free patterns', downloadTitle: 'Download the free PDF', pdfEn: 'Download PDF, English', pdfEs: 'Download PDF, Spanish', rc: 'Pattern file for the app (.rcpattern)', open: 'Open in the RoundCraft app', appTitle: 'Crochet it with RoundCraft' },
-  es: { back: 'Todos los patrones gratis', downloadTitle: 'Descarga el PDF gratis', pdfEn: 'Descargar PDF, Inglés', pdfEs: 'Descargar PDF, Español', rc: 'Archivo de patrón para la app (.rcpattern)', open: 'Abrir en la app RoundCraft', appTitle: 'Téjelo con RoundCraft' },
+  en: { back: 'All free patterns', downloadTitle: 'Download the free PDF', pdfEn: 'Download PDF, English', pdfEs: 'Download PDF, Spanish', rc: 'Pattern file for the app (.rcpattern)', open: 'Open in the RoundCraft app', pin: 'Save to Pinterest', appTitle: 'Crochet it with RoundCraft' },
+  es: { back: 'Todos los patrones gratis', downloadTitle: 'Descarga el PDF gratis', pdfEn: 'Descargar PDF, Inglés', pdfEs: 'Descargar PDF, Español', rc: 'Archivo de patrón para la app (.rcpattern)', open: 'Abrir en la app RoundCraft', pin: 'Guardar en Pinterest', appTitle: 'Téjelo con RoundCraft' },
 }[lang];
 ---
 <PatternSchema lang={lang} pattern={pattern} />
@@ -40,6 +50,7 @@ const ui = {
     <img class="pd-hero" src={pattern.preview} width={pattern.previewW} height={pattern.previewH}
       loading="eager" decoding="async"
       alt={`Tapestry crochet chart: ${pattern.name}`} data-reveal />
+    <p class="pin-row"><a class="btn btn-ghost" href={pinUrl} target="_blank" rel="noopener" data-track="pinterest_save" data-track-pattern={pattern.slug}>{ui.pin}</a></p>
 
     <div class="pd-block card" data-reveal>
       <h2>{L.aboutTitle}</h2>
@@ -77,13 +88,14 @@ const ui = {
 
 <style>
   .crumb { margin-bottom: 1.4rem; }
+  .pin-row { display: flex; justify-content: center; margin: 0 0 2rem; }
   .crumb a { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--ink-soft); font-weight: 500; font-size: 0.95rem; }
   .crumb a:hover { color: var(--clay); }
   .crumb :global(.flip) { transform: rotate(180deg); }
 
   .pd-head { margin-bottom: 1.6rem; }
   .pd-head h1 { font-size: var(--fs-xl); margin-bottom: 0.4rem; }
-  .pd-hero { width: 100%; max-width: 420px; margin: 0 auto 2rem; border-radius: var(--r-lg); border: 1px solid var(--line); box-shadow: var(--shadow-md); display: block; }
+  .pd-hero { width: 100%; max-width: 420px; margin: 0 auto 1rem; border-radius: var(--r-lg); border: 1px solid var(--line); box-shadow: var(--shadow-md); display: block; }
 
   .pd-block { padding: 1.5rem 1.7rem; margin-bottom: 1.4rem; }
   .pd-block h2 { font-size: var(--fs-md); margin-bottom: 0.9rem; }
